@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:novaday_test/core/theme/app_themes.dart';
 import 'package:novaday_test/features/splash/presentations/language_selection_screen.dart';
-import 'package:novaday_test/features/splash/presentations/onboarding_screen.dart';
 
 void main() {
   runApp(const MyApp());

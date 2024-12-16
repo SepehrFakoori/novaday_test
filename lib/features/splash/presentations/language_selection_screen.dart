@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:novaday_test/core/models/language_model.dart';
 import 'package:novaday_test/core/theme/app_colors.dart';
 import 'package:novaday_test/core/theme/app_icons.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
+import 'package:novaday_test/core/utils/language_manager.dart';
 import 'package:novaday_test/core/widgets/filled_button_widget.dart';
 
 class LanguageSelectionScreen extends StatelessWidget {
@@ -32,39 +34,15 @@ class LanguageSelectionScreen extends StatelessWidget {
                   width: size.width,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16),
-                    child: const Column(
-                      children: [
-                        LanguageContainer(
-                          flag: AppIcons.englandFlag,
-                          langTitle: 'English',
-                          langSubTitle: 'English',
-                        ),
-                        LanguageContainer(
-                          flag: AppIcons.franceFlag,
-                          langTitle: 'Français',
-                          langSubTitle: 'France',
-                        ),
-                        LanguageContainer(
-                          flag: AppIcons.germanyFlag,
-                          langTitle: 'Deutsch',
-                          langSubTitle: 'Germany',
-                        ),
-                        LanguageContainer(
-                          flag: AppIcons.uaeFlag,
-                          langTitle: 'عربي',
-                          langSubTitle: 'Arabic',
-                        ),
-                        LanguageContainer(
-                          flag: AppIcons.turkeyFlag,
-                          langTitle: 'Türkçe',
-                          langSubTitle: 'Turkey',
-                        ),
-                        LanguageContainer(
-                          flag: AppIcons.iranFlag,
-                          langTitle: 'فارسی',
-                          langSubTitle: 'Persian',
-                        ),
-                      ],
+                    child: ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemBuilder: (BuildContext context, int index) {
+                        return LanguageContainer(
+                          languageModel: LanguageManager.allLanguages[index],
+                        );
+                      },
+                      itemCount: LanguageManager.totalLanguages,
                     ),
                   ),
                 ),
@@ -79,63 +57,70 @@ class LanguageSelectionScreen extends StatelessWidget {
   }
 }
 
-
 // Language Container Section
 class LanguageContainer extends StatelessWidget {
   const LanguageContainer({
-    required this.flag,
-    required this.langTitle,
-    required this.langSubTitle,
+    required this.languageModel,
     super.key,
   });
 
-  final String flag;
-  final String langTitle;
-  final String langSubTitle;
+  final LanguageModel languageModel;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.lightBackgroundSecondaryColor,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.25),
-            blurStyle: BlurStyle.outer,
-            offset: const Offset(0, 4),
-            blurRadius: 4,
-            spreadRadius: -4,
-          ),
-        ]
-      ),
-      margin: const EdgeInsets.only(bottom: 1),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 7,
-      ),
-      child: Row(
-        children: [
-          SvgPicture.asset(flag),
-          const SizedBox(width: 16),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                langTitle,
-                style: AppTextStyles.textTheme.titleMedium!.copyWith(
-                  color: AppColors.lightTitleColor,
-                ),
+    return GestureDetector(
+      onTap: () {
+        LanguageManager.selectLanguage(languageModel.shortName);
+      },
+      child: Container(
+        decoration: BoxDecoration(
+            color: !languageModel.isSelected
+                ? AppColors.lightBackgroundSecondaryColor
+                : AppColors.lightBlue08Color,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.25),
+                blurStyle: BlurStyle.outer,
+                offset: const Offset(0, 4),
+                blurRadius: 4,
+                spreadRadius: -4,
               ),
-              Text(
-                langSubTitle,
-                style: AppTextStyles.textTheme.titleMedium!.copyWith(
-                  color: AppColors.lightSubtitleColor,
-                  fontSize: 14,
-                ),
+            ]),
+        margin: const EdgeInsets.only(bottom: 1),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 7,
+        ),
+        child: Row(
+          children: [
+            SvgPicture.asset(languageModel.flag),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    languageModel.title,
+                    style: AppTextStyles.textTheme.titleMedium!.copyWith(
+                      color: AppColors.lightTitleColor,
+                    ),
+                  ),
+                  Text(
+                    languageModel.subtitle,
+                    style: AppTextStyles.textTheme.titleMedium!.copyWith(
+                      color: AppColors.lightSubtitleColor,
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ],
+            ),
+            Offstage(
+              offstage: !languageModel.isSelected,
+              child: SvgPicture.asset(AppIcons.checkBox),
+            ),
+          ],
+        ),
       ),
     );
   }

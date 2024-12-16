@@ -15,4 +15,7 @@ class AppIcons {
   static const uaeFlag = '$_basePath/uae_flag.svg';
   static const turkeyFlag = '$_basePath/turkey_flag.svg';
   static const iranFlag = '$_basePath/iran_flag.svg';
+
+  // Beyond the theme
+  static const checkBox = '$_basePath/check_box.svg';
 }
