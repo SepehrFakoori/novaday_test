@@ -7,13 +7,11 @@ class FilledButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.sizeOf(context);
-
     return FilledButton(
       onPressed: () {},
       style: FilledButton.styleFrom(
         backgroundColor: AppColors.lightPrimaryColor,
-        fixedSize: Size(size.width, 48),
+        fixedSize: const Size(double.infinity, 48),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),

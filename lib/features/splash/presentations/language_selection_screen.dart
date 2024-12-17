@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:novaday_test/core/constants/app_sizes.dart';
 import 'package:novaday_test/core/models/language_model.dart';
 import 'package:novaday_test/core/theme/app_colors.dart';
 import 'package:novaday_test/core/theme/app_icons.dart';
@@ -17,7 +18,7 @@ class LanguageSelectionScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: SizedBox(
-          width: size.width,
+          width: AppSizes.phoneWidth,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             child: Column(
@@ -31,7 +32,7 @@ class LanguageSelectionScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 SizedBox(
-                  width: size.width,
+                  width: double.infinity,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16),
                     child: ListView.builder(
