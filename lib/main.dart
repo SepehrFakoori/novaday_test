@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:novaday_test/core/constants/app_sizes.dart';
 import 'package:novaday_test/core/cubits/filled_button_widget_cubit.dart';
 import 'package:novaday_test/core/theme/app_themes.dart';
+import 'package:novaday_test/features/splash/presentations/cubits/language_cubit.dart';
 import 'package:novaday_test/features/splash/presentations/set_language_screen.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -29,7 +30,14 @@ class MyApp extends StatelessWidget {
           child: MultiBlocProvider(
             providers: [
               BlocProvider<ButtonCubit>(
-                create: (BuildContext context) => ButtonCubit(),
+                create: (BuildContext context) {
+                  var buttonCubit = ButtonCubit();
+                  buttonCubit.buttonActive();
+                  return buttonCubit;
+                },
+              ),
+              BlocProvider(
+                create: (BuildContext context) => LanguageCubit(),
               ),
             ],
             child: const SetLanguageScreen(),

@@ -1,1 +1,1 @@
-enum Language { en, fr, de, ae, tr, fa }
+enum LanguageEnum { en, fr, de, ae, tr, fa }

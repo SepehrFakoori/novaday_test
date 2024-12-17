@@ -1,56 +1,48 @@
 import 'package:novaday_test/core/enums/language_enum.dart';
-import 'package:novaday_test/core/models/language_model.dart';
 import 'package:novaday_test/core/theme/app_icons.dart';
+import 'package:novaday_test/features/splash/domain/entities/language_model.dart';
 
-class LanguageManager {
-  static Language? _selectedLanguage;
-
-  static final Map<Language, LanguageModel> _languages = {
-    Language.en: LanguageModel(
+class LanguageManagerUtils {
+  static final Map<LanguageEnum, LanguageModel> _languages = {
+    LanguageEnum.en: LanguageModel(
       flag: AppIcons.englandFlag,
       title: "English",
       subtitle: "English",
-      shortName: Language.en,
-      isSelected: false,
+      langCode: LanguageEnum.en,
     ),
-    Language.fr: LanguageModel(
+    LanguageEnum.fr: LanguageModel(
       flag: AppIcons.franceFlag,
       title: "Français",
       subtitle: "France",
-      shortName: Language.fr,
-      isSelected: false,
+      langCode: LanguageEnum.fr,
     ),
-    Language.de: LanguageModel(
+    LanguageEnum.de: LanguageModel(
       flag: AppIcons.germanyFlag,
       title: "Deutsch",
       subtitle: "Germany",
-      shortName: Language.de,
-      isSelected: false,
+      langCode: LanguageEnum.de,
     ),
-    Language.ae: LanguageModel(
+    LanguageEnum.ae: LanguageModel(
       flag: AppIcons.uaeFlag,
       title: "عربي",
       subtitle: "Arabic",
-      shortName: Language.ae,
-      isSelected: false,
+      langCode: LanguageEnum.ae,
     ),
-    Language.tr: LanguageModel(
+    LanguageEnum.tr: LanguageModel(
       flag: AppIcons.turkeyFlag,
       title: "Türkçe",
       subtitle: "Turkey",
-      shortName: Language.tr,
-      isSelected: false,
+      langCode: LanguageEnum.tr,
     ),
-    Language.fa: LanguageModel(
+    LanguageEnum.fa: LanguageModel(
       flag: AppIcons.iranFlag,
       title: "فارسی",
       subtitle: "Persian",
-      shortName: Language.fa,
-      isSelected: true,
+      langCode: LanguageEnum.fa,
     ),
   };
 
-  static LanguageModel getLanguageModel(Language language) {
+  static LanguageModel getLanguageModel(LanguageEnum language) {
     final info = _languages[language];
     if (info == null) {
       throw Exception("Language not found");
@@ -59,21 +51,9 @@ class LanguageManager {
       flag: info.flag,
       title: info.title,
       subtitle: info.subtitle,
-      shortName: info.shortName,
-      isSelected: language == _selectedLanguage,
+      langCode: info.langCode,
     );
   }
-
-  static void selectLanguage(Language language) {
-    if (!_languages.containsKey(language)) {
-      throw Exception("Language not found");
-    }
-    _selectedLanguage = language;
-  }
-
-  static Language? get selectedLanguage => _selectedLanguage;
-
-  static int get totalLanguages => _languages.length;
 
   static List<LanguageModel> get allLanguages => _languages.keys
       .map((lang) => getLanguageModel(lang))
