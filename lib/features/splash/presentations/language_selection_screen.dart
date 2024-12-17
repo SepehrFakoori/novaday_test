@@ -13,8 +13,6 @@ class LanguageSelectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.sizeOf(context);
-
     return Scaffold(
       body: SafeArea(
         child: SizedBox(
