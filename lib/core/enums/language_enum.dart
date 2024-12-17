@@ -1,8 +1,1 @@
-enum Language {
-  en,
-  fr,
-  de,
-  ae,
-  tr,
-  fa,
-}
+enum Language { en, fr, de, ae, tr, fa }
