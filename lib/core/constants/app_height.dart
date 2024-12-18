@@ -1,0 +1,33 @@
+class AppHeight {
+  static const h4 = 4.0;
+  static const h8 = 8.0;
+  static const h12 = 12.0;
+  static const h16 = 16.0;
+  static const h20 = 20.0;
+  static const h24 = 24.0;
+  static const h28 = 28.0;
+  static const h32 = 32.0;
+  static const h36 = 36.0;
+  static const h40 = 40.0;
+  static const h44 = 44.0;
+  static const h48 = 48.0;
+  static const h52 = 52.0;
+  static const h56 = 56.0;
+  static const h60 = 60.0;
+  static const h64 = 64.0;
+  static const h68 = 68.0;
+  static const h72 = 72.0;
+  static const h76 = 76.0;
+  static const h80 = 80.0;
+  static const h84 = 84.0;
+  static const h88 = 88.0;
+  static const h92 = 92.0;
+  static const h96 = 96.0;
+  static const h100 = 100;
+  static const h104 = 104.0;
+  static const h108 = 108.0;
+  static const h112 = 112.0;
+  static const h116 = 116.0;
+  static const h120 = 120.0;
+  static const h124 = 124.0;
+}

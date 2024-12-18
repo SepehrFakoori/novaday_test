@@ -1,6 +1,6 @@
 import 'package:novaday_test/core/enums/language_enum.dart';
 import 'package:novaday_test/core/theme/app_icons.dart';
-import 'package:novaday_test/features/splash/domain/entities/language_model.dart';
+import 'package:novaday_test/features/onboarding/domain/entities/language_model.dart';
 
 class LanguageManagerUtils {
   static final Map<LanguageEnum, LanguageModel> _languages = {
@@ -55,7 +55,6 @@ class LanguageManagerUtils {
     );
   }
 
-  static List<LanguageModel> get allLanguages => _languages.keys
-      .map((lang) => getLanguageModel(lang))
-      .toList();
+  static List<LanguageModel> get allLanguages =>
+      _languages.keys.map((lang) => getLanguageModel(lang)).toList();
 }
