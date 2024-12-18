@@ -5,15 +5,17 @@ import 'package:novaday_test/core/constants/app_border_weight.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/constants/app_layout_grid.dart';
 import 'package:novaday_test/core/constants/app_sizes.dart';
+import 'package:novaday_test/core/cubits/filled_button_widget_cubit.dart';
 import 'package:novaday_test/core/enums/language_enum.dart';
 import 'package:novaday_test/core/theme/app_colors.dart';
 import 'package:novaday_test/core/theme/app_icons.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
-import 'package:novaday_test/core/theme/app_themes.dart';
 import 'package:novaday_test/core/utils/language_manager.dart';
 import 'package:novaday_test/core/widgets/filled_button_widget.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/language_model.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/language_cubit.dart';
+import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit.dart';
+import 'package:novaday_test/features/onboarding/presentations/set_theme_screen.dart';
 
 class SetLanguageScreen extends StatelessWidget {
   const SetLanguageScreen({super.key});
@@ -56,11 +58,38 @@ class SetLanguageScreen extends StatelessWidget {
                 const Spacer(),
                 FilledButtonWidget(
                   buttonText: 'ادامه',
-                  onPressed: () {},
+                  onPressed: () {
+                    onNextButtonClick(context);
+                  },
                 ),
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  void onNextButtonClick(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => MultiBlocProvider(
+          providers: [
+            BlocProvider<ButtonCubit>(
+              create: (BuildContext context) {
+                var buttonCubit = ButtonCubit();
+                buttonCubit.buttonActive();
+                return buttonCubit;
+              },
+            ),
+            BlocProvider<ThemeCubit>(
+              create: (BuildContext context) {
+                return ThemeCubit();
+              },
+            ),
+          ],
+          child: const SetThemeScreen(),
         ),
       ),
     );
@@ -82,7 +111,7 @@ class LanguageContainer extends StatelessWidget {
       builder: (context, state) {
         return GestureDetector(
           onTap: () {
-            context.read<LanguageCubit>().setLanguage(languageModel.langCode);
+            onSelectLanguage(context);
           },
           child: Container(
             height: AppHeight.h48,
@@ -134,5 +163,9 @@ class LanguageContainer extends StatelessWidget {
         );
       },
     );
+  }
+
+  void onSelectLanguage(BuildContext context) {
+    context.read<LanguageCubit>().setLanguage(languageModel.langCode);
   }
 }
