@@ -1,18 +1,19 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:novaday_test/core/constants/app_border_weight.dart';
+import 'package:novaday_test/core/constants/app_height.dart';
+import 'package:novaday_test/core/constants/app_layout_grid.dart';
 import 'package:novaday_test/core/constants/app_sizes.dart';
-import 'package:novaday_test/core/cubits/filled_button_widget_cubit.dart';
 import 'package:novaday_test/core/enums/language_enum.dart';
 import 'package:novaday_test/core/theme/app_colors.dart';
 import 'package:novaday_test/core/theme/app_icons.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
+import 'package:novaday_test/core/theme/app_themes.dart';
 import 'package:novaday_test/core/utils/language_manager.dart';
 import 'package:novaday_test/core/widgets/filled_button_widget.dart';
-import 'package:novaday_test/features/splash/domain/entities/language_model.dart';
-import 'package:novaday_test/features/splash/presentations/cubits/language_cubit.dart';
+import 'package:novaday_test/features/onboarding/domain/entities/language_model.dart';
+import 'package:novaday_test/features/onboarding/presentations/cubits/language_cubit.dart';
 
 class SetLanguageScreen extends StatelessWidget {
   const SetLanguageScreen({super.key});
@@ -44,7 +45,8 @@ class SetLanguageScreen extends StatelessWidget {
                       shrinkWrap: true,
                       itemBuilder: (BuildContext context, int index) {
                         return LanguageContainer(
-                          languageModel: LanguageManagerUtils.allLanguages[index],
+                          languageModel:
+                              LanguageManagerUtils.allLanguages[index],
                         );
                       },
                       itemCount: LanguageEnum.values.length,
@@ -83,23 +85,20 @@ class LanguageContainer extends StatelessWidget {
             context.read<LanguageCubit>().setLanguage(languageModel.langCode);
           },
           child: Container(
+            height: AppHeight.h48,
             decoration: BoxDecoration(
-                color: !(state == languageModel.langCode)
-                    ? AppColors.lightBackgroundSecondaryColor
-                    : AppColors.lightBlue08Color,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.25),
-                    blurStyle: BlurStyle.outer,
-                    offset: const Offset(0, 4),
-                    blurRadius: 4,
-                    spreadRadius: -4,
-                  ),
-                ]),
-            margin: const EdgeInsets.only(bottom: 1),
+              color: !(state == languageModel.langCode)
+                  ? AppColors.lightBgSecondaryColor
+                  : AppColors.lightBlue08Color,
+              border: const Border(
+                bottom: BorderSide(
+                  color: AppColors.lightDefaultBorderColor,
+                  width: AppBorderWeight.sm,
+                ),
+              ),
+            ),
             padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 7,
+              horizontal: AppLayoutGrid.margin,
             ),
             child: Row(
               children: [

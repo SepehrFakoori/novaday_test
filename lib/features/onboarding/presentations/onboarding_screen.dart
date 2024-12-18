@@ -11,7 +11,7 @@ class OnBoardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.lightBackgroundPrimaryColor,
+      backgroundColor: AppColors.lightBgPrimaryColor,
       body: Stack(
         children: [
           _appLogoSection(),
