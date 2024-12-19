@@ -4,9 +4,9 @@ import 'package:novaday_test/core/constants/app_sizes.dart';
 import 'package:novaday_test/core/cubits/filled_button_widget_cubit.dart';
 import 'package:novaday_test/core/theme/app_themes.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/language_cubit.dart';
-import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/set_language_screen.dart';
-import 'package:novaday_test/features/onboarding/presentations/set_theme_screen.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   runApp(const MyApp());
@@ -25,25 +25,30 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: AppThemes.lightThemeData,
       darkTheme: AppThemes.darkThemeData,
-      home: Directionality(
-        textDirection: TextDirection.rtl,
-        child: MultiBlocProvider(
-          providers: [
-            BlocProvider<ButtonCubit>(
-              create: (BuildContext context) {
-                var buttonCubit = ButtonCubit();
-                buttonCubit.buttonActive();
-                return buttonCubit;
-              },
-            ),
-            BlocProvider<LanguageCubit>(
-              create: (BuildContext context) {
-                return LanguageCubit();
-              },
-            ),
-          ],
-          child: const SetLanguageScreen(),
-        ),
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: AppLocalizations.supportedLocales,
+      locale: const Locale('en'),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider<ButtonCubit>(
+            create: (BuildContext context) {
+              var buttonCubit = ButtonCubit();
+              buttonCubit.buttonActive();
+              return buttonCubit;
+            },
+          ),
+          BlocProvider<LanguageCubit>(
+            create: (BuildContext context) {
+              return LanguageCubit();
+            },
+          ),
+        ],
+        child: const SetLanguageScreen(),
       ),
     );
   }

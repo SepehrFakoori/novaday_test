@@ -16,12 +16,15 @@ import 'package:novaday_test/features/onboarding/domain/entities/language_model.
 import 'package:novaday_test/features/onboarding/presentations/cubits/language_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/set_theme_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SetLanguageScreen extends StatelessWidget {
   const SetLanguageScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations localization = AppLocalizations.of(context)!;
+
     return Scaffold(
       body: SafeArea(
         child: SizedBox(
@@ -32,7 +35,7 @@ class SetLanguageScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'انتخاب زبان',
+                  localization.setLangTitle,
                   style: AppTextStyles.textTheme.titleLarge!.copyWith(
                     color: AppColors.lightTitleColor,
                   ),
@@ -57,7 +60,7 @@ class SetLanguageScreen extends StatelessWidget {
                 ),
                 const Spacer(),
                 FilledButtonWidget(
-                  buttonText: 'ادامه',
+                  buttonText: localization.continueButtonTitle,
                   onPressed: () {
                     onNextButtonClick(context);
                   },
