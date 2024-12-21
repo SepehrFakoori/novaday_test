@@ -17,5 +17,7 @@
         "example": "+989123456789"
       }
     }
-  }
+  },
+  "otpSendCodeAgain": "Send code again",
+  "otpTimeOutError": "The entered code has timed out."
 }

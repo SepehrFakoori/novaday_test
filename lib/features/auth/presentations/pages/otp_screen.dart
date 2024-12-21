@@ -4,12 +4,14 @@ import 'package:novaday_test/core/constants/app_border_radius.dart';
 import 'package:novaday_test/core/constants/app_border_weight.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/constants/app_layout_grid.dart';
+import 'package:novaday_test/core/constants/app_sizes.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/theme/app_colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/widgets/filled_button_widget.dart';
 import 'package:novaday_test/core/widgets/header_widget.dart';
+import 'package:novaday_test/core/widgets/snack_bar_widget.dart';
 import 'package:novaday_test/features/auth/presentations/cubits/otp_cubit.dart';
 import 'package:novaday_test/features/auth/presentations/cubits/otp_state.dart';
 
@@ -19,6 +21,7 @@ class OtpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AppLocalizations localization = AppLocalizations.of(context)!;
+    final double appBarHeight = MediaQuery.paddingOf(context).top;
 
     final focusNodes = List.generate(4, (_) => FocusNode());
 
@@ -58,7 +61,7 @@ class OtpScreen extends StatelessWidget {
                   TextButton(
                     onPressed: () {},
                     child: Text(
-                      'ارسال دوباره کد',
+                      localization.otpSendCodeAgain,
                       style: AppTextStyles.textTheme.titleLarge!.copyWith(
                         color: AppColors.lightTitleColor,
                       ),
@@ -68,7 +71,21 @@ class OtpScreen extends StatelessWidget {
                   FilledButtonWidget(
                     buttonText: localization.continueButtonTitle,
                     onPressed: () {
-                      // Add submission logic
+                      print("Height ---------> $appBarHeight}");
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          elevation: 0,
+                          content: const SnackBarWidget(),
+                          behavior: SnackBarBehavior.floating,
+                          backgroundColor: Colors.transparent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          margin: EdgeInsets.only(
+                            bottom: AppSizes.phoneHeight - appBarHeight * 4,
+                          ),
+                        ),
+                      );
                     },
                   ),
                 ],
