@@ -6,5 +6,18 @@
   "setThemeTitle": "نمایش اکسس",
   "lightTheme": "روز",
   "darkTheme": "شب",
-  "loginRegisterTitle": "ورود | ثبت نام"
+  "loginRegisterTitle": "ورود | ثبت نام",
+  "authTitle": "تایید هویت",
+  "authSubtitle": "کد ارسال شده به {phoneNumber} را وارد کنید.",
+  "@authSubtitle": {
+    "description": "شماره تماس",
+    "placeholders": {
+      "phoneNumber": {
+        "type": "String",
+        "example": "+989123456789"
+      }
+    }
+  },
+  "otpSendCodeAgain": "ارسال دوباره کد",
+  "otpTimeOutError": "زمان کد وارد شده به اتمام رسیده است."
 }
