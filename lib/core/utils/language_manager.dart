@@ -9,36 +9,42 @@ class LanguageManagerUtils {
       title: "English",
       subtitle: "English",
       langCode: LanguageEnum.en,
+      countryCode: 44,
     ),
     LanguageEnum.fr: LanguageModel(
       flag: AppIcons.franceFlag,
       title: "Français",
       subtitle: "France",
       langCode: LanguageEnum.fr,
+      countryCode: 33,
     ),
     LanguageEnum.de: LanguageModel(
       flag: AppIcons.germanyFlag,
       title: "Deutsch",
       subtitle: "Germany",
       langCode: LanguageEnum.de,
+      countryCode: 49,
     ),
     LanguageEnum.ae: LanguageModel(
       flag: AppIcons.uaeFlag,
       title: "عربي",
       subtitle: "Arabic",
       langCode: LanguageEnum.ae,
+      countryCode: 971,
     ),
     LanguageEnum.tr: LanguageModel(
       flag: AppIcons.turkeyFlag,
       title: "Türkçe",
       subtitle: "Turkey",
       langCode: LanguageEnum.tr,
+      countryCode: 90,
     ),
     LanguageEnum.fa: LanguageModel(
       flag: AppIcons.iranFlag,
       title: "فارسی",
       subtitle: "Persian",
       langCode: LanguageEnum.fa,
+      countryCode: 98,
     ),
   };
 
@@ -52,6 +58,7 @@ class LanguageManagerUtils {
       title: info.title,
       subtitle: info.subtitle,
       langCode: info.langCode,
+      countryCode: info.countryCode,
     );
   }
 
