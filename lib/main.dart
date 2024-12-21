@@ -35,24 +35,23 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: AppLocalizations.supportedLocales,
       locale: const Locale('fa'),
-      home: const OnBoardingScreen(),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider<ButtonCubit>(
+            create: (BuildContext context) {
+              var buttonCubit = ButtonCubit();
+              buttonCubit.buttonActive();
+              return buttonCubit;
+            },
+          ),
+          BlocProvider<LanguageCubit>(
+            create: (BuildContext context) {
+              return LanguageCubit();
+            },
+          ),
+        ],
+        child: const SetLanguageScreen(),
+      ),
     );
   }
 }
-///MultiBlocProvider(
-//         providers: [
-//           BlocProvider<ButtonCubit>(
-//             create: (BuildContext context) {
-//               var buttonCubit = ButtonCubit();
-//               buttonCubit.buttonActive();
-//               return buttonCubit;
-//             },
-//           ),
-//           BlocProvider<LanguageCubit>(
-//             create: (BuildContext context) {
-//               return LanguageCubit();
-//             },
-//           ),
-//         ],
-//         child: const SetLanguageScreen(),
-//       ),

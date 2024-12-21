@@ -5,13 +5,13 @@ class LanguageModel {
   final String title;
   final String subtitle;
   final LanguageEnum langCode;
-  // final String countryNumber;
+  final int countryCode;
 
   LanguageModel({
     required this.flag,
     required this.title,
     required this.subtitle,
     required this.langCode,
-    // required this.countryNumber,
+    required this.countryCode,
   });
 }

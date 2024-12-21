@@ -5,6 +5,7 @@ import 'package:novaday_test/core/constants/app_border_radius.dart';
 import 'package:novaday_test/core/constants/app_border_weight.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/constants/app_layout_grid.dart';
+import 'package:novaday_test/core/constants/app_sizes.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/enums/language_enum.dart';
 import 'package:novaday_test/core/theme/app_colors.dart';
@@ -20,6 +21,7 @@ class SelectCountryBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: AppSizes.phoneWidth,
       margin: const EdgeInsets.only(
         bottom: AppSpacing.sp16,
         left: AppSpacing.sp16,
@@ -87,13 +89,13 @@ class _LanguageContainer extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        languageModel.title,
+                        languageModel.subtitle,
                         style: AppTextStyles.textTheme.titleMedium!.copyWith(
                           color: AppColors.lightTitleColor,
                         ),
                       ),
                       Text(
-                        languageModel.subtitle,
+                        '+${languageModel.countryCode.toString()}',
                         style: AppTextStyles.textTheme.titleMedium!.copyWith(
                           color: AppColors.lightSubtitleColor,
                           fontSize: 14,
