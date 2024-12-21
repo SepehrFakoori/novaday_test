@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:novaday_test/core/constants/app_border_radius.dart';
 import 'package:novaday_test/core/constants/app_border_weight.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
+import 'package:novaday_test/core/constants/app_sizes.dart';
 import 'package:novaday_test/core/cubits/filled_button_widget_cubit.dart';
 import 'package:novaday_test/core/enums/button_state_enum.dart';
 import 'package:novaday_test/core/theme/app_colors.dart';
@@ -28,6 +29,7 @@ class FilledButtonWidget extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(AppBorderRadius.br12),
             ),
+            minimumSize: Size(AppSizes.phoneWidth, AppHeight.h48),
           ),
           child: (state == ButtonStateEnum.loading)
               ? const SizedBox.square(

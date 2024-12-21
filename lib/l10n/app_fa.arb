@@ -1,7 +1,10 @@
 {
+  "appVersion": "نسخه",
+  "failedToConnect": "دستگاه شما به اینترنت متصل نیست، لطفا دوباره تلاش کنید",
   "continueButtonTitle": "ادامه",
   "setLangTitle": "انتخاب زبان",
   "setThemeTitle": "نمایش اکسس",
   "lightTheme": "روز",
-  "darkTheme": "شب"
+  "darkTheme": "شب",
+  "loginRegisterTitle": "ورود | ثبت نام"
 }
