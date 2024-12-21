@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:novaday_test/core/constants/app_border_radius.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/constants/app_sizes.dart';
 import 'package:novaday_test/core/theme/app_colors.dart';
@@ -16,14 +17,20 @@ class AppThemes {
     textTheme: AppTextStyles.textTheme,
 
     /// ***** Filled Button Theme *****
-    filledButtonTheme: FilledButtonThemeData(
+    filledButtonTheme: const FilledButtonThemeData(
       style: ButtonStyle(
-        overlayColor: const WidgetStatePropertyAll(
+        overlayColor: WidgetStatePropertyAll(
           AppColors.lightHoverPressingButtonColor,
         ),
-        fixedSize: WidgetStatePropertyAll(
-          Size(AppSizes.phoneWidth, AppHeight.h48),
-        ),
+      ),
+    ),
+
+    /// **** Bottom Sheet Theme ****
+    bottomSheetTheme: BottomSheetThemeData(
+      backgroundColor: Colors.transparent,
+      modalBarrierColor: AppColors.lightLayoutColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppBorderRadius.br12),
       ),
     ),
 

@@ -1,7 +1,10 @@
 {
+  "appVersion": "Version",
+  "failedToConnect": "Your device doesn't connect to internet, please try again",
   "continueButtonTitle": "Continue",
   "setLangTitle": "Select Language",
   "setThemeTitle": "Access Theme",
   "lightTheme": "Day",
-  "darkTheme": "Night"
+  "darkTheme": "Night",
+  "loginRegisterTitle": "Login | Register"
 }

@@ -6,92 +6,40 @@ import 'package:novaday_test/core/constants/app_border_weight.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/constants/app_layout_grid.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
-import 'package:novaday_test/core/cubits/filled_button_widget_cubit.dart';
 import 'package:novaday_test/core/enums/language_enum.dart';
 import 'package:novaday_test/core/theme/app_colors.dart';
 import 'package:novaday_test/core/theme/app_icons.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/utils/language_manager.dart';
-import 'package:novaday_test/core/widgets/filled_button_widget.dart';
-import 'package:novaday_test/core/widgets/header_widget.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/language_model.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/language_cubit.dart';
-import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit.dart';
-import 'package:novaday_test/features/onboarding/presentations/set_theme_screen.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class SetLanguageScreen extends StatelessWidget {
-  const SetLanguageScreen({super.key});
+class SelectCountryBottomSheet extends StatelessWidget {
+  const SelectCountryBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations localization = AppLocalizations.of(context)!;
-
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppLayoutGrid.margin,
-            vertical: AppLayoutGrid.margin,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              HeaderWidget(
-                haveBackButton: false,
-                title: localization.setLangTitle,
-              ),
-              const SizedBox(height: AppSpacing.sp24),
-              SizedBox(
-                width: double.infinity,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(AppBorderRadius.br16),
-                  child: ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemBuilder: (BuildContext context, int index) {
-                      return _LanguageContainer(
-                        languageModel: LanguageManagerUtils.allLanguages[index],
-                      );
-                    },
-                    itemCount: LanguageEnum.values.length,
-                  ),
-                ),
-              ),
-              const Spacer(),
-              FilledButtonWidget(
-                buttonText: localization.continueButtonTitle,
-                onPressed: () {
-                  onNextButtonClick(context);
-                },
-              ),
-            ],
-          ),
-        ),
+    return Container(
+      margin: const EdgeInsets.only(
+        bottom: AppSpacing.sp16,
+        left: AppSpacing.sp16,
+        right: AppSpacing.sp16,
       ),
-    );
-  }
-
-  void onNextButtonClick(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => MultiBlocProvider(
-          providers: [
-            BlocProvider<ButtonCubit>(
-              create: (BuildContext context) {
-                var buttonCubit = ButtonCubit();
-                buttonCubit.buttonActive();
-                return buttonCubit;
-              },
-            ),
-            BlocProvider<ThemeCubit>(
-              create: (BuildContext context) {
-                return ThemeCubit();
-              },
-            ),
-          ],
-          child: const SetThemeScreen(),
+      decoration: BoxDecoration(
+        color: AppColors.lightBgSecondaryColor,
+        borderRadius: BorderRadius.circular(AppBorderRadius.br12),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(AppBorderRadius.br12),
+        child: ListView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemBuilder: (BuildContext context, int index) {
+            return _LanguageContainer(
+              languageModel: LanguageManagerUtils.allLanguages[index],
+            );
+          },
+          itemCount: LanguageEnum.values.length,
         ),
       ),
     );
@@ -102,7 +50,6 @@ class SetLanguageScreen extends StatelessWidget {
 class _LanguageContainer extends StatelessWidget {
   const _LanguageContainer({
     required this.languageModel,
-    super.key,
   });
 
   final LanguageModel languageModel;
@@ -134,7 +81,7 @@ class _LanguageContainer extends StatelessWidget {
             child: Row(
               children: [
                 SvgPicture.asset(languageModel.flag),
-                const SizedBox(width: AppSpacing.sp16),
+                const SizedBox(width: 16),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
