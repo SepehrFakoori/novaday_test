@@ -11,7 +11,6 @@ import 'package:novaday_test/core/theme/app_colors.dart';
 import 'package:novaday_test/core/theme/app_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:novaday_test/core/widgets/filled_button_widget.dart';
-import 'package:flutter/services.dart';
 import 'package:novaday_test/core/widgets/header_widget.dart';
 import 'package:novaday_test/features/auth/presentations/widgets/select_country_bottom_sheet.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/language_cubit.dart';
@@ -45,23 +44,8 @@ class LoginScreen extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    Expanded(
-                      child: TextField(
-                        keyboardType: TextInputType.number,
-                        maxLength: 12,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
-                          _CardPanFormatter(),
-                        ],
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: '000 000 0000',
-                          counterText: '', // Hides the character counter
-                        ),
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                    const Expanded(
+                      child: Center(child: Text("Text Field Here")),
                     ),
                     const SizedBox(width: AppSpacing.sp16),
                     GestureDetector(
@@ -116,29 +100,6 @@ class LoginScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _CardPanFormatter extends TextInputFormatter {
-  @override
-  TextEditingValue formatEditUpdate(
-    TextEditingValue oldValue,
-    TextEditingValue newValue,
-  ) {
-    final text = newValue.text;
-    final buffer = StringBuffer();
-
-    for (int i = 0; i < text.length; i++) {
-      buffer.write(text[i]);
-      if ((i + 1) % 3 == 0 && i + 1 != text.length) {
-        buffer.write(' ');
-      }
-    }
-
-    return TextEditingValue(
-      text: buffer.toString(),
-      selection: TextSelection.collapsed(offset: buffer.length),
     );
   }
 }

@@ -6,5 +6,16 @@
   "setThemeTitle": "Access Theme",
   "lightTheme": "Day",
   "darkTheme": "Night",
-  "loginRegisterTitle": "Login | Register"
+  "loginRegisterTitle": "Login | Register",
+  "authTitle": "Identity verification",
+  "authSubtitle": "Enter the code sent to {phoneNumber}.",
+  "@authSubtitle": {
+    "description": "Phone number",
+    "placeholders": {
+      "phoneNumber": {
+        "type": "String",
+        "example": "+989123456789"
+      }
+    }
+  }
 }
