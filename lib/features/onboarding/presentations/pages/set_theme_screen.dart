@@ -4,7 +4,6 @@ import 'package:novaday_test/core/constants/app_border_radius.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/constants/app_layout_grid.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
-import 'package:novaday_test/core/cubits/filled_button_widget_cubit.dart';
 import 'package:novaday_test/core/enums/theme_enum.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/theme/app_colors.dart';
@@ -67,13 +66,6 @@ class SetThemeScreen extends StatelessWidget {
       MaterialPageRoute(
         builder: (context) => MultiBlocProvider(
           providers: [
-            BlocProvider<ButtonCubit>(
-              create: (context) {
-                var buttonCubit = ButtonCubit();
-                buttonCubit.buttonDeActive();
-                return buttonCubit;
-              },
-            ),
             BlocProvider<LanguageCubit>(
               create: (context) {
                 return LanguageCubit();

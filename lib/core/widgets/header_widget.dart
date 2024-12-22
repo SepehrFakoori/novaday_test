@@ -3,7 +3,6 @@ import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/theme/app_colors.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
-import 'package:novaday_test/core/widgets/back_button_widget.dart';
 import 'package:novaday_test/core/widgets/icon_button_widget.dart';
 
 class HeaderWidget extends StatelessWidget {
@@ -28,11 +27,16 @@ class HeaderWidget extends StatelessWidget {
         children: [
           Offstage(
             offstage: !haveBackButton,
-            child: const Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                BackButtonWidget(),
-                SizedBox(width: AppSpacing.sp8),
+                IconButtonWidget(
+                  icon: Icons.arrow_back_ios_rounded,
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                const SizedBox(width: AppSpacing.sp8),
               ],
             ),
           ),

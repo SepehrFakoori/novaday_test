@@ -5,10 +5,10 @@ import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/theme/app_colors.dart';
 
 class IconButtonWidget extends StatelessWidget {
-  IconButtonWidget({required this.icon, this.onTap, super.key});
+  const IconButtonWidget({required this.icon, this.onTap, super.key});
 
   final IconData icon;
-  void Function()? onTap;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {

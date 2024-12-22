@@ -6,7 +6,6 @@ import 'package:novaday_test/core/constants/app_border_weight.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/constants/app_layout_grid.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
-import 'package:novaday_test/core/cubits/filled_button_widget_cubit.dart';
 import 'package:novaday_test/core/enums/language_enum.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/theme/app_colors.dart';
@@ -76,13 +75,6 @@ class SetLanguageScreen extends StatelessWidget {
       MaterialPageRoute(
         builder: (context) => MultiBlocProvider(
           providers: [
-            BlocProvider<ButtonCubit>(
-              create: (BuildContext context) {
-                var buttonCubit = ButtonCubit();
-                buttonCubit.buttonActive();
-                return buttonCubit;
-              },
-            ),
             BlocProvider<ThemeCubit>(
               create: (BuildContext context) {
                 return ThemeCubit();
