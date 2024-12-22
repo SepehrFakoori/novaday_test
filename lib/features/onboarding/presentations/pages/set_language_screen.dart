@@ -92,7 +92,6 @@ class SetLanguageScreen extends StatelessWidget {
 class _LanguageContainer extends StatelessWidget {
   const _LanguageContainer({
     required this.languageModel,
-    super.key,
   });
 
   final LanguageModel languageModel;

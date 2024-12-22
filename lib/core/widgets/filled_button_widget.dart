@@ -17,7 +17,7 @@ class FilledButtonWidget extends StatelessWidget {
 
   final String buttonText;
   final void Function() onPressed;
-  final ButtonStateEnum? buttonState;
+  final ButtonStateEnum buttonState;
 
   @override
   Widget build(BuildContext context) {

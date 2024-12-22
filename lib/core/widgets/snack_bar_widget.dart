@@ -5,7 +5,7 @@ import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/theme/app_colors.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class SnackBarWidget extends StatelessWidget {
   const SnackBarWidget({super.key});

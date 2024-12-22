@@ -83,7 +83,6 @@ class _RadioContainer extends StatelessWidget {
   const _RadioContainer({
     required this.title,
     required this.theme,
-    super.key,
   });
 
   final String title;
