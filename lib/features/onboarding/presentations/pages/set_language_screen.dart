@@ -15,7 +15,7 @@ import 'package:novaday_test/core/utils/language_manager.dart';
 import 'package:novaday_test/core/widgets/check_icon_widget.dart';
 import 'package:novaday_test/core/widgets/filled_button_widget.dart';
 import 'package:novaday_test/core/widgets/header_widget.dart';
-import 'package:novaday_test/features/onboarding/domain/entities/language_model.dart';
+import 'package:novaday_test/features/onboarding/domain/entities/country_entity.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/language_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/pages/set_theme_screen.dart';
@@ -96,7 +96,7 @@ class _LanguageContainer extends StatelessWidget {
     required this.languageModel,
   });
 
-  final LanguageModel languageModel;
+  final CountryEntity languageModel;
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +109,7 @@ class _LanguageContainer extends StatelessWidget {
           child: Container(
             height: AppHeight.h48,
             decoration: BoxDecoration(
-              color: !(state == languageModel.langCode)
+              color: !(state == languageModel.countryLanguageCode)
                   ? AppColors.lightBgSecondaryColor
                   : AppColors.lightBlue08Color,
               border: const Border(
@@ -124,20 +124,20 @@ class _LanguageContainer extends StatelessWidget {
             ),
             child: Row(
               children: [
-                SvgPicture.asset(languageModel.flag),
+                SvgPicture.asset(languageModel.countryFlag!),
                 const SizedBox(width: AppSpacing.sp16),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        languageModel.title,
+                        languageModel.countryName!,
                         style: AppTextStyles.textTheme.titleMedium!.copyWith(
                           color: AppColors.lightTitleColor,
                         ),
                       ),
                       Text(
-                        languageModel.subtitle,
+                        languageModel.countryLanguage!,
                         style: AppTextStyles.textTheme.titleMedium!.copyWith(
                           color: AppColors.lightSubtitleColor,
                           fontSize: 14,
@@ -146,7 +146,8 @@ class _LanguageContainer extends StatelessWidget {
                     ],
                   ),
                 ),
-                CheckIconWidget(isActive: state == languageModel.langCode),
+                CheckIconWidget(
+                    isActive: state == languageModel.countryLanguageCode),
               ],
             ),
           ),
@@ -156,6 +157,8 @@ class _LanguageContainer extends StatelessWidget {
   }
 
   void onSelectLanguage(BuildContext context) {
-    context.read<LanguageCubit>().setLanguage(languageModel.langCode);
+    context
+        .read<LanguageCubit>()
+        .setLanguage(languageModel.countryLanguageCode!);
   }
 }
