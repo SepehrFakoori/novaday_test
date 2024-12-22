@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
-import 'package:novaday_test/core/constants/app_sizes.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
+import 'package:novaday_test/core/extensions/localization_extension.dart';
+import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/theme/app_colors.dart';
 import 'package:novaday_test/core/theme/app_icons.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations localization = AppLocalizations.of(context)!;
-
     return Scaffold(
       backgroundColor: AppColors.lightBgPrimaryColor,
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [
           _appLogoSection(),
-          _failedSection(localization),
-          _loadingSection(),
-          _appVersionNumberSection(localization),
+          _failedSection(context),
+          _loadingSection(context),
+          _appVersionNumberSection(context),
         ],
       ),
     );
@@ -35,17 +33,17 @@ class OnBoardingScreen extends StatelessWidget {
     );
   }
 
-  Positioned _failedSection(AppLocalizations localization) {
+  Positioned _failedSection(BuildContext context) {
     return Positioned(
-      top: AppSizes.phoneHeight * 0.5 + AppSpacing.sp40,
+      top: context.height * 0.5 + AppSpacing.sp40,
       child: SizedBox(
-        width: AppSizes.phoneWidth,
-        height: AppSizes.phoneHeight * 0.5,
+        width: context.width,
+        height: context.height * 0.5,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              localization.failedToConnect,
+              context.localization.failedToConnect,
               style: AppTextStyles.textTheme.bodyMedium!.copyWith(
                 color: AppColors.lightSubtitleColor,
               ),
@@ -56,12 +54,12 @@ class OnBoardingScreen extends StatelessWidget {
     );
   }
 
-  Positioned _loadingSection() {
+  Positioned _loadingSection(BuildContext context) {
     return Positioned(
-      top: AppSizes.phoneHeight * 0.5 + AppHeight.h72,
+      top: context.height * 0.5 + AppHeight.h72,
       child: SizedBox(
-        width: AppSizes.phoneWidth,
-        height: AppSizes.phoneHeight * 0.5,
+        width: context.width,
+        height: context.height * 0.5,
         child: const Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -75,13 +73,13 @@ class OnBoardingScreen extends StatelessWidget {
     );
   }
 
-  Positioned _appVersionNumberSection(AppLocalizations localization) {
+  Positioned _appVersionNumberSection(BuildContext context) {
     return Positioned(
       bottom: AppSpacing.sp8,
       child: Row(
         children: [
           Text(
-            localization.appVersion,
+            context.localization.appVersion,
             style: AppTextStyles.textTheme.titleSmall!
                 .copyWith(color: AppColors.lightSubtitleColor),
           ),

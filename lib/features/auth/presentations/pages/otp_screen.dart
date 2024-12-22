@@ -4,10 +4,10 @@ import 'package:novaday_test/core/constants/app_border_radius.dart';
 import 'package:novaday_test/core/constants/app_border_weight.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/constants/app_layout_grid.dart';
-import 'package:novaday_test/core/constants/app_sizes.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
+import 'package:novaday_test/core/extensions/localization_extension.dart';
+import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/theme/app_colors.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/widgets/filled_button_widget.dart';
 import 'package:novaday_test/core/widgets/header_widget.dart';
@@ -20,7 +20,6 @@ class OtpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations localization = AppLocalizations.of(context)!;
     final double appBarHeight = MediaQuery.paddingOf(context).top;
 
     final focusNodes = List.generate(4, (_) => FocusNode());
@@ -35,8 +34,8 @@ class OtpScreen extends StatelessWidget {
                 children: [
                   HeaderWidget(
                     haveBackButton: false,
-                    title: localization.authTitle,
-                    subtitle: localization.authSubtitle("+9301914321"),
+                    title: context.localization.authTitle,
+                    subtitle: context.localization.authSubtitle("+9301914321"),
                   ),
                   const SizedBox(height: AppSpacing.sp24),
                   Row(
@@ -61,7 +60,7 @@ class OtpScreen extends StatelessWidget {
                   TextButton(
                     onPressed: () {},
                     child: Text(
-                      localization.otpSendCodeAgain,
+                      context.localization.otpSendCodeAgain,
                       style: AppTextStyles.textTheme.titleLarge!.copyWith(
                         color: AppColors.lightTitleColor,
                       ),
@@ -69,7 +68,7 @@ class OtpScreen extends StatelessWidget {
                   ),
                   const Spacer(),
                   FilledButtonWidget(
-                    buttonText: localization.continueButtonTitle,
+                    buttonText: context.localization.continueButtonTitle,
                     onPressed: () {
                       print("Height ---------> $appBarHeight}");
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -82,7 +81,7 @@ class OtpScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12),
                           ),
                           margin: EdgeInsets.only(
-                            bottom: AppSizes.phoneHeight - appBarHeight * 4,
+                            bottom: context.height - appBarHeight * 4,
                           ),
                         ),
                       );
