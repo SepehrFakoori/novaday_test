@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:novaday_test/core/constants/app_sizes.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
+import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/theme/app_colors.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/widgets/back_button_widget.dart';
@@ -23,7 +23,7 @@ class HeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: AppSizes.phoneWidth,
+      width: context.width,
       child: Row(
         children: [
           Offstage(

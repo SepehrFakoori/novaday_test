@@ -6,6 +6,7 @@ import 'package:novaday_test/core/constants/app_layout_grid.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/cubits/filled_button_widget_cubit.dart';
 import 'package:novaday_test/core/enums/theme_enum.dart';
+import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/theme/app_colors.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/widgets/filled_button_widget.dart';
@@ -13,15 +14,12 @@ import 'package:novaday_test/core/widgets/header_widget.dart';
 import 'package:novaday_test/features/auth/presentations/pages/login_screen.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/language_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SetThemeScreen extends StatelessWidget {
   const SetThemeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations localization = AppLocalizations.of(context)!;
-
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -33,25 +31,25 @@ class SetThemeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               HeaderWidget(
-                title: localization.setThemeTitle,
+                title: context.localization.setThemeTitle,
               ),
               const SizedBox(height: AppSpacing.sp24),
               Column(
                 children: <Widget>[
                   _RadioContainer(
-                    title: localization.lightTheme,
+                    title: context.localization.lightTheme,
                     theme: ThemeEnum.light,
                   ),
                   const SizedBox(height: AppSpacing.sp8),
                   _RadioContainer(
-                    title: localization.darkTheme,
+                    title: context.localization.darkTheme,
                     theme: ThemeEnum.dark,
                   ),
                 ],
               ),
               const Spacer(),
               FilledButtonWidget(
-                buttonText: localization.continueButtonTitle,
+                buttonText: context.localization.continueButtonTitle,
                 onPressed: () {
                   onNextButtonClick(context);
                 },

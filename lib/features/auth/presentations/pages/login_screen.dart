@@ -5,11 +5,11 @@ import 'package:novaday_test/core/constants/app_border_radius.dart';
 import 'package:novaday_test/core/constants/app_border_weight.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/constants/app_layout_grid.dart';
-import 'package:novaday_test/core/constants/app_sizes.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
+import 'package:novaday_test/core/extensions/localization_extension.dart';
+import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/theme/app_colors.dart';
 import 'package:novaday_test/core/theme/app_icons.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:novaday_test/core/widgets/filled_button_widget.dart';
 import 'package:novaday_test/core/widgets/header_widget.dart';
 import 'package:novaday_test/features/auth/presentations/widgets/select_country_bottom_sheet.dart';
@@ -20,18 +20,16 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations localization = AppLocalizations.of(context)!;
-
     return Scaffold(
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(AppLayoutGrid.margin),
           child: Column(
             children: [
-              HeaderWidget(title: localization.loginRegisterTitle),
+              HeaderWidget(title: context.localization.loginRegisterTitle),
               const SizedBox(height: AppSpacing.sp24),
               Container(
-                width: AppSizes.phoneWidth,
+                width: context.width,
                 height: AppHeight.h48,
                 padding: const EdgeInsets.all(AppSpacing.sp4),
                 decoration: BoxDecoration(
@@ -93,7 +91,7 @@ class LoginScreen extends StatelessWidget {
               ),
               const Spacer(),
               FilledButtonWidget(
-                buttonText: localization.continueButtonTitle,
+                buttonText: context.localization.continueButtonTitle,
                 onPressed: () {},
               ),
             ],

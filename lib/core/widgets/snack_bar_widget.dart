@@ -3,6 +3,7 @@ import 'package:novaday_test/core/constants/app_border_radius.dart';
 import 'package:novaday_test/core/constants/app_border_weight.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
+import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/theme/app_colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -11,8 +12,6 @@ class SnackBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations localization = AppLocalizations.of(context)!;
-
     return Container(
       height: AppHeight.h48,
       decoration: BoxDecoration(
@@ -29,7 +28,7 @@ class SnackBarWidget extends StatelessWidget {
           const Icon(Icons.cancel, color: Colors.red),
           const SizedBox(width: AppSpacing.sp8),
           Text(
-            localization.otpTimeOutError,
+            context.localization.otpTimeOutError,
             style: const TextStyle(color: AppColors.lightDangerColor),
           ),
         ],

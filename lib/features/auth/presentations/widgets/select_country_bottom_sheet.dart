@@ -5,11 +5,10 @@ import 'package:novaday_test/core/constants/app_border_radius.dart';
 import 'package:novaday_test/core/constants/app_border_weight.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/constants/app_layout_grid.dart';
-import 'package:novaday_test/core/constants/app_sizes.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/enums/language_enum.dart';
+import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/theme/app_colors.dart';
-import 'package:novaday_test/core/theme/app_icons.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/utils/language_manager.dart';
 import 'package:novaday_test/core/widgets/check_icon_widget.dart';
@@ -22,7 +21,7 @@ class SelectCountryBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: AppSizes.phoneWidth,
+      width: context.width,
       margin: const EdgeInsets.only(
         bottom: AppSpacing.sp16,
         left: AppSpacing.sp16,
