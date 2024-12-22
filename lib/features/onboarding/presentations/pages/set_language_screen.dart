@@ -12,12 +12,13 @@ import 'package:novaday_test/core/theme/app_colors.dart';
 import 'package:novaday_test/core/theme/app_icons.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/utils/language_manager.dart';
+import 'package:novaday_test/core/widgets/check_icon_widget.dart';
 import 'package:novaday_test/core/widgets/filled_button_widget.dart';
 import 'package:novaday_test/core/widgets/header_widget.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/language_model.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/language_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit.dart';
-import 'package:novaday_test/features/onboarding/presentations/set_theme_screen.dart';
+import 'package:novaday_test/features/onboarding/presentations/pages/set_theme_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SetLanguageScreen extends StatelessWidget {
@@ -155,10 +156,7 @@ class _LanguageContainer extends StatelessWidget {
                     ],
                   ),
                 ),
-                Offstage(
-                  offstage: !(state == languageModel.langCode),
-                  child: SvgPicture.asset(AppIcons.checkBox),
-                ),
+                CheckIconWidget(isActive: state == languageModel.langCode),
               ],
             ),
           ),
