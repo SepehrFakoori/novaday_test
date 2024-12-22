@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: AppThemes.lightThemeData,
-        darkTheme: AppThemes.darkThemeData,
+        // darkTheme: AppThemes.darkThemeData,
         localizationsDelegates: const [
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,

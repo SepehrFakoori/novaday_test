@@ -6,6 +6,7 @@ import 'package:novaday_test/core/constants/app_border_weight.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/constants/app_layout_grid.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
+import 'package:novaday_test/core/enums/button_state_enum.dart';
 import 'package:novaday_test/core/enums/language_enum.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/theme/app_colors.dart';
@@ -58,6 +59,7 @@ class SetLanguageScreen extends StatelessWidget {
               const Spacer(),
               FilledButtonWidget(
                 buttonText: context.localization.continueButtonTitle,
+                buttonState: ButtonStateEnum.active,
                 onPressed: () {
                   onNextButtonClick(context);
                 },
