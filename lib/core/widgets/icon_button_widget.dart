@@ -12,22 +12,28 @@ class IconButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
+      splashColor: context.colorScheme.tertiary,
+      customBorder: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppBorderRadius.br12),
+        side: BorderSide(
+          color: context.colorScheme.outlineVariant,
+          width: AppBorderWeight.sm,
+        ),
+      ),
       child: Container(
         width: AppHeight.h40,
         height: AppHeight.h40,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(
-            AppBorderRadius.br12,
-          ),
-          color: context.colorScheme.surface,
+          borderRadius: BorderRadius.circular(AppBorderRadius.br12),
           border: Border.all(
             color: context.colorScheme.outlineVariant,
-            width: AppBorderWeight.sm,
+            width: AppBorderWeight.md,
           ),
         ),
-        child: Center(
+        child: SizedBox.square(
+          dimension: AppHeight.h40,
           child: Icon(
             icon,
             color: context.colorScheme.onSurface,

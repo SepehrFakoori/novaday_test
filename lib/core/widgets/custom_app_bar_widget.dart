@@ -36,7 +36,7 @@ class CustomAppBarWidget extends StatelessWidget {
                     Navigator.pop(context);
                   },
                 ),
-                const SizedBox(width: AppSpacing.sp8),
+                const SizedBox(width: AppSpacing.sp16),
               ],
             ),
           ),

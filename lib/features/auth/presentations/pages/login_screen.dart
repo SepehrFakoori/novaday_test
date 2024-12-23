@@ -28,65 +28,68 @@ class LoginScreen extends StatelessWidget {
             children: [
               CustomAppBarWidget(title: context.localization.loginRegisterTitle),
               const SizedBox(height: AppSpacing.sp24),
-              Container(
-                width: context.width,
-                height: AppHeight.h48,
-                padding: const EdgeInsets.all(AppSpacing.sp4),
-                decoration: BoxDecoration(
-                  color: context.colorScheme.secondary,
-                  borderRadius: BorderRadius.circular(AppBorderRadius.br12),
-                  border: Border.all(
-                    color: context.colorScheme.outline,
-                    width: AppBorderWeight.sm,
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    const Expanded(
-                      child: Center(child: Text("Text Field Here")),
+              Directionality(
+                textDirection: TextDirection.rtl,
+                child: Container(
+                  width: context.width,
+                  height: AppHeight.h48,
+                  padding: const EdgeInsets.all(AppSpacing.sp4),
+                  decoration: BoxDecoration(
+                    color: context.colorScheme.secondary,
+                    borderRadius: BorderRadius.circular(AppBorderRadius.br12),
+                    border: Border.all(
+                      color: context.colorScheme.outline,
+                      width: AppBorderWeight.sm,
                     ),
-                    const SizedBox(width: AppSpacing.sp16),
-                    GestureDetector(
-                      onTap: () {
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return BlocProvider<LanguageCubit>(
-                              create: (context) => LanguageCubit(),
-                              child: const SelectCountryBottomSheet(),
-                            );
-                          },
-                        );
-                      },
-                      child: Container(
-                        height: AppHeight.h40,
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: AppSpacing.sp16,
-                          vertical: AppSpacing.sp8,
-                        ),
-                        decoration: BoxDecoration(
-                          color: context.colorScheme.tertiary,
-                          borderRadius: BorderRadius.circular(
-                            AppBorderRadius.br8,
+                  ),
+                  child: Row(
+                    children: [
+                      const Expanded(
+                        child: Center(child: Text("Text Field Here")),
+                      ),
+                      const SizedBox(width: AppSpacing.sp16),
+                      GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return BlocProvider<LanguageCubit>(
+                                create: (context) => LanguageCubit(),
+                                child: const SelectCountryBottomSheet(),
+                              );
+                            },
+                          );
+                        },
+                        child: Container(
+                          height: AppHeight.h40,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppSpacing.sp16,
+                            vertical: AppSpacing.sp8,
+                          ),
+                          decoration: BoxDecoration(
+                            color: context.colorScheme.tertiary,
+                            borderRadius: BorderRadius.circular(
+                              AppBorderRadius.br8,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Icon(
+                                Icons.keyboard_arrow_down_rounded,
+                                size: AppHeight.h24,
+                                color: context.colorScheme.onSurface,
+                              ),
+                              const SizedBox(width: AppSpacing.sp12),
+                              const Text("+98"),
+                              const SizedBox(width: AppSpacing.sp12),
+                              SvgPicture.asset(AppIcons.englandFlag),
+                            ],
                           ),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Icon(
-                              Icons.keyboard_arrow_down_rounded,
-                              size: AppHeight.h24,
-                              color: context.colorScheme.onSurface,
-                            ),
-                            const SizedBox(width: AppSpacing.sp12),
-                            const Text("+98"),
-                            const SizedBox(width: AppSpacing.sp12),
-                            SvgPicture.asset(AppIcons.englandFlag),
-                          ],
-                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               const Spacer(),

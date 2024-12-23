@@ -43,10 +43,7 @@ class MyApp extends StatelessWidget {
             ],
             supportedLocales: AppLocalizations.supportedLocales,
             locale: const Locale('fa'),
-            home: BlocProvider(
-              create: (context) => OtpCubit(),
-              child: const OtpScreen(),
-            ),
+            home: const SetLanguageScreen(),
           );
         },
       ),
