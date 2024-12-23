@@ -5,8 +5,8 @@ import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/widgets/icon_button_widget.dart';
 
-class HeaderWidget extends StatelessWidget {
-  const HeaderWidget({
+class CustomAppBarWidget extends StatelessWidget {
+  const CustomAppBarWidget({
     this.haveBackButton = true,
     required this.title,
     this.subtitle,

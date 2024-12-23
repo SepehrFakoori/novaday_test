@@ -11,7 +11,7 @@ import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/theme/app_icons.dart';
 import 'package:novaday_test/core/widgets/filled_button_widget.dart';
-import 'package:novaday_test/core/widgets/header_widget.dart';
+import 'package:novaday_test/core/widgets/custom_app_bar_widget.dart';
 import 'package:novaday_test/features/auth/presentations/widgets/select_country_bottom_sheet.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/language_cubit.dart';
 
@@ -26,7 +26,7 @@ class LoginScreen extends StatelessWidget {
           padding: const EdgeInsets.all(AppLayoutGrid.margin),
           child: Column(
             children: [
-              HeaderWidget(title: context.localization.loginRegisterTitle),
+              CustomAppBarWidget(title: context.localization.loginRegisterTitle),
               const SizedBox(height: AppSpacing.sp24),
               Container(
                 width: context.width,

@@ -9,7 +9,7 @@ import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/widgets/filled_button_widget.dart';
-import 'package:novaday_test/core/widgets/header_widget.dart';
+import 'package:novaday_test/core/widgets/custom_app_bar_widget.dart';
 import 'package:novaday_test/features/auth/presentations/pages/login_screen.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/language_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit.dart';
@@ -29,7 +29,7 @@ class SetThemeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              HeaderWidget(
+              CustomAppBarWidget(
                 title: context.localization.setThemeTitle,
               ),
               const SizedBox(height: AppSpacing.sp24),
