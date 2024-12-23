@@ -3,7 +3,7 @@ import 'dart:ui';
 // App dark theme colors
 class AppDarkColors {
   // Primary
-  static const primaryColor = Color(0xff7FE4F9);
+  static const primaryColor = Color(0xff0EADD7);
 
   // Layer
   static const backgroundPrimaryColor = Color(0xff1D1D1D);
@@ -41,7 +41,7 @@ class AppDarkColors {
   static const info08Color = Color(0xff80BDFF);
   static const warning08Color = Color(0xffFFE680);
   static const danger08Color = Color(0xffFFEBEA);
-  static const blue08Color = Color(0xff0EADD7);
+  static final blue08Color = const Color(0xff0EADD7).withOpacity(0.16);
 
   // Others
   static const shadowColor = Color(0xff000000);

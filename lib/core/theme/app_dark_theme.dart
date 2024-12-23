@@ -32,7 +32,7 @@ class DarkThemeData {
     ),
 
     // Colors Scheme
-    colorScheme: const ColorScheme.dark(
+    colorScheme: ColorScheme.dark(
       primary: AppDarkColors.primaryColor,
       onPrimary: AppDarkColors.whiteTextColor,
       surface: AppDarkColors.backgroundPrimaryColor,

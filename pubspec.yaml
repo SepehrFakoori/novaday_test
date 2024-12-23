@@ -48,6 +48,7 @@ dependencies:
   json_annotation: ^4.9.0
   flutter_svg: ^2.0.16
   google_fonts: ^6.2.1
+  another_flushbar: ^1.12.30
 
 dev_dependencies:
   flutter_test:

@@ -1,3 +1,4 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:novaday_test/core/constants/app_border_radius.dart';
@@ -5,6 +6,7 @@ import 'package:novaday_test/core/constants/app_border_weight.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/constants/app_layout_grid.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
+import 'package:novaday_test/core/enums/button_state_enum.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
@@ -69,22 +71,9 @@ class OtpScreen extends StatelessWidget {
                   const Spacer(),
                   FilledButtonWidget(
                     buttonText: context.localization.continueButtonTitle,
+                    buttonState: ButtonStateEnum.active,
                     onPressed: () {
-                      print("Height ---------> $appBarHeight}");
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          elevation: 0,
-                          content: const SnackBarWidget(),
-                          behavior: SnackBarBehavior.floating,
-                          backgroundColor: Colors.transparent,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          margin: EdgeInsets.only(
-                            bottom: context.height - appBarHeight * 4,
-                          ),
-                        ),
-                      );
+                      customFlushBar(context);
                     },
                   ),
                 ],

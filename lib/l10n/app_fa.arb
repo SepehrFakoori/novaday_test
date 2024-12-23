@@ -6,7 +6,7 @@
   "setThemeTitle": "نمایش اکسس",
   "lightTheme": "روز",
   "darkTheme": "شب",
-  "loginRegisterTitle": "ورود | ثبت نام",
+  "loginRegisterTitle": "ورود / ثبت نام",
   "authTitle": "تایید هویت",
   "authSubtitle": "کد ارسال شده به {phoneNumber} را وارد کنید.",
   "@authSubtitle": {

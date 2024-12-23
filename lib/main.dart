@@ -4,6 +4,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:novaday_test/core/theme/app_dark_theme.dart';
 import 'package:novaday_test/core/theme/app_light_theme.dart';
+import 'package:novaday_test/features/auth/presentations/cubits/otp_cubit.dart';
+import 'package:novaday_test/features/auth/presentations/pages/otp_screen.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/language_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/pages/set_language_screen.dart';
@@ -41,7 +43,10 @@ class MyApp extends StatelessWidget {
             ],
             supportedLocales: AppLocalizations.supportedLocales,
             locale: const Locale('fa'),
-            home: const SetLanguageScreen(),
+            home: BlocProvider(
+              create: (context) => OtpCubit(),
+              child: const OtpScreen(),
+            ),
           );
         },
       ),
