@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:novaday_test/core/theme/app_themes.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -7,6 +8,8 @@ import 'package:novaday_test/features/onboarding/presentations/cubits/language_c
 import 'package:novaday_test/features/onboarding/presentations/pages/set_language_screen.dart';
 
 void main() async {
+  await Hive.initFlutter();
+  await Hive.openBox('settings');
   runApp(const MyApp());
 }
 
