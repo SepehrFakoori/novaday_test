@@ -17,22 +17,29 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     AppThemes().init(context); // Initialize the phone theme properties
 
-    return BlocProvider(
-      create: (context) => LanguageCubit(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: AppThemes.lightThemeData,
-        // darkTheme: AppThemes.darkThemeData,
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: AppLocalizations.supportedLocales,
-        locale: const Locale('fa'),
-        home: const SetLanguageScreen(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => LocaleCubit()),
+        BlocProvider(create: (context) => LocaleCubit()),
+      ],
+      child: BlocBuilder<LocaleCubit, Locale>(
+        builder: (context, locale) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
+            theme: AppThemes.lightThemeData,
+            // darkTheme: AppThemes.darkThemeData,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: AppLocalizations.supportedLocales,
+            locale: locale,
+            home: const SetLanguageScreen(),
+          );
+        },
       ),
     );
   }

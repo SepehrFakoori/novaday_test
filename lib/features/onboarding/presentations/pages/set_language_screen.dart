@@ -100,8 +100,8 @@ class _LanguageContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LanguageCubit, LanguageEnum>(
-      builder: (context, state) {
+    return BlocBuilder<LocaleCubit, Locale>(
+      builder: (context, locale) {
         return GestureDetector(
           onTap: () {
             onSelectLanguage(context);
@@ -109,7 +109,8 @@ class _LanguageContainer extends StatelessWidget {
           child: Container(
             height: AppHeight.h48,
             decoration: BoxDecoration(
-              color: !(state == languageModel.countryLanguageCode)
+              color: !(locale.languageCode ==
+                      languageModel.countryLanguageCode!.name)
                   ? AppColors.lightBgSecondaryColor
                   : AppColors.lightBlue08Color,
               border: const Border(
@@ -147,7 +148,8 @@ class _LanguageContainer extends StatelessWidget {
                   ),
                 ),
                 CheckIconWidget(
-                    isActive: state == languageModel.countryLanguageCode),
+                    isActive: locale.languageCode ==
+                        languageModel.countryLanguageCode!.name),
               ],
             ),
           ),
@@ -158,7 +160,7 @@ class _LanguageContainer extends StatelessWidget {
 
   void onSelectLanguage(BuildContext context) {
     context
-        .read<LanguageCubit>()
-        .setLanguage(languageModel.countryLanguageCode!);
+        .read<LocaleCubit>()
+        .changeLocale(locale: Locale(languageModel.countryLanguageCode!.name));
   }
 }

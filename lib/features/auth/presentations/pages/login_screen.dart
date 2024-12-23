@@ -51,8 +51,8 @@ class LoginScreen extends StatelessWidget {
                         showModalBottomSheet(
                           context: context,
                           builder: (BuildContext context) {
-                            return BlocProvider<LanguageCubit>(
-                              create: (context) => LanguageCubit(),
+                            return BlocProvider<LocaleCubit>(
+                              create: (context) => LocaleCubit(),
                               child: const SelectCountryBottomSheet(),
                             );
                           },
