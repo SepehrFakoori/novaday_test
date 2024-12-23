@@ -1,17 +1,29 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:novaday_test/core/enums/theme_enum.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-class ThemeCubit extends Cubit<ThemeEnum> {
-  ThemeCubit() : super(ThemeEnum.light);
+class ThemeCubit extends Cubit<ThemeMode> {
+  ThemeCubit() : super(ThemeMode.light) {
+    _getTheme();
+  }
 
-  ThemeEnum myTheme = ThemeEnum.light;
+  Future<void> _saveTheme({required ThemeMode themeMode}) async {
+    final box = Hive.box('settings');
+    await box.put('theme', themeMode.name);
+  }
 
-  // Get theme
-  ThemeEnum getTheme() => myTheme;
+  Future<void> _getTheme() async {
+    final box = Hive.box('settings');
+    final themeModeString = await box.get('theme');
+    if (themeModeString == 'light') {
+      emit(ThemeMode.light);
+    } else {
+      emit(ThemeMode.dark);
+    }
+  }
 
-  // Set theme
-  void setTheme(ThemeEnum theme) {
-    myTheme = theme;
-    emit(theme);
+  void changeTheme({required ThemeMode themeMode}) {
+    emit(themeMode);
+    _saveTheme(themeMode: themeMode);
   }
 }

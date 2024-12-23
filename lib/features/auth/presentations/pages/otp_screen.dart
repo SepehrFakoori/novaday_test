@@ -7,7 +7,7 @@ import 'package:novaday_test/core/constants/app_layout_grid.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
-import 'package:novaday_test/core/theme/app_colors.dart';
+import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/widgets/filled_button_widget.dart';
 import 'package:novaday_test/core/widgets/header_widget.dart';
@@ -54,7 +54,7 @@ class OtpScreen extends StatelessWidget {
                   Text(
                     '00:59',
                     style: AppTextStyles.textTheme.titleLarge!.copyWith(
-                      color: AppColors.lightTitleColor,
+                      color: context.colorScheme.onSurface,
                     ),
                   ),
                   TextButton(
@@ -62,7 +62,7 @@ class OtpScreen extends StatelessWidget {
                     child: Text(
                       context.localization.otpSendCodeAgain,
                       style: AppTextStyles.textTheme.titleLarge!.copyWith(
-                        color: AppColors.lightTitleColor,
+                        color: context.colorScheme.onSurface,
                       ),
                     ),
                   ),
@@ -107,12 +107,12 @@ Widget myInputBox(
     height: AppHeight.h48,
     width: AppHeight.h48,
     decoration: BoxDecoration(
-      color: AppColors.lightBgSecondaryColor,
+      color: context.colorScheme.secondary,
       borderRadius: BorderRadius.circular(AppBorderRadius.br12),
       border: Border.all(
         color: state.enteredFields.contains(index)
-            ? AppColors.lightPrimaryColor
-            : AppColors.lightDefaultBorderColor,
+            ? context.colorScheme.primary
+            : context.colorScheme.outline,
         width: AppBorderWeight.sm,
       ),
     ),
@@ -122,7 +122,7 @@ Widget myInputBox(
       textAlign: TextAlign.center,
       keyboardType: TextInputType.number,
       style: AppTextStyles.textTheme.titleLarge!.copyWith(
-        color: AppColors.lightSubtitleColor,
+        color: context.colorScheme.onSecondaryContainer,
       ),
       decoration: const InputDecoration(
         counterText: '',

@@ -4,8 +4,7 @@ import 'package:novaday_test/core/constants/app_border_weight.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
-import 'package:novaday_test/core/theme/app_colors.dart';
-
+import 'package:novaday_test/core/extensions/theme_extension.dart';
 
 class SnackBarWidget extends StatelessWidget {
   const SnackBarWidget({super.key});
@@ -16,9 +15,9 @@ class SnackBarWidget extends StatelessWidget {
       height: AppHeight.h48,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppBorderRadius.br16),
-        color: AppColors.lightBgTertiaryColor,
+        color: context.colorScheme.tertiary,
         border: Border.all(
-          color: AppColors.lightDangerColor,
+          color: context.colorScheme.onError,
           width: AppBorderWeight.lg1,
         ),
       ),
@@ -29,7 +28,9 @@ class SnackBarWidget extends StatelessWidget {
           const SizedBox(width: AppSpacing.sp8),
           Text(
             context.localization.otpTimeOutError,
-            style: const TextStyle(color: AppColors.lightDangerColor),
+            style: TextStyle(
+              color: context.colorScheme.onError,
+            ),
           ),
         ],
       ),

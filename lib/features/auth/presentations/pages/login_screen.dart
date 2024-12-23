@@ -8,7 +8,7 @@ import 'package:novaday_test/core/constants/app_layout_grid.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
-import 'package:novaday_test/core/theme/app_colors.dart';
+import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/theme/app_icons.dart';
 import 'package:novaday_test/core/widgets/filled_button_widget.dart';
 import 'package:novaday_test/core/widgets/header_widget.dart';
@@ -33,10 +33,10 @@ class LoginScreen extends StatelessWidget {
                 height: AppHeight.h48,
                 padding: const EdgeInsets.all(AppSpacing.sp4),
                 decoration: BoxDecoration(
-                  color: AppColors.lightBgSecondaryColor,
+                  color: context.colorScheme.secondary,
                   borderRadius: BorderRadius.circular(AppBorderRadius.br12),
                   border: Border.all(
-                    color: AppColors.lightDefaultBorderColor,
+                    color: context.colorScheme.outline,
                     width: AppBorderWeight.sm,
                   ),
                 ),
@@ -65,7 +65,7 @@ class LoginScreen extends StatelessWidget {
                           vertical: AppSpacing.sp8,
                         ),
                         decoration: BoxDecoration(
-                          color: AppColors.lightBgTertiaryColor,
+                          color: context.colorScheme.tertiary,
                           borderRadius: BorderRadius.circular(
                             AppBorderRadius.br8,
                           ),
@@ -73,10 +73,10 @@ class LoginScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Icon(
+                            Icon(
                               Icons.keyboard_arrow_down_rounded,
                               size: AppHeight.h24,
-                              color: AppColors.lightTitleColor,
+                              color: context.colorScheme.onSurface,
                             ),
                             const SizedBox(width: AppSpacing.sp12),
                             const Text("+98"),

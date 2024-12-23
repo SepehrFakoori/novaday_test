@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:novaday_test/core/constants/app_border_radius.dart';
 import 'package:novaday_test/core/constants/app_border_weight.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
-import 'package:novaday_test/core/theme/app_colors.dart';
+import 'package:novaday_test/core/extensions/theme_extension.dart';
 
 class IconButtonWidget extends StatelessWidget {
   const IconButtonWidget({required this.icon, this.onTap, super.key});
@@ -21,16 +21,16 @@ class IconButtonWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(
             AppBorderRadius.br12,
           ),
-          color: AppColors.lightBgPrimaryColor,
+          color: context.colorScheme.surface,
           border: Border.all(
-            color: AppColors.lightDefaultBorderColor,
+            color: context.colorScheme.outlineVariant,
             width: AppBorderWeight.sm,
           ),
         ),
         child: Center(
           child: Icon(
             icon,
-            color: AppColors.lightTitleColor,
+            color: context.colorScheme.onSurface,
             size: AppHeight.h16,
           ),
         ),

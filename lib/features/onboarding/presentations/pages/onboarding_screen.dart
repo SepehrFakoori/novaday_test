@@ -4,7 +4,7 @@ import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
-import 'package:novaday_test/core/theme/app_colors.dart';
+import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/theme/app_icons.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 
@@ -14,7 +14,7 @@ class OnBoardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.lightBgPrimaryColor,
+      backgroundColor: context.colorScheme.surface,
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [
@@ -45,7 +45,7 @@ class OnBoardingScreen extends StatelessWidget {
             Text(
               context.localization.failedToConnect,
               style: AppTextStyles.textTheme.bodyMedium!.copyWith(
-                color: AppColors.lightSubtitleColor,
+                color: context.colorScheme.onSecondaryContainer,
               ),
             ),
           ],
@@ -80,14 +80,16 @@ class OnBoardingScreen extends StatelessWidget {
         children: [
           Text(
             context.localization.appVersion,
-            style: AppTextStyles.textTheme.titleSmall!
-                .copyWith(color: AppColors.lightSubtitleColor),
+            style: AppTextStyles.textTheme.titleSmall!.copyWith(
+              color: context.colorScheme.onSecondaryContainer,
+            ),
           ),
           const SizedBox(width: AppSpacing.sp4),
           Text(
             '1.19',
-            style: AppTextStyles.textTheme.titleSmall!
-                .copyWith(color: AppColors.lightSubtitleColor),
+            style: AppTextStyles.textTheme.titleSmall!.copyWith(
+              color: context.colorScheme.onSecondaryContainer,
+            ),
           ),
         ],
       ),

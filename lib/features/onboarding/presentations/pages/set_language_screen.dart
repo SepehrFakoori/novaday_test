@@ -9,7 +9,7 @@ import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/enums/button_state_enum.dart';
 import 'package:novaday_test/core/enums/language_enum.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
-import 'package:novaday_test/core/theme/app_colors.dart';
+import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/utils/language_manager.dart';
 import 'package:novaday_test/core/widgets/check_icon_widget.dart';
@@ -110,11 +110,11 @@ class _LanguageContainer extends StatelessWidget {
             height: AppHeight.h48,
             decoration: BoxDecoration(
               color: !(state == languageModel.langCode)
-                  ? AppColors.lightBgSecondaryColor
-                  : AppColors.lightBlue08Color,
-              border: const Border(
+                  ? context.colorScheme.secondary
+                  : context.colorScheme.secondaryContainer,
+              border: Border(
                 bottom: BorderSide(
-                  color: AppColors.lightDefaultBorderColor,
+                  color: context.colorScheme.outline,
                   width: AppBorderWeight.sm,
                 ),
               ),
@@ -133,13 +133,13 @@ class _LanguageContainer extends StatelessWidget {
                       Text(
                         languageModel.title,
                         style: AppTextStyles.textTheme.titleMedium!.copyWith(
-                          color: AppColors.lightTitleColor,
+                          color: context.colorScheme.onSurface,
                         ),
                       ),
                       Text(
                         languageModel.subtitle,
                         style: AppTextStyles.textTheme.titleMedium!.copyWith(
-                          color: AppColors.lightSubtitleColor,
+                          color: context.colorScheme.onSecondaryContainer,
                           fontSize: 14,
                         ),
                       ),

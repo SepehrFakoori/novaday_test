@@ -5,9 +5,8 @@ import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/constants/app_layout_grid.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/enums/button_state_enum.dart';
-import 'package:novaday_test/core/enums/theme_enum.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
-import 'package:novaday_test/core/theme/app_colors.dart';
+import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/widgets/filled_button_widget.dart';
 import 'package:novaday_test/core/widgets/header_widget.dart';
@@ -38,12 +37,12 @@ class SetThemeScreen extends StatelessWidget {
                 children: <Widget>[
                   _RadioContainer(
                     title: context.localization.lightTheme,
-                    theme: ThemeEnum.light,
+                    radioThemeMode: ThemeMode.light,
                   ),
                   const SizedBox(height: AppSpacing.sp8),
                   _RadioContainer(
                     title: context.localization.darkTheme,
-                    theme: ThemeEnum.dark,
+                    radioThemeMode: ThemeMode.dark,
                   ),
                 ],
               ),
@@ -82,44 +81,44 @@ class SetThemeScreen extends StatelessWidget {
 }
 
 class _RadioContainer extends StatelessWidget {
-  const _RadioContainer({
+  _RadioContainer({
     required this.title,
-    required this.theme,
+    required this.radioThemeMode,
   });
 
-  final String title;
-  final ThemeEnum theme;
+  String title;
+  ThemeMode radioThemeMode;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ThemeCubit, ThemeEnum>(
-      builder: (context, state) {
+    return BlocBuilder<ThemeCubit, ThemeMode>(
+      builder: (context, themeMode) {
         return GestureDetector(
           onTap: () {
-            context.read<ThemeCubit>().setTheme(theme);
+            context.read<ThemeCubit>().changeTheme(themeMode: radioThemeMode);
           },
           child: Container(
             height: AppHeight.h48,
             width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppBorderRadius.br12),
-              color: AppColors.lightBgSecondaryColor,
+              color: context.colorScheme.secondary,
             ),
             child: Row(
               children: [
-                Radio<ThemeEnum>(
-                  activeColor: AppColors.lightPrimaryColor,
-                  value: theme,
-                  groupValue: context.read<ThemeCubit>().myTheme,
-                  onChanged: (ThemeEnum? theme) {
-                    context.read<ThemeCubit>().setTheme(theme!);
+                Radio<ThemeMode>(
+                  activeColor: context.colorScheme.primary,
+                  value: radioThemeMode,
+                  groupValue: context.read<ThemeCubit>().state,
+                  onChanged: (ThemeMode? value) {
+                    context.read<ThemeCubit>().changeTheme(themeMode: radioThemeMode);
                   },
                 ),
                 Text(
                   title,
                   style: AppTextStyles.textTheme.titleMedium!.copyWith(
                     fontWeight: FontWeight.w600,
-                    color: AppColors.lightTitleColor,
+                    color: context.colorScheme.onSecondary,
                   ),
                 ),
               ],

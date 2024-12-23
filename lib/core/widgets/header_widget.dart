@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
-import 'package:novaday_test/core/theme/app_colors.dart';
+import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/widgets/icon_button_widget.dart';
 
@@ -48,7 +48,7 @@ class HeaderWidget extends StatelessWidget {
                 Text(
                   title,
                   style: AppTextStyles.textTheme.titleLarge!.copyWith(
-                    color: AppColors.lightTitleColor,
+                    color: context.colorScheme.onSurface,
                   ),
                 ),
                 if (subtitle != null && subtitle!.isNotEmpty)
@@ -56,7 +56,7 @@ class HeaderWidget extends StatelessWidget {
                     subtitle!,
                     style: AppTextStyles.textTheme.titleSmall!.copyWith(
                       fontWeight: FontWeight.w700,
-                      color: AppColors.lightSubtitleColor,
+                      color: context.colorScheme.onSecondaryContainer,
                     ),
                   ),
               ],
