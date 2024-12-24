@@ -18,7 +18,7 @@ class ThemeCubit extends Cubit<ThemeEnum> {
     try {
       final String theme = await box.get(AppConstants.themeKeyDb);
       final ThemeEnum themeEnum =
-      theme == ThemeEnum.light.name ? ThemeEnum.light : ThemeEnum.dark;
+          theme == ThemeEnum.light.name ? ThemeEnum.light : ThemeEnum.dark;
       emit(themeEnum);
     } catch (e) {
       emit(state);

@@ -6,9 +6,11 @@ class SetProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: SafeArea(child: Center(
-        child: Text("data"),
-      ),),
+      body: SafeArea(
+        child: Center(
+          child: Text("data"),
+        ),
+      ),
     );
   }
 }
