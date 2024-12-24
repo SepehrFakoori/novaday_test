@@ -9,7 +9,7 @@ import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
-import 'package:novaday_test/core/theme/app_icons.dart';
+import 'package:novaday_test/core/constants/app_icons.dart';
 import 'package:novaday_test/core/widgets/filled_button_widget.dart';
 import 'package:novaday_test/core/widgets/custom_app_bar_widget.dart';
 import 'package:novaday_test/features/auth/presentations/widgets/select_country_bottom_sheet.dart';
@@ -93,14 +93,14 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const Spacer(),
-              FilledButtonWidget(
-                buttonText: context.localization.continueButtonTitle,
-                onPressed: () {},
-              ),
             ],
           ),
         ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FilledButtonWidget(
+        buttonText: context.localization.continueButtonTitle,
+        onPressed: () {},
       ),
     );
   }

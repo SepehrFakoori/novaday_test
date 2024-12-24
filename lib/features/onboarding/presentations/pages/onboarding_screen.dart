@@ -5,7 +5,7 @@ import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
-import 'package:novaday_test/core/theme/app_icons.dart';
+import 'package:novaday_test/core/constants/app_icons.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 
 class OnBoardingScreen extends StatelessWidget {

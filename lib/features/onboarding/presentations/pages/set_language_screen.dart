@@ -57,17 +57,18 @@ class SetLanguageScreen extends StatelessWidget {
                     itemCount: LanguageEnum.values.length,
                   ),
                 ),
-                FilledButtonWidget(
-                  buttonText: context.localization.continueButtonTitle,
-                  buttonState: ButtonStateEnum.active,
-                  onPressed: () {
-                    onNextButtonClick(context);
-                  },
-                ),
               ],
             ),
           ),
         ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FilledButtonWidget(
+        buttonText: context.localization.continueButtonTitle,
+        buttonState: ButtonStateEnum.active,
+        onPressed: () {
+          onNextButtonClick(context);
+        },
       ),
     );
   }
@@ -76,16 +77,7 @@ class SetLanguageScreen extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => MultiBlocProvider(
-          providers: [
-            BlocProvider<ThemeCubit>(
-              create: (BuildContext context) {
-                return ThemeCubit();
-              },
-            ),
-          ],
-          child: const SetThemeScreen(),
-        ),
+        builder: (context) => const SetThemeScreen(),
       ),
     );
   }

@@ -1,5 +1,5 @@
 import 'package:novaday_test/core/enums/language_enum.dart';
-import 'package:novaday_test/core/theme/app_icons.dart';
+import 'package:novaday_test/core/constants/app_icons.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/country_entity.dart';
 
 class LanguageManagerUtils {

@@ -68,19 +68,17 @@ class OtpScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Spacer(),
-                  FilledButtonWidget(
-                    buttonText: context.localization.continueButtonTitle,
-                    buttonState: ButtonStateEnum.active,
-                    onPressed: () {
-                      customFlushBar(context);
-                    },
-                  ),
                 ],
               );
             },
           ),
         ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FilledButtonWidget(
+        buttonText: context.localization.continueButtonTitle,
+        buttonState: ButtonStateEnum.active,
+        onPressed: () {},
       ),
     );
   }
