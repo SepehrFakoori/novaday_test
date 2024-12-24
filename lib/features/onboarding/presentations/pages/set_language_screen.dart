@@ -17,7 +17,6 @@ import 'package:novaday_test/core/widgets/filled_button_widget.dart';
 import 'package:novaday_test/core/widgets/custom_app_bar_widget.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/country_entity.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/language_cubit.dart';
-import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/pages/set_theme_screen.dart';
 
 class SetLanguageScreen extends StatelessWidget {
