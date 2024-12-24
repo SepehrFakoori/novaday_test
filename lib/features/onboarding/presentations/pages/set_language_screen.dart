@@ -10,6 +10,7 @@ import 'package:novaday_test/core/enums/button_state_enum.dart';
 import 'package:novaday_test/core/enums/language_enum.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
+import 'package:novaday_test/core/services/router_service.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/utils/language_manager.dart';
 import 'package:novaday_test/core/widgets/check_icon_widget.dart';
@@ -73,12 +74,7 @@ class SetLanguageScreen extends StatelessWidget {
   }
 
   void onNextButtonClick(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const SetThemeScreen(),
-      ),
-    );
+    RouterService.navigateWithAnimation(context, const SetThemeScreen());
   }
 }
 

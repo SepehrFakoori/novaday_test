@@ -5,6 +5,7 @@ import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/enums/button_state_enum.dart';
 import 'package:novaday_test/core/enums/theme_enum.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
+import 'package:novaday_test/core/services/router_service.dart';
 import 'package:novaday_test/core/widgets/custom_radio_button_widget.dart';
 import 'package:novaday_test/core/widgets/filled_button_widget.dart';
 import 'package:novaday_test/core/widgets/custom_app_bar_widget.dart';
@@ -73,11 +74,6 @@ class SetThemeScreen extends StatelessWidget {
   }
 
   void onNextButtonClick(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const LoginScreen(),
-      ),
-    );
+    RouterService.navigateWithAnimation(context, const LoginScreen());
   }
 }
