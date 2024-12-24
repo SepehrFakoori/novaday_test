@@ -9,15 +9,12 @@ import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/enums/button_state_enum.dart';
 import 'package:novaday_test/core/enums/language_enum.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
-import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/utils/language_manager.dart';
 import 'package:novaday_test/core/widgets/check_icon_widget.dart';
 import 'package:novaday_test/core/widgets/filled_button_widget.dart';
 import 'package:novaday_test/core/widgets/custom_app_bar_widget.dart';
-import 'package:novaday_test/features/onboarding/domain/entities/language_model.dart';
-import 'package:novaday_test/core/widgets/header_widget.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/country_entity.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/language_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit.dart';
@@ -53,7 +50,8 @@ class SetLanguageScreen extends StatelessWidget {
                     shrinkWrap: true,
                     itemBuilder: (BuildContext context, int index) {
                       return _LanguageContainer(
-                        languageModel: LanguageManagerUtils.allLanguages[index],
+                        languageEntity:
+                            LanguageManagerUtils.allLanguages[index],
                       );
                     },
                     itemCount: LanguageEnum.values.length,
@@ -96,10 +94,10 @@ class SetLanguageScreen extends StatelessWidget {
 // Language Container Section
 class _LanguageContainer extends StatelessWidget {
   const _LanguageContainer({
-    required this.languageModel,
+    required this.languageEntity,
   });
 
-  final CountryEntity languageModel;
+  final CountryEntity languageEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +110,8 @@ class _LanguageContainer extends StatelessWidget {
           child: Container(
             height: AppHeight.h48,
             decoration: BoxDecoration(
-              color: !(locale == languageModel.langCode)
+              color: !(locale.languageCode ==
+                      languageEntity.countryLanguageCode!.name)
                   ? context.colorScheme.secondary
                   : context.colorScheme.secondaryContainer,
               border: Border(
@@ -127,20 +126,20 @@ class _LanguageContainer extends StatelessWidget {
             ),
             child: Row(
               children: [
-                SvgPicture.asset(languageModel.countryFlag!),
+                SvgPicture.asset(languageEntity.countryFlag!),
                 const SizedBox(width: AppSpacing.sp16),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        languageModel.countryName!,
+                        languageEntity.countryName!,
                         style: AppTextStyles.textTheme.titleMedium!.copyWith(
                           color: context.colorScheme.onSurface,
                         ),
                       ),
                       Text(
-                        languageModel.countryLanguage!,
+                        languageEntity.countryLanguage!,
                         style: AppTextStyles.textTheme.titleMedium!.copyWith(
                           color: context.colorScheme.onSecondaryContainer,
                           fontSize: 14,
@@ -151,7 +150,7 @@ class _LanguageContainer extends StatelessWidget {
                 ),
                 CheckIconWidget(
                     isActive: locale.languageCode ==
-                        languageModel.countryLanguageCode!.name),
+                        languageEntity.countryLanguageCode!.name),
               ],
             ),
           ),
@@ -163,6 +162,6 @@ class _LanguageContainer extends StatelessWidget {
   void onSelectLanguage(BuildContext context) {
     context
         .read<LocaleCubit>()
-        .changeLocale(locale: Locale(languageModel.countryLanguageCode!.name));
+        .changeLocale(locale: Locale(languageEntity.countryLanguageCode!.name));
   }
 }

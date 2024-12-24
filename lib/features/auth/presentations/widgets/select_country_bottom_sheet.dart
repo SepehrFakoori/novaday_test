@@ -67,10 +67,11 @@ class _LanguageContainer extends StatelessWidget {
           child: Container(
             height: AppHeight.h48,
             decoration: BoxDecoration(
-              color: !(locale == languageModel.countryLanguageCode!.name)
-                  ? AppColors.lightBgSecondaryColor
-                  : AppColors.lightBlue08Color,
-              border: const Border(
+              color: !(locale.languageCode ==
+                      languageModel.countryLanguageCode!.name)
+                  ? context.colorScheme.secondary
+                  : context.colorScheme.secondaryContainer,
+              border: Border(
                 bottom: BorderSide(
                   color: context.colorScheme.outline,
                   width: AppBorderWeight.sm,
@@ -105,7 +106,8 @@ class _LanguageContainer extends StatelessWidget {
                   ),
                 ),
                 CheckIconWidget(
-                    isActive: locale == languageModel.countryLanguageCode),
+                    isActive: locale.languageCode ==
+                        languageModel.countryLanguageCode!.name),
               ],
             ),
           ),
@@ -115,8 +117,8 @@ class _LanguageContainer extends StatelessWidget {
   }
 
   void onSelectLanguage(BuildContext context) {
-    context
-        .read<LocaleCubit>()
-        .changeLocale(locale: Locale(languageModel.countryLanguageCode!.name));
+    context.read<LocaleCubit>().changeLocale(
+          locale: Locale(languageModel.countryLanguageCode!.name),
+        );
   }
 }
