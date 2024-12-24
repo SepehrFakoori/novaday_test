@@ -45,5 +45,5 @@ class AppDarkColors {
 
   // Others
   static const shadowColor = Color(0xff000000);
-  static const layoutColor = Color(0xff000000);
+  static final layoutColor = const Color(0xff000000).withOpacity(0.48);
 }

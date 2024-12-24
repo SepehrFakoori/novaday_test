@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:novaday_test/core/constants/app_constants.dart';
 import 'package:novaday_test/core/enums/theme_enum.dart';
+import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/services/router_service.dart';
 import 'package:novaday_test/core/theme/app_dark_theme.dart';
 import 'package:novaday_test/core/theme/app_light_theme.dart';
@@ -32,23 +33,33 @@ class MyApp extends StatelessWidget {
         builder: (context, locale) {
           return BlocBuilder<ThemeCubit, ThemeEnum>(
             builder: (context, themeEnum) {
-              return MaterialApp(
-                debugShowCheckedModeBanner: false,
-                title: 'Flutter Demo',
-                theme: themeEnum == ThemeEnum.light
-                    ? LightThemeData.themeData
-                    : DarkThemeData.themeData,
-                localizationsDelegates: const [
-                  AppLocalizations.delegate,
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                ],
-                supportedLocales: AppLocalizations.supportedLocales,
-                locale: locale,
-                onGenerateRoute: RouterService.generateRoute,
-                initialRoute: '/set-language',
-                home: const SetLanguageScreen(),
+              return LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+                  return Padding(
+                    padding: constraints.maxWidth > 840
+                        ? EdgeInsets.symmetric(horizontal: context.width * 0.3)
+                        : const EdgeInsets.symmetric(horizontal: 0),
+                    child: MaterialApp(
+                      debugShowCheckedModeBanner: false,
+                      title: 'Flutter Demo',
+
+                      theme: themeEnum == ThemeEnum.light
+                          ? LightThemeData.themeData
+                          : DarkThemeData.themeData,
+                      localizationsDelegates: const [
+                        AppLocalizations.delegate,
+                        GlobalMaterialLocalizations.delegate,
+                        GlobalWidgetsLocalizations.delegate,
+                        GlobalCupertinoLocalizations.delegate,
+                      ],
+                      supportedLocales: AppLocalizations.supportedLocales,
+                      locale: locale,
+                      onGenerateRoute: RouterService.generateRoute,
+                      initialRoute: '/set-language',
+                      home: const SetLanguageScreen(),
+                    ),
+                  );
+                },
               );
             },
           );
