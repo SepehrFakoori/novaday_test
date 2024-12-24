@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:novaday_test/core/constants/app_constants.dart';
 import 'package:novaday_test/core/enums/theme_enum.dart';
+import 'package:novaday_test/core/services/router_service.dart';
 import 'package:novaday_test/core/theme/app_dark_theme.dart';
 import 'package:novaday_test/core/theme/app_light_theme.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/language_cubit.dart';
@@ -45,6 +46,8 @@ class MyApp extends StatelessWidget {
                 ],
                 supportedLocales: AppLocalizations.supportedLocales,
                 locale: locale,
+                onGenerateRoute: RouterService.generateRoute,
+                initialRoute: '/set-language',
                 home: const SetLanguageScreen(),
               );
             },

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
+import 'package:novaday_test/core/services/router_service.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/widgets/icon_button_widget.dart';
 
@@ -33,7 +34,7 @@ class CustomAppBarWidget extends StatelessWidget {
                 IconButtonWidget(
                   icon: Icons.arrow_back_ios_rounded,
                   onTap: () {
-                    Navigator.pop(context);
+                    RouterService.pop(context);
                   },
                 ),
                 const SizedBox(width: AppSpacing.sp16),
