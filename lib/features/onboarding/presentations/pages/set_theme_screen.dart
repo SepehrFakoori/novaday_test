@@ -67,9 +67,9 @@ class SetThemeScreen extends StatelessWidget {
       MaterialPageRoute(
         builder: (context) => MultiBlocProvider(
           providers: [
-            BlocProvider<LanguageCubit>(
+            BlocProvider<LocaleCubit>(
               create: (context) {
-                return LanguageCubit();
+                return LocaleCubit();
               },
             ),
           ],

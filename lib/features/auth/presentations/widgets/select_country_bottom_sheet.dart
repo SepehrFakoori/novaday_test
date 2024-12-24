@@ -12,7 +12,7 @@ import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/utils/language_manager.dart';
 import 'package:novaday_test/core/widgets/check_icon_widget.dart';
-import 'package:novaday_test/features/onboarding/domain/entities/language_model.dart';
+import 'package:novaday_test/features/onboarding/domain/entities/country_entity.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/language_cubit.dart';
 
 class SelectCountryBottomSheet extends StatelessWidget {
@@ -54,12 +54,12 @@ class _LanguageContainer extends StatelessWidget {
     required this.languageModel,
   });
 
-  final LanguageModel languageModel;
+  final CountryEntity languageModel;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LanguageCubit, LanguageEnum>(
-      builder: (context, state) {
+    return BlocBuilder<LocaleCubit, Locale>(
+      builder: (context, locale) {
         return GestureDetector(
           onTap: () {
             onSelectLanguage(context);
@@ -67,7 +67,8 @@ class _LanguageContainer extends StatelessWidget {
           child: Container(
             height: AppHeight.h48,
             decoration: BoxDecoration(
-              color: !(state == languageModel.langCode)
+              color: !(locale.languageCode ==
+                      languageModel.countryLanguageCode!.name)
                   ? context.colorScheme.secondary
                   : context.colorScheme.secondaryContainer,
               border: Border(
@@ -82,14 +83,14 @@ class _LanguageContainer extends StatelessWidget {
             ),
             child: Row(
               children: [
-                SvgPicture.asset(languageModel.flag),
+                SvgPicture.asset(languageModel.countryFlag!),
                 const SizedBox(width: 16),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        languageModel.subtitle,
+                        languageModel.countryLanguage!,
                         style: AppTextStyles.textTheme.titleMedium!.copyWith(
                           color: context.colorScheme.onSurface,
                         ),
@@ -104,7 +105,9 @@ class _LanguageContainer extends StatelessWidget {
                     ],
                   ),
                 ),
-                CheckIconWidget(isActive: state == languageModel.langCode),
+                CheckIconWidget(
+                    isActive: locale.languageCode ==
+                        languageModel.countryLanguageCode!.name),
               ],
             ),
           ),
@@ -114,6 +117,8 @@ class _LanguageContainer extends StatelessWidget {
   }
 
   void onSelectLanguage(BuildContext context) {
-    context.read<LanguageCubit>().setLanguage(languageModel.langCode);
+    context.read<LocaleCubit>().changeLocale(
+          locale: Locale(languageModel.countryLanguageCode!.name),
+        );
   }
 }

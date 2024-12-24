@@ -1,67 +1,67 @@
 import 'package:novaday_test/core/enums/language_enum.dart';
 import 'package:novaday_test/core/theme/app_icons.dart';
-import 'package:novaday_test/features/onboarding/domain/entities/language_model.dart';
+import 'package:novaday_test/features/onboarding/domain/entities/country_entity.dart';
 
 class LanguageManagerUtils {
-  static final Map<LanguageEnum, LanguageModel> _languages = {
-    LanguageEnum.en: LanguageModel(
-      flag: AppIcons.englandFlag,
-      title: "English",
-      subtitle: "English",
-      langCode: LanguageEnum.en,
+  static final Map<LanguageEnum, CountryEntity> _languages = {
+    LanguageEnum.en: CountryEntity(
+      countryName: "English",
+      countryLanguage: "English",
+      countryLanguageCode: LanguageEnum.en,
+      countryFlag: AppIcons.englandFlag,
       countryCode: 44,
     ),
-    LanguageEnum.fr: LanguageModel(
-      flag: AppIcons.franceFlag,
-      title: "Français",
-      subtitle: "France",
-      langCode: LanguageEnum.fr,
+    LanguageEnum.fr: CountryEntity(
+      countryName: "Français",
+      countryLanguage: "France",
+      countryLanguageCode: LanguageEnum.fr,
+      countryFlag: AppIcons.franceFlag,
       countryCode: 33,
     ),
-    LanguageEnum.de: LanguageModel(
-      flag: AppIcons.germanyFlag,
-      title: "Deutsch",
-      subtitle: "Germany",
-      langCode: LanguageEnum.de,
+    LanguageEnum.de: CountryEntity(
+      countryName: "Deutsch",
+      countryLanguage: "Germany",
+      countryLanguageCode: LanguageEnum.de,
+      countryFlag: AppIcons.germanyFlag,
       countryCode: 49,
     ),
-    LanguageEnum.ae: LanguageModel(
-      flag: AppIcons.uaeFlag,
-      title: "عربي",
-      subtitle: "Arabic",
-      langCode: LanguageEnum.ae,
+    LanguageEnum.ae: CountryEntity(
+      countryName: "عربي",
+      countryLanguage: "Arabic",
+      countryLanguageCode: LanguageEnum.ae,
+      countryFlag: AppIcons.uaeFlag,
       countryCode: 971,
     ),
-    LanguageEnum.tr: LanguageModel(
-      flag: AppIcons.turkeyFlag,
-      title: "Türkçe",
-      subtitle: "Turkey",
-      langCode: LanguageEnum.tr,
+    LanguageEnum.tr: CountryEntity(
+      countryName: "Türkçe",
+      countryLanguage: "Turkey",
+      countryLanguageCode: LanguageEnum.tr,
+      countryFlag: AppIcons.turkeyFlag,
       countryCode: 90,
     ),
-    LanguageEnum.fa: LanguageModel(
-      flag: AppIcons.iranFlag,
-      title: "فارسی",
-      subtitle: "Persian",
-      langCode: LanguageEnum.fa,
+    LanguageEnum.fa: CountryEntity(
+      countryName: "فارسی",
+      countryLanguage: "Persian",
+      countryLanguageCode: LanguageEnum.fa,
+      countryFlag: AppIcons.iranFlag,
       countryCode: 98,
     ),
   };
 
-  static LanguageModel getLanguageModel(LanguageEnum language) {
+  static CountryEntity getLanguageModel(LanguageEnum language) {
     final info = _languages[language];
     if (info == null) {
       throw Exception("Language not found");
     }
-    return LanguageModel(
-      flag: info.flag,
-      title: info.title,
-      subtitle: info.subtitle,
-      langCode: info.langCode,
+    return CountryEntity(
+      countryName: info.countryName,
+      countryLanguage: info.countryLanguage,
+      countryLanguageCode: info.countryLanguageCode,
+      countryFlag: info.countryFlag,
       countryCode: info.countryCode,
     );
   }
 
-  static List<LanguageModel> get allLanguages =>
+  static List<CountryEntity> get allLanguages =>
       _languages.keys.map((lang) => getLanguageModel(lang)).toList();
 }

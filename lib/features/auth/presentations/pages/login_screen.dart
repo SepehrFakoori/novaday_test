@@ -26,7 +26,8 @@ class LoginScreen extends StatelessWidget {
           padding: const EdgeInsets.all(AppLayoutGrid.margin),
           child: Column(
             children: [
-              CustomAppBarWidget(title: context.localization.loginRegisterTitle),
+              CustomAppBarWidget(
+                  title: context.localization.loginRegisterTitle),
               const SizedBox(height: AppSpacing.sp24),
               Directionality(
                 textDirection: TextDirection.rtl,
@@ -53,8 +54,8 @@ class LoginScreen extends StatelessWidget {
                           showModalBottomSheet(
                             context: context,
                             builder: (BuildContext context) {
-                              return BlocProvider<LanguageCubit>(
-                                create: (context) => LanguageCubit(),
+                              return BlocProvider<LocaleCubit>(
+                                create: (context) => LocaleCubit(),
                                 child: const SelectCountryBottomSheet(),
                               );
                             },
