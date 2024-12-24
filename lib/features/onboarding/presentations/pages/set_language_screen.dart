@@ -9,11 +9,14 @@ import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/enums/button_state_enum.dart';
 import 'package:novaday_test/core/enums/language_enum.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
-import 'package:novaday_test/core/theme/app_colors.dart';
+import 'package:novaday_test/core/extensions/size_extension.dart';
+import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/utils/language_manager.dart';
 import 'package:novaday_test/core/widgets/check_icon_widget.dart';
 import 'package:novaday_test/core/widgets/filled_button_widget.dart';
+import 'package:novaday_test/core/widgets/custom_app_bar_widget.dart';
+import 'package:novaday_test/features/onboarding/domain/entities/language_model.dart';
 import 'package:novaday_test/core/widgets/header_widget.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/country_entity.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/language_cubit.dart';
@@ -32,17 +35,18 @@ class SetLanguageScreen extends StatelessWidget {
             horizontal: AppLayoutGrid.margin,
             vertical: AppLayoutGrid.margin,
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              HeaderWidget(
-                haveBackButton: false,
-                title: context.localization.setLangTitle,
-              ),
-              const SizedBox(height: AppSpacing.sp24),
-              SizedBox(
-                width: double.infinity,
-                child: ClipRRect(
+          child: SingleChildScrollView(
+            physics: const NeverScrollableScrollPhysics(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CustomAppBarWidget(
+                  haveBackButton: false,
+                  title: context.localization.setLangTitle,
+                ),
+                const SizedBox(height: AppSpacing.sp24),
+                ClipRRect(
                   borderRadius: BorderRadius.circular(AppBorderRadius.br16),
                   child: ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
@@ -55,16 +59,15 @@ class SetLanguageScreen extends StatelessWidget {
                     itemCount: LanguageEnum.values.length,
                   ),
                 ),
-              ),
-              const Spacer(),
-              FilledButtonWidget(
-                buttonText: context.localization.continueButtonTitle,
-                buttonState: ButtonStateEnum.active,
-                onPressed: () {
-                  onNextButtonClick(context);
-                },
-              ),
-            ],
+                FilledButtonWidget(
+                  buttonText: context.localization.continueButtonTitle,
+                  buttonState: ButtonStateEnum.active,
+                  onPressed: () {
+                    onNextButtonClick(context);
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -109,13 +112,12 @@ class _LanguageContainer extends StatelessWidget {
           child: Container(
             height: AppHeight.h48,
             decoration: BoxDecoration(
-              color: !(locale.languageCode ==
-                      languageModel.countryLanguageCode!.name)
-                  ? AppColors.lightBgSecondaryColor
-                  : AppColors.lightBlue08Color,
-              border: const Border(
+              color: !(locale == languageModel.langCode)
+                  ? context.colorScheme.secondary
+                  : context.colorScheme.secondaryContainer,
+              border: Border(
                 bottom: BorderSide(
-                  color: AppColors.lightDefaultBorderColor,
+                  color: context.colorScheme.outline,
                   width: AppBorderWeight.sm,
                 ),
               ),
@@ -134,13 +136,13 @@ class _LanguageContainer extends StatelessWidget {
                       Text(
                         languageModel.countryName!,
                         style: AppTextStyles.textTheme.titleMedium!.copyWith(
-                          color: AppColors.lightTitleColor,
+                          color: context.colorScheme.onSurface,
                         ),
                       ),
                       Text(
                         languageModel.countryLanguage!,
                         style: AppTextStyles.textTheme.titleMedium!.copyWith(
-                          color: AppColors.lightSubtitleColor,
+                          color: context.colorScheme.onSecondaryContainer,
                           fontSize: 14,
                         ),
                       ),

@@ -4,8 +4,15 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:novaday_test/core/theme/app_themes.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:novaday_test/core/enums/theme_enum.dart';
+import 'package:novaday_test/core/theme/app_dark_theme.dart';
+import 'package:novaday_test/core/theme/app_light_theme.dart';
+import 'package:novaday_test/features/auth/presentations/cubits/otp_cubit.dart';
+import 'package:novaday_test/features/auth/presentations/pages/otp_screen.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/language_cubit.dart';
+import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/pages/set_language_screen.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -18,20 +25,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppThemes().init(context); // Initialize the phone theme properties
-
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => LocaleCubit()),
-        BlocProvider(create: (context) => LocaleCubit()),
+        BlocProvider(create: (context) => LanguageCubit()),
+        BlocProvider(create: (context) => ThemeCubit()),
       ],
-      child: BlocBuilder<LocaleCubit, Locale>(
-        builder: (context, locale) {
+      child: BlocBuilder<ThemeCubit, ThemeEnum>(
+        builder: (context, themeMode) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
-            theme: AppThemes.lightThemeData,
-            // darkTheme: AppThemes.darkThemeData,
+            theme: LightThemeData.themeData,
+            // darkTheme: DarkThemeData.themeData,
             localizationsDelegates: const [
               AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
@@ -39,7 +44,7 @@ class MyApp extends StatelessWidget {
               GlobalCupertinoLocalizations.delegate,
             ],
             supportedLocales: AppLocalizations.supportedLocales,
-            locale: locale,
+            locale: const Locale('fa'),
             home: const SetLanguageScreen(),
           );
         },

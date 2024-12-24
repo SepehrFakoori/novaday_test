@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
-import 'package:novaday_test/core/theme/app_colors.dart';
+import 'package:novaday_test/core/extensions/theme_extension.dart';
 
 class CheckIconWidget extends StatelessWidget {
   const CheckIconWidget({super.key, required this.isActive});
@@ -11,9 +11,9 @@ class CheckIconWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Offstage(
       offstage: !isActive,
-      child: const Icon(
+      child: Icon(
         Icons.check_circle,
-        color: AppColors.lightPrimaryColor,
+        color: context.colorScheme.primary,
         size: AppHeight.h24,
       ),
     );

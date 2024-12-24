@@ -8,7 +8,7 @@ import 'package:novaday_test/core/constants/app_layout_grid.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/enums/language_enum.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
-import 'package:novaday_test/core/theme/app_colors.dart';
+import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/utils/language_manager.dart';
 import 'package:novaday_test/core/widgets/check_icon_widget.dart';
@@ -28,7 +28,7 @@ class SelectCountryBottomSheet extends StatelessWidget {
         right: AppSpacing.sp16,
       ),
       decoration: BoxDecoration(
-        color: AppColors.lightBgSecondaryColor,
+        color: context.colorScheme.secondary,
         borderRadius: BorderRadius.circular(AppBorderRadius.br12),
       ),
       child: ClipRRect(
@@ -72,7 +72,7 @@ class _LanguageContainer extends StatelessWidget {
                   : AppColors.lightBlue08Color,
               border: const Border(
                 bottom: BorderSide(
-                  color: AppColors.lightDefaultBorderColor,
+                  color: context.colorScheme.outline,
                   width: AppBorderWeight.sm,
                 ),
               ),
@@ -91,13 +91,13 @@ class _LanguageContainer extends StatelessWidget {
                       Text(
                         languageModel.countryLanguage!,
                         style: AppTextStyles.textTheme.titleMedium!.copyWith(
-                          color: AppColors.lightTitleColor,
+                          color: context.colorScheme.onSurface,
                         ),
                       ),
                       Text(
                         '+${languageModel.countryCode.toString()}',
                         style: AppTextStyles.textTheme.titleMedium!.copyWith(
-                          color: AppColors.lightSubtitleColor,
+                          color: context.colorScheme.onSecondaryContainer,
                           fontSize: 14,
                         ),
                       ),

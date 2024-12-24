@@ -4,7 +4,7 @@ import 'package:novaday_test/core/constants/app_border_weight.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/enums/button_state_enum.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
-import 'package:novaday_test/core/theme/app_colors.dart';
+import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 
 class FilledButtonWidget extends StatelessWidget {
@@ -25,8 +25,8 @@ class FilledButtonWidget extends StatelessWidget {
       onPressed: (buttonState == ButtonStateEnum.deActive) ? null : onPressed,
       style: FilledButton.styleFrom(
         backgroundColor: (buttonState == ButtonStateEnum.deActive)
-            ? AppColors.lightDeActiveButtonColor
-            : AppColors.lightPrimaryColor,
+            ? context.colorScheme.tertiaryContainer
+            : context.colorScheme.primary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppBorderRadius.br12),
         ),
@@ -45,8 +45,8 @@ class FilledButtonWidget extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
                 color: (buttonState == ButtonStateEnum.deActive)
-                    ? AppColors.lightSubtitleColor
-                    : AppColors.lightWhiteTextColor,
+                    ? context.colorScheme.onSecondaryContainer
+                    : context.colorScheme.onPrimary,
               ),
             ),
     );

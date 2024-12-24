@@ -1,38 +1,35 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:novaday_test/core/constants/app_border_radius.dart';
 import 'package:novaday_test/core/constants/app_border_weight.dart';
-import 'package:novaday_test/core/constants/app_height.dart';
+import 'package:novaday_test/core/constants/app_layout_grid.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
-import 'package:novaday_test/core/theme/app_colors.dart';
+import 'package:novaday_test/core/extensions/theme_extension.dart';
 
-
-class SnackBarWidget extends StatelessWidget {
-  const SnackBarWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: AppHeight.h48,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(AppBorderRadius.br16),
-        color: AppColors.lightBgTertiaryColor,
-        border: Border.all(
-          color: AppColors.lightDangerColor,
-          width: AppBorderWeight.lg1,
-        ),
+Flushbar customFlushBar(BuildContext context) {
+  return Flushbar(
+    messageColor: context.colorScheme.onError,
+    messageText: Text(
+      context.localization.otpTimeOutError,
+      style: TextStyle(
+        color: context.colorScheme.onError,
       ),
-      padding: const EdgeInsets.all(AppSpacing.sp8),
-      child: Row(
-        children: [
-          const Icon(Icons.cancel, color: Colors.red),
-          const SizedBox(width: AppSpacing.sp8),
-          Text(
-            context.localization.otpTimeOutError,
-            style: const TextStyle(color: AppColors.lightDangerColor),
-          ),
-        ],
-      ),
-    );
-  }
+    ),
+    margin: const EdgeInsets.symmetric(horizontal: AppLayoutGrid.margin),
+    borderRadius: BorderRadius.circular(AppBorderRadius.br16),
+    backgroundColor: context.colorScheme.tertiary,
+    borderColor: context.colorScheme.onError,
+    borderWidth: AppBorderWeight.lg1,
+    icon: const Icon(Icons.cancel, color: Colors.red),
+    shouldIconPulse: false,
+    padding: const EdgeInsets.symmetric(
+      horizontal: AppSpacing.sp12,
+      vertical: AppSpacing.sp12,
+    ),
+    flushbarStyle: FlushbarStyle.FLOATING,
+    flushbarPosition: FlushbarPosition.TOP,
+    dismissDirection: FlushbarDismissDirection.HORIZONTAL,
+    duration: const Duration(seconds: 3),
+  )..show(context);
 }

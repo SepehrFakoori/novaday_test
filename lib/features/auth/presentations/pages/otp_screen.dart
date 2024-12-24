@@ -1,3 +1,4 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:novaday_test/core/constants/app_border_radius.dart';
@@ -5,12 +6,13 @@ import 'package:novaday_test/core/constants/app_border_weight.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/constants/app_layout_grid.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
+import 'package:novaday_test/core/enums/button_state_enum.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
-import 'package:novaday_test/core/theme/app_colors.dart';
+import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/widgets/filled_button_widget.dart';
-import 'package:novaday_test/core/widgets/header_widget.dart';
+import 'package:novaday_test/core/widgets/custom_app_bar_widget.dart';
 import 'package:novaday_test/core/widgets/snack_bar_widget.dart';
 import 'package:novaday_test/features/auth/presentations/cubits/otp_cubit.dart';
 import 'package:novaday_test/features/auth/presentations/cubits/otp_state.dart';
@@ -32,7 +34,7 @@ class OtpScreen extends StatelessWidget {
             builder: (context, state) {
               return Column(
                 children: [
-                  HeaderWidget(
+                  CustomAppBarWidget(
                     haveBackButton: false,
                     title: context.localization.authTitle,
                     subtitle: context.localization.authSubtitle("+9301914321"),
@@ -54,7 +56,7 @@ class OtpScreen extends StatelessWidget {
                   Text(
                     '00:59',
                     style: AppTextStyles.textTheme.titleLarge!.copyWith(
-                      color: AppColors.lightTitleColor,
+                      color: context.colorScheme.onSurface,
                     ),
                   ),
                   TextButton(
@@ -62,29 +64,16 @@ class OtpScreen extends StatelessWidget {
                     child: Text(
                       context.localization.otpSendCodeAgain,
                       style: AppTextStyles.textTheme.titleLarge!.copyWith(
-                        color: AppColors.lightTitleColor,
+                        color: context.colorScheme.onSurface,
                       ),
                     ),
                   ),
                   const Spacer(),
                   FilledButtonWidget(
                     buttonText: context.localization.continueButtonTitle,
+                    buttonState: ButtonStateEnum.active,
                     onPressed: () {
-                      print("Height ---------> $appBarHeight}");
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          elevation: 0,
-                          content: const SnackBarWidget(),
-                          behavior: SnackBarBehavior.floating,
-                          backgroundColor: Colors.transparent,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          margin: EdgeInsets.only(
-                            bottom: context.height - appBarHeight * 4,
-                          ),
-                        ),
-                      );
+                      customFlushBar(context);
                     },
                   ),
                 ],
@@ -107,12 +96,12 @@ Widget myInputBox(
     height: AppHeight.h48,
     width: AppHeight.h48,
     decoration: BoxDecoration(
-      color: AppColors.lightBgSecondaryColor,
+      color: context.colorScheme.secondary,
       borderRadius: BorderRadius.circular(AppBorderRadius.br12),
       border: Border.all(
         color: state.enteredFields.contains(index)
-            ? AppColors.lightPrimaryColor
-            : AppColors.lightDefaultBorderColor,
+            ? context.colorScheme.primary
+            : context.colorScheme.outline,
         width: AppBorderWeight.sm,
       ),
     ),
@@ -122,7 +111,7 @@ Widget myInputBox(
       textAlign: TextAlign.center,
       keyboardType: TextInputType.number,
       style: AppTextStyles.textTheme.titleLarge!.copyWith(
-        color: AppColors.lightSubtitleColor,
+        color: context.colorScheme.onSecondaryContainer,
       ),
       decoration: const InputDecoration(
         counterText: '',
