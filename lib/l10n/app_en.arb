@@ -6,7 +6,7 @@
   "setThemeTitle": "Access Theme",
   "lightTheme": "Day",
   "darkTheme": "Night",
-  "loginRegisterTitle": "Login | Register",
+  "loginRegisterTitle": "Login / Register",
   "authTitle": "Identity verification",
   "authSubtitle": "Enter the code sent to {phoneNumber}.",
   "@authSubtitle": {

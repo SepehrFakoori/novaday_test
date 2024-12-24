@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:novaday_test/core/theme/app_colors.dart';
 
 class AppTextStyles {
   static const TextStyle _base = TextStyle(
@@ -31,7 +30,7 @@ class AppTextStyles {
     titleLarge: _base.copyWith(
       fontWeight: FontWeight.bold,
       fontSize: 20.0,
-      color: AppColors.lightTitleColor,
+      // color: AppColors.lightTitleColor,
     ),
     titleMedium: _base.copyWith(
       fontWeight: FontWeight.bold,
