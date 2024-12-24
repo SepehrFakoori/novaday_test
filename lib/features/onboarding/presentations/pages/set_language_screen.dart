@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,6 +10,7 @@ import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/enums/button_state_enum.dart';
 import 'package:novaday_test/core/enums/language_enum.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
+import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/utils/language_manager.dart';
@@ -32,17 +34,18 @@ class SetLanguageScreen extends StatelessWidget {
             horizontal: AppLayoutGrid.margin,
             vertical: AppLayoutGrid.margin,
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CustomAppBarWidget(
-                haveBackButton: false,
-                title: context.localization.setLangTitle,
-              ),
-              const SizedBox(height: AppSpacing.sp24),
-              SizedBox(
-                width: double.infinity,
-                child: ClipRRect(
+          child: SingleChildScrollView(
+            physics: const NeverScrollableScrollPhysics(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CustomAppBarWidget(
+                  haveBackButton: false,
+                  title: context.localization.setLangTitle,
+                ),
+                const SizedBox(height: AppSpacing.sp24),
+                ClipRRect(
                   borderRadius: BorderRadius.circular(AppBorderRadius.br16),
                   child: ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
@@ -55,16 +58,15 @@ class SetLanguageScreen extends StatelessWidget {
                     itemCount: LanguageEnum.values.length,
                   ),
                 ),
-              ),
-              const Spacer(),
-              FilledButtonWidget(
-                buttonText: context.localization.continueButtonTitle,
-                buttonState: ButtonStateEnum.active,
-                onPressed: () {
-                  onNextButtonClick(context);
-                },
-              ),
-            ],
+                FilledButtonWidget(
+                  buttonText: context.localization.continueButtonTitle,
+                  buttonState: ButtonStateEnum.active,
+                  onPressed: () {
+                    onNextButtonClick(context);
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
