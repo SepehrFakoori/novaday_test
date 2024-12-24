@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:novaday_test/core/constants/app_constants.dart';
 import 'package:novaday_test/core/enums/theme_enum.dart';
+import 'package:novaday_test/core/theme/app_dark_theme.dart';
 import 'package:novaday_test/core/theme/app_light_theme.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/language_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit.dart';
@@ -11,7 +13,7 @@ import 'package:novaday_test/features/onboarding/presentations/pages/set_languag
 
 void main() async {
   await Hive.initFlutter();
-  await Hive.openBox('settings');
+  await Hive.openBox(AppConstants.settingBoxDb);
   runApp(const MyApp());
 }
 
@@ -28,12 +30,13 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<LocaleCubit, Locale>(
         builder: (context, locale) {
           return BlocBuilder<ThemeCubit, ThemeEnum>(
-            builder: (context, themeMode) {
+            builder: (context, themeEnum) {
               return MaterialApp(
                 debugShowCheckedModeBanner: false,
                 title: 'Flutter Demo',
-                theme: LightThemeData.themeData,
-                // darkTheme: DarkThemeData.themeData,
+                theme: themeEnum == ThemeEnum.light
+                    ? LightThemeData.themeData
+                    : DarkThemeData.themeData,
                 localizationsDelegates: const [
                   AppLocalizations.delegate,
                   GlobalMaterialLocalizations.delegate,

@@ -66,7 +66,7 @@ class CustomAppBarWidget extends StatelessWidget {
             Row(
               children: [
                 for (int i = 0; i < buttonsList!.length; i++) ...[
-                  if (i > 0) const SizedBox(width: 12),
+                  if (i > 0) const SizedBox(width: AppSpacing.sp8),
                   buttonsList![i],
                 ],
               ],

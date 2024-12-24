@@ -1,4 +1,3 @@
-import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:novaday_test/core/constants/app_border_radius.dart';
@@ -8,12 +7,10 @@ import 'package:novaday_test/core/constants/app_layout_grid.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/enums/button_state_enum.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
-import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/widgets/filled_button_widget.dart';
 import 'package:novaday_test/core/widgets/custom_app_bar_widget.dart';
-import 'package:novaday_test/core/widgets/snack_bar_widget.dart';
 import 'package:novaday_test/features/auth/presentations/cubits/otp_cubit.dart';
 import 'package:novaday_test/features/auth/presentations/cubits/otp_state.dart';
 
@@ -68,19 +65,17 @@ class OtpScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Spacer(),
-                  FilledButtonWidget(
-                    buttonText: context.localization.continueButtonTitle,
-                    buttonState: ButtonStateEnum.active,
-                    onPressed: () {
-                      customFlushBar(context);
-                    },
-                  ),
                 ],
               );
             },
           ),
         ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FilledButtonWidget(
+        buttonText: context.localization.continueButtonTitle,
+        buttonState: ButtonStateEnum.active,
+        onPressed: () {},
       ),
     );
   }

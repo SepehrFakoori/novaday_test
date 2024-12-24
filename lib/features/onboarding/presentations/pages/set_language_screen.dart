@@ -17,7 +17,6 @@ import 'package:novaday_test/core/widgets/filled_button_widget.dart';
 import 'package:novaday_test/core/widgets/custom_app_bar_widget.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/country_entity.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/language_cubit.dart';
-import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/pages/set_theme_screen.dart';
 
 class SetLanguageScreen extends StatelessWidget {
@@ -57,17 +56,18 @@ class SetLanguageScreen extends StatelessWidget {
                     itemCount: LanguageEnum.values.length,
                   ),
                 ),
-                FilledButtonWidget(
-                  buttonText: context.localization.continueButtonTitle,
-                  buttonState: ButtonStateEnum.active,
-                  onPressed: () {
-                    onNextButtonClick(context);
-                  },
-                ),
               ],
             ),
           ),
         ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FilledButtonWidget(
+        buttonText: context.localization.continueButtonTitle,
+        buttonState: ButtonStateEnum.active,
+        onPressed: () {
+          onNextButtonClick(context);
+        },
       ),
     );
   }
@@ -76,16 +76,7 @@ class SetLanguageScreen extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => MultiBlocProvider(
-          providers: [
-            BlocProvider<ThemeCubit>(
-              create: (BuildContext context) {
-                return ThemeCubit();
-              },
-            ),
-          ],
-          child: const SetThemeScreen(),
-        ),
+        builder: (context) => const SetThemeScreen(),
       ),
     );
   }
