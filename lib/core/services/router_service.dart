@@ -41,7 +41,7 @@ class RouterService {
   static void navigateWithAnimation(
     BuildContext context,
     Widget page, {
-    Duration duration = const Duration(milliseconds: 300),
+    Duration duration = const Duration(milliseconds: 200),
   }) {
     context.navigator.push(
       PageRouteBuilder(

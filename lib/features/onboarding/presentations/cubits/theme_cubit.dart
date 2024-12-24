@@ -15,10 +15,14 @@ class ThemeCubit extends Cubit<ThemeEnum> {
 
   Future<void> _getTheme() async {
     final box = Hive.box(AppConstants.settingBoxDb);
-    final String theme = await box.get(AppConstants.themeKeyDb);
-    ThemeEnum themeEnum =
-        theme == ThemeEnum.light.name ? ThemeEnum.light : ThemeEnum.dark;
-    emit(themeEnum);
+    try {
+      final String theme = await box.get(AppConstants.themeKeyDb);
+      final ThemeEnum themeEnum =
+      theme == ThemeEnum.light.name ? ThemeEnum.light : ThemeEnum.dark;
+      emit(themeEnum);
+    } catch (e) {
+      emit(state);
+    }
   }
 
   void changeTheme({required ThemeEnum themeEnum}) {

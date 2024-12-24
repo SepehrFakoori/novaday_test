@@ -16,8 +16,12 @@ class LocaleCubit extends Cubit<Locale> {
 
   Future<void> _getLocale() async {
     final box = Hive.box(AppConstants.settingBoxDb);
-    final String languageCode = await box.get(AppConstants.localeKeyDb);
-    emit(Locale(languageCode));
+    try {
+      final String languageCode = await box.get(AppConstants.localeKeyDb);
+      emit(Locale(languageCode));
+    } catch (e) {
+      emit(state);
+    }
   }
 
   void changeLocale({required Locale locale}) {
