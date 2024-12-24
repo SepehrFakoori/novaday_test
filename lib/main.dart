@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:novaday_test/core/enums/theme_enum.dart';
 import 'package:novaday_test/core/theme/app_dark_theme.dart';
 import 'package:novaday_test/core/theme/app_light_theme.dart';
 import 'package:novaday_test/features/auth/presentations/cubits/otp_cubit.dart';
@@ -27,14 +28,13 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => LanguageCubit()),
         BlocProvider(create: (context) => ThemeCubit()),
       ],
-      child: BlocBuilder<ThemeCubit, ThemeMode>(
+      child: BlocBuilder<ThemeCubit, ThemeEnum>(
         builder: (context, themeMode) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: LightThemeData.themeData,
-            darkTheme: DarkThemeData.themeData,
-            themeMode: themeMode,
+            // darkTheme: DarkThemeData.themeData,
             localizationsDelegates: const [
               AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
