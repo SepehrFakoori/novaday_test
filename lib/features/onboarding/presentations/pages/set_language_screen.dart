@@ -74,7 +74,7 @@ class SetLanguageScreen extends StatelessWidget {
   }
 
   void onNextButtonClick(BuildContext context) {
-    RouterService.navigateWithAnimation(context, const SetThemeScreen());
+    RouterService.navigateTo(context, '/set-theme');
   }
 }
 

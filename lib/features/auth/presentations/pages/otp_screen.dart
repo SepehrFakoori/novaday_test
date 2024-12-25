@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:novaday_test/core/constants/app_border_radius.dart';
 import 'package:novaday_test/core/constants/app_border_weight.dart';
+import 'package:novaday_test/core/constants/app_constants.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/constants/app_layout_grid.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
@@ -14,13 +17,53 @@ import 'package:novaday_test/core/widgets/custom_app_bar_widget.dart';
 import 'package:novaday_test/features/auth/presentations/cubits/otp_cubit.dart';
 import 'package:novaday_test/features/auth/presentations/cubits/otp_state.dart';
 
-class OtpScreen extends StatelessWidget {
+class OtpScreen extends StatefulWidget {
   const OtpScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final double appBarHeight = MediaQuery.paddingOf(context).top;
+  State<OtpScreen> createState() => _OtpScreenState();
+}
 
+class _OtpScreenState extends State<OtpScreen> {
+  late Timer _timer;
+  int _remainingSeconds = AppConstants.timerCount;
+  bool _isButtonVisible = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _startTimer();
+  }
+
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (_remainingSeconds > 1) {
+        setState(() {
+          _remainingSeconds--;
+        });
+      } else {
+        setState(() {
+          _isButtonVisible = true;
+        });
+        _timer.cancel();
+      }
+    });
+  }
+
+  String _formatTime(int seconds) {
+    final minutes = seconds ~/ 60;
+    final secs = seconds % 60;
+    return '${minutes.toString().padLeft(2, '0')}:${secs.toString().padLeft(2, '0')}';
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final focusNodes = List.generate(4, (_) => FocusNode());
 
     return Scaffold(
@@ -38,33 +81,47 @@ class OtpScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: AppSpacing.sp24),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: List.generate(
                       4,
-                      (index) => myInputBox(
-                        context,
-                        focusNodes,
-                        index,
-                        state,
+                      (index) => Row(
+                        children: [
+                          myInputBox(
+                            context,
+                            focusNodes,
+                            index,
+                            state,
+                          ),
+                          index == 3
+                              ? const SizedBox(width: AppSpacing.sp0)
+                              : const SizedBox(width: AppSpacing.sp16),
+                        ],
                       ),
                     ),
                   ),
                   const SizedBox(height: AppSpacing.sp40),
-                  Text(
-                    '00:59',
-                    style: AppTextStyles.textTheme.titleLarge!.copyWith(
-                      color: context.colorScheme.onSurface,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      context.localization.otpSendCodeAgain,
-                      style: AppTextStyles.textTheme.titleLarge!.copyWith(
-                        color: context.colorScheme.onSurface,
-                      ),
-                    ),
-                  ),
+                  _isButtonVisible
+                      ? TextButton(
+                          onPressed: () {
+                            setState(() {
+                              _isButtonVisible = false;
+                              _remainingSeconds = AppConstants.timerCount;
+                              _startTimer();
+                            });
+                          },
+                          child: Text(
+                            context.localization.otpSendCodeAgain,
+                            style: AppTextStyles.textTheme.titleLarge!.copyWith(
+                              color: context.colorScheme.onSurface,
+                            ),
+                          ),
+                        )
+                      : Text(
+                          _formatTime(_remainingSeconds),
+                          style: AppTextStyles.textTheme.titleLarge!.copyWith(
+                            color: context.colorScheme.onSurface,
+                          ),
+                        ),
                 ],
               );
             },
@@ -74,7 +131,7 @@ class OtpScreen extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FilledButtonWidget(
         buttonText: context.localization.continueButtonTitle,
-        buttonState: ButtonStateEnum.active,
+        buttonState: ButtonStateEnum.deActive,
         onPressed: () {},
       ),
     );

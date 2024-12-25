@@ -1,0 +1,23 @@
+{
+  "appVersion": "الإصدار",
+  "failedToConnect": "جهازك غير متصل بالإنترنت، يرجى المحاولة مرة أخرى",
+  "continueButtonTitle": "متابعة",
+  "setLangTitle": "اختر اللغة",
+  "setThemeTitle": "الوصول إلى السمة",
+  "lightTheme": "نهار",
+  "darkTheme": "ليل",
+  "loginRegisterTitle": "تسجيل الدخول / التسجيل",
+  "authTitle": "التحقق من الهوية",
+  "authSubtitle": "أدخل الرمز المرسل إلى {phoneNumber}.",
+  "@authSubtitle": {
+    "description": "رقم الهاتف",
+    "placeholders": {
+      "phoneNumber": {
+        "type": "String",
+        "example": "+966123456789"
+      }
+    }
+  },
+  "otpSendCodeAgain": "إعادة إرسال الرمز",
+  "otpTimeOutError": "انتهت صلاحية الرمز المدخل."
+}

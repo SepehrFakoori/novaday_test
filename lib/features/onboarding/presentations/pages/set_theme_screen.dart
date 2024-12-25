@@ -74,6 +74,6 @@ class SetThemeScreen extends StatelessWidget {
   }
 
   void onNextButtonClick(BuildContext context) {
-    RouterService.navigateWithAnimation(context, const LoginScreen());
+    RouterService.navigateTo(context, '/login');
   }
 }

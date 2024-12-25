@@ -4,22 +4,28 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:novaday_test/core/constants/app_border_radius.dart';
 import 'package:novaday_test/core/constants/app_border_weight.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
+import 'package:novaday_test/core/constants/app_icons.dart';
 import 'package:novaday_test/core/constants/app_layout_grid.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
+import 'package:novaday_test/core/enums/button_state_enum.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
-import 'package:novaday_test/core/constants/app_icons.dart';
+import 'package:novaday_test/core/services/router_service.dart';
+import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/widgets/filled_button_widget.dart';
 import 'package:novaday_test/core/widgets/custom_app_bar_widget.dart';
+import 'package:novaday_test/features/auth/presentations/cubits/login_cubit.dart';
+import 'package:novaday_test/features/auth/presentations/widgets/phone_entry_text_field_widget.dart';
 import 'package:novaday_test/features/auth/presentations/widgets/select_country_bottom_sheet.dart';
-import 'package:novaday_test/features/onboarding/presentations/cubits/language_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController phoneController = TextEditingController();
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -45,17 +51,21 @@ class LoginScreen extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      const Expanded(
-                        child: Center(child: Text("Text Field Here")),
+                      Expanded(
+                        child: PhoneEntryTextFieldWidget(
+                          controller: phoneController,
+                          hintText: '9307894561',
+                        ),
                       ),
-                      const SizedBox(width: AppSpacing.sp16),
+                      const SizedBox(width: AppSpacing.sp8),
+                      // todo: It was AppSpacing.sp16
                       GestureDetector(
                         onTap: () {
                           showModalBottomSheet(
                             context: context,
                             builder: (BuildContext context) {
-                              return BlocProvider<LocaleCubit>(
-                                create: (context) => LocaleCubit(),
+                              return BlocProvider(
+                                create: (context) => LoginCubit(),
                                 child: const SelectCountryBottomSheet(),
                               );
                             },
@@ -75,6 +85,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Icon(
                                 Icons.keyboard_arrow_down_rounded,
@@ -82,7 +93,8 @@ class LoginScreen extends StatelessWidget {
                                 color: context.colorScheme.onSurface,
                               ),
                               const SizedBox(width: AppSpacing.sp12),
-                              const Text("+98"),
+                              Text("98+",
+                                  style: AppTextStyles.textTheme.titleMedium),
                               const SizedBox(width: AppSpacing.sp12),
                               SvgPicture.asset(AppIcons.englandFlag),
                             ],
@@ -100,7 +112,10 @@ class LoginScreen extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FilledButtonWidget(
         buttonText: context.localization.continueButtonTitle,
-        onPressed: () {},
+        buttonState: ButtonStateEnum.active,
+        onPressed: () {
+          RouterService.navigateTo(context, '/otp');
+        },
       ),
     );
   }

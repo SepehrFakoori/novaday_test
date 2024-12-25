@@ -1,0 +1,23 @@
+{
+  "appVersion": "Version",
+  "failedToConnect": "Votre appareil ne se connecte pas à Internet, veuillez réessayer",
+  "continueButtonTitle": "Continuer",
+  "setLangTitle": "Choisir la langue",
+  "setThemeTitle": "Accéder au thème",
+  "lightTheme": "Jour",
+  "darkTheme": "Nuit",
+  "loginRegisterTitle": "Connexion / Inscription",
+  "authTitle": "Vérification d'identité",
+  "authSubtitle": "Entrez le code envoyé à {phoneNumber}.",
+  "@authSubtitle": {
+    "description": "Numéro de téléphone",
+    "placeholders": {
+      "phoneNumber": {
+        "type": "String",
+        "example": "+339123456789"
+      }
+    }
+  },
+  "otpSendCodeAgain": "Renvoyer le code",
+  "otpTimeOutError": "Le code saisi a expiré."
+}
