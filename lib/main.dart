@@ -13,7 +13,6 @@ import 'package:novaday_test/core/theme/app_dark_theme.dart';
 import 'package:novaday_test/core/theme/app_light_theme.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/locale_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit.dart';
-import 'package:novaday_test/features/onboarding/presentations/pages/onboarding_screen.dart';
 import 'package:novaday_test/features/onboarding/presentations/pages/set_locale_screen.dart';
 
 void main() async {
