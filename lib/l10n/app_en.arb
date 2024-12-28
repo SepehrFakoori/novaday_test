@@ -23,5 +23,9 @@
   "biometricSettings": "Biometric Settings",
   "activateFingerPrintAuth": "Activate Fingerprint Auth",
   "savedSuccessfully": "Saved successfully.",
-  "canceled": "Canceled."
+  "canceled": "Canceled.",
+  "completeProfile": "Complete Profile",
+  "firstNameAndLastName": "First Name and Last Name",
+  "password": "Password",
+  "jobTitle": "Job Title"
 }

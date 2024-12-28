@@ -23,5 +23,9 @@
   "biometricSettings": "Biometrische Einstellungen",
   "activateFingerPrintAuth": "Fingerabdruck-Authentifizierung aktivieren",
   "savedSuccessfully": "Erfolgreich gespeichert",
-  "canceled": "Abgebrochen"
+  "canceled": "Abgebrochen",
+  "completeProfile": "Profil vervollständigen",
+  "firstNameAndLastName": "Vor- und Nachname",
+  "password": "Passwort",
+  "jobTitle": "Berufsbezeichnung"
 }

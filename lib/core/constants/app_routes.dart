@@ -5,4 +5,5 @@ class AppRoutes {
   static const loginScreen = '/login';
   static const otpScreen = '/otp';
   static const setBiometricAuthScreen = '/biometric-auth';
+  static const profileScreen = '/profile';
 }

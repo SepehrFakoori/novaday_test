@@ -23,5 +23,9 @@
   "biometricSettings": "إعدادات البيومترية",
   "activateFingerPrintAuth": "تفعيل بصمة الأصبع",
   "savedSuccessfully": "تم الحفظ بنجاح",
-  "canceled": "تم الإلغاء"
+  "canceled": "تم الإلغاء",
+  "completeProfile": "إكمال الملف الشخصي",
+  "firstNameAndLastName": "الاسم الأول واسم العائلة",
+  "password": "كلمة المرور",
+  "jobTitle": "المسمى الوظيفي"
 }

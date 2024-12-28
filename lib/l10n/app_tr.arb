@@ -23,5 +23,9 @@
   "biometricSettings": "Biyometrik Ayarları",
   "activateFingerPrintAuth": "Parmak İzi Doğrulamasını Etkinleştir",
   "savedSuccessfully": "Başarıyla kaydedildi",
-  "canceled": "İptal edildi"
+  "canceled": "İptal edildi",
+  "completeProfile": "Profil Tamamla",
+  "firstNameAndLastName": "Ad ve Soyad",
+  "password": "Şifre",
+  "jobTitle": "İş Unvanı"
 }
