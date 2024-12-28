@@ -4,8 +4,8 @@ import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 
-class CustomRadioButtonWidget extends StatelessWidget {
-  const CustomRadioButtonWidget({
+class CustomRadioButton extends StatelessWidget {
+  const CustomRadioButton({
     super.key,
     required this.title,
     required this.value,

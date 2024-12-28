@@ -1,30 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
+import 'package:novaday_test/core/constants/app_routes.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/constants/app_icons.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
+import 'package:novaday_test/features/onboarding/presentations/cubits/onboarding_cubit.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: context.colorScheme.surface,
-      body: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          _appLogoSection(),
-          _failedSection(context),
-          _loadingSection(context),
-          _appVersionNumberSection(context),
-        ],
+    return BlocProvider(
+      create: (context) => OnboardingCubit(),
+      child: Scaffold(
+        backgroundColor: context.colorScheme.surface,
+        body: BlocBuilder<OnboardingCubit, bool>(
+          builder: (context, isBiometricEnabled) {
+            return Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                _appLogoSection(),
+                if (isBiometricEnabled)
+                  FutureBuilder<void>(
+                    future: _handleBiometric(context),
+                    builder: (context, snapshot) {
+                      return _loadingSection(context, isBiometricEnabled);
+                    },
+                  ),
+                _failedSection(context),
+                _loadingSection(context, isBiometricEnabled),
+                _appVersionNumberSection(context),
+              ],
+            );
+          },
+        ),
       ),
     );
+  }
+
+  Future<void> _handleBiometric(BuildContext context) async {
+    final cubit = context.read<OnboardingCubit>();
+    await cubit.authenticateAndNavigate(() {
+      Navigator.pushReplacementNamed(context, AppRoutes.loginScreen);
+    });
   }
 
   Center _appLogoSection() {
@@ -54,19 +78,20 @@ class OnBoardingScreen extends StatelessWidget {
     );
   }
 
-  Positioned _loadingSection(BuildContext context) {
+  Positioned _loadingSection(BuildContext context, bool isBiometricEnabled) {
     return Positioned(
       top: context.height * 0.5 + AppHeight.h72,
       child: SizedBox(
         width: context.width,
         height: context.height * 0.5,
-        child: const Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox.square(
-              dimension: AppHeight.h36,
-              child: Icon(Icons.refresh),
-            ),
+            if (isBiometricEnabled)
+              const SizedBox.square(
+                dimension: AppHeight.h36,
+                child: Icon(Icons.refresh),
+              ),
           ],
         ),
       ),

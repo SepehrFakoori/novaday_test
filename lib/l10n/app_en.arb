@@ -19,5 +19,7 @@
     }
   },
   "otpSendCodeAgain": "Send code again",
-  "otpTimeOutError": "The entered code has timed out."
+  "otpTimeOutError": "The entered code has timed out.",
+  "biometricSettings": "Biometric Settings",
+  "activateFingerPrintAuth": "Activate Fingerprint Auth"
 }

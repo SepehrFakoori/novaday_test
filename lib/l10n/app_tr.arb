@@ -1,0 +1,25 @@
+{
+  "appVersion": "Sürüm",
+  "failedToConnect": "Cihazınız internete bağlanamıyor, lütfen tekrar deneyin",
+  "continueButtonTitle": "Devam et",
+  "setLangTitle": "Dili Seçin",
+  "setThemeTitle": "Tema Erişimi",
+  "lightTheme": "Gündüz",
+  "darkTheme": "Gece",
+  "loginRegisterTitle": "Giriş / Kayıt Ol",
+  "authTitle": "Kimlik doğrulama",
+  "authSubtitle": "{phoneNumber} numarasına gönderilen kodu girin.",
+  "@authSubtitle": {
+    "description": "Telefon numarası",
+    "placeholders": {
+      "phoneNumber": {
+        "type": "String",
+        "example": "+905123456789"
+      }
+    }
+  },
+  "otpSendCodeAgain": "Kodu tekrar gönder",
+  "otpTimeOutError": "Girilen kodun süresi doldu.",
+  "biometricSettings": "Biyometrik Ayarları",
+  "activateFingerPrintAuth": "Parmak İzi Doğrulamasını Etkinleştir"
+}

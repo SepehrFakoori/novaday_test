@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:novaday_test/core/constants/app_layout_grid.dart';
+import 'package:novaday_test/core/constants/app_routes.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/enums/button_state_enum.dart';
 import 'package:novaday_test/core/enums/theme_enum.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
-import 'package:novaday_test/core/services/router_service.dart';
-import 'package:novaday_test/core/widgets/custom_radio_button_widget.dart';
-import 'package:novaday_test/core/widgets/filled_button_widget.dart';
-import 'package:novaday_test/core/widgets/custom_app_bar_widget.dart';
-import 'package:novaday_test/features/auth/presentations/pages/login_screen.dart';
+import 'package:novaday_test/core/widgets/custom_radio_button.dart';
+import 'package:novaday_test/core/widgets/custom_filled_button.dart';
+import 'package:novaday_test/core/widgets/custom_app_bar.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit.dart';
 
 class SetThemeScreen extends StatelessWidget {
@@ -29,13 +28,13 @@ class SetThemeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomAppBarWidget(
+              CustomAppBar(
                 title: context.localization.setThemeTitle,
               ),
               const SizedBox(height: AppSpacing.sp24),
               Column(
                 children: <Widget>[
-                  CustomRadioButtonWidget(
+                  CustomRadioButton(
                     title: context.localization.lightTheme,
                     value: ThemeEnum.light,
                     groupValue: themeGroupValue,
@@ -44,7 +43,7 @@ class SetThemeScreen extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height: AppSpacing.sp8),
-                  CustomRadioButtonWidget(
+                  CustomRadioButton(
                     title: context.localization.darkTheme,
                     value: ThemeEnum.dark,
                     groupValue: themeGroupValue,
@@ -59,7 +58,7 @@ class SetThemeScreen extends StatelessWidget {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FilledButtonWidget(
+      floatingActionButton: CustomFilledButton(
         buttonText: context.localization.continueButtonTitle,
         buttonState: ButtonStateEnum.active,
         onPressed: () {
@@ -74,6 +73,6 @@ class SetThemeScreen extends StatelessWidget {
   }
 
   void onNextButtonClick(BuildContext context) {
-    RouterService.navigateWithAnimation(context, const LoginScreen());
+    Navigator.pushNamed(context, AppRoutes.loginScreen);
   }
 }

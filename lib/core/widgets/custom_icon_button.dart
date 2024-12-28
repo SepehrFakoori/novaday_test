@@ -4,8 +4,8 @@ import 'package:novaday_test/core/constants/app_border_weight.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
 
-class IconButtonWidget extends StatelessWidget {
-  const IconButtonWidget({required this.icon, this.onTap, super.key});
+class CustomIconButton extends StatelessWidget {
+  const CustomIconButton({required this.icon, this.onTap, super.key});
 
   final IconData icon;
   final void Function()? onTap;

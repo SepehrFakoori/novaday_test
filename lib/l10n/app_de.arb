@@ -1,0 +1,25 @@
+{
+  "appVersion": "Version",
+  "failedToConnect": "Ihr Gerät ist nicht mit dem Internet verbunden, bitte versuchen Sie es erneut",
+  "continueButtonTitle": "Fortsetzen",
+  "setLangTitle": "Sprache auswählen",
+  "setThemeTitle": "Thema auswählen",
+  "lightTheme": "Tag",
+  "darkTheme": "Nacht",
+  "loginRegisterTitle": "Anmelden / Registrieren",
+  "authTitle": "Identitätsprüfung",
+  "authSubtitle": "Geben Sie den Code ein, der an {phoneNumber} gesendet wurde.",
+  "@authSubtitle": {
+    "description": "Telefonnummer",
+    "placeholders": {
+      "phoneNumber": {
+        "type": "String",
+        "example": "+49123456789"
+      }
+    }
+  },
+  "otpSendCodeAgain": "Code erneut senden",
+  "otpTimeOutError": "Der eingegebene Code ist abgelaufen.",
+  "biometricSettings": "Biometrische Einstellungen",
+  "activateFingerPrintAuth": "Fingerabdruck-Authentifizierung aktivieren"
+}

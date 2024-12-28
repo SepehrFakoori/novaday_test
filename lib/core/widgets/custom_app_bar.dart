@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
-import 'package:novaday_test/core/services/router_service.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
-import 'package:novaday_test/core/widgets/icon_button_widget.dart';
+import 'package:novaday_test/core/widgets/custom_icon_button.dart';
 
-class CustomAppBarWidget extends StatelessWidget {
-  const CustomAppBarWidget({
+class CustomAppBar extends StatelessWidget {
+  const CustomAppBar({
     this.haveBackButton = true,
     required this.title,
     this.subtitle,
@@ -18,7 +17,7 @@ class CustomAppBarWidget extends StatelessWidget {
   final bool haveBackButton;
   final String title;
   final String? subtitle;
-  final List<IconButtonWidget>? buttonsList;
+  final List<CustomIconButton>? buttonsList;
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +30,10 @@ class CustomAppBarWidget extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                IconButtonWidget(
+                CustomIconButton(
                   icon: Icons.arrow_back_ios_rounded,
                   onTap: () {
-                    RouterService.pop(context);
+                    Navigator.pop(context);
                   },
                 ),
                 const SizedBox(width: AppSpacing.sp16),

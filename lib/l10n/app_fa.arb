@@ -19,5 +19,7 @@
     }
   },
   "otpSendCodeAgain": "ارسال دوباره کد",
-  "otpTimeOutError": "زمان کد وارد شده به اتمام رسیده است."
+  "otpTimeOutError": "زمان کد وارد شده به اتمام رسیده است.",
+  "biometricSettings": "تنظیمات بیومتریک",
+  "activateFingerPrintAuth": "فعالسازی اثر انگشت"
 }

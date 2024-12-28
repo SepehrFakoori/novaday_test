@@ -5,23 +5,22 @@ import 'package:novaday_test/core/constants/app_border_radius.dart';
 import 'package:novaday_test/core/constants/app_border_weight.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/constants/app_layout_grid.dart';
+import 'package:novaday_test/core/constants/app_routes.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/enums/button_state_enum.dart';
 import 'package:novaday_test/core/enums/language_enum.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
-import 'package:novaday_test/core/services/router_service.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/utils/language_manager.dart';
-import 'package:novaday_test/core/widgets/check_icon_widget.dart';
-import 'package:novaday_test/core/widgets/filled_button_widget.dart';
-import 'package:novaday_test/core/widgets/custom_app_bar_widget.dart';
+import 'package:novaday_test/core/widgets/custom_check_icon.dart';
+import 'package:novaday_test/core/widgets/custom_filled_button.dart';
+import 'package:novaday_test/core/widgets/custom_app_bar.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/country_entity.dart';
-import 'package:novaday_test/features/onboarding/presentations/cubits/language_cubit.dart';
-import 'package:novaday_test/features/onboarding/presentations/pages/set_theme_screen.dart';
+import 'package:novaday_test/features/onboarding/presentations/cubits/locale_cubit.dart';
 
-class SetLanguageScreen extends StatelessWidget {
-  const SetLanguageScreen({super.key});
+class SetLocaleScreen extends StatelessWidget {
+  const SetLocaleScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +37,7 @@ class SetLanguageScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                CustomAppBarWidget(
+                CustomAppBar(
                   haveBackButton: false,
                   title: context.localization.setLangTitle,
                 ),
@@ -63,7 +62,7 @@ class SetLanguageScreen extends StatelessWidget {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FilledButtonWidget(
+      floatingActionButton: CustomFilledButton(
         buttonText: context.localization.continueButtonTitle,
         buttonState: ButtonStateEnum.active,
         onPressed: () {
@@ -74,7 +73,7 @@ class SetLanguageScreen extends StatelessWidget {
   }
 
   void onNextButtonClick(BuildContext context) {
-    RouterService.navigateWithAnimation(context, const SetThemeScreen());
+    Navigator.pushNamed(context, AppRoutes.setThemeScreen);
   }
 }
 
