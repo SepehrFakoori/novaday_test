@@ -6,7 +6,6 @@ import 'package:novaday_test/features/auth/presentations/cubits/otp_cubit.dart';
 import 'package:novaday_test/features/auth/presentations/pages/login_screen.dart';
 import 'package:novaday_test/features/auth/presentations/pages/otp_screen.dart';
 import 'package:novaday_test/features/auth/presentations/pages/biometric_auth_screen.dart';
-import 'package:novaday_test/features/onboarding/presentations/cubits/onboarding_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/pages/onboarding_screen.dart';
 import 'package:novaday_test/features/onboarding/presentations/pages/set_locale_screen.dart';
 import 'package:novaday_test/features/onboarding/presentations/pages/set_theme_screen.dart';
