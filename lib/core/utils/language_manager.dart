@@ -10,6 +10,7 @@ class LanguageManagerUtils {
       countryLanguageCode: LanguageEnum.en,
       countryFlag: AppIcons.englandFlag,
       countryCode: 44,
+      phoneNumberLength: 10,
     ),
     LanguageEnum.fr: CountryEntity(
       countryName: "Français",
@@ -17,6 +18,7 @@ class LanguageManagerUtils {
       countryLanguageCode: LanguageEnum.fr,
       countryFlag: AppIcons.franceFlag,
       countryCode: 33,
+      phoneNumberLength: 9,
     ),
     LanguageEnum.de: CountryEntity(
       countryName: "Deutsch",
@@ -24,6 +26,7 @@ class LanguageManagerUtils {
       countryLanguageCode: LanguageEnum.de,
       countryFlag: AppIcons.germanyFlag,
       countryCode: 49,
+      phoneNumberLength: 10,
     ),
     LanguageEnum.ae: CountryEntity(
       countryName: "عربي",
@@ -31,6 +34,7 @@ class LanguageManagerUtils {
       countryLanguageCode: LanguageEnum.ae,
       countryFlag: AppIcons.uaeFlag,
       countryCode: 971,
+      phoneNumberLength: 7,
     ),
     LanguageEnum.tr: CountryEntity(
       countryName: "Türkçe",
@@ -38,6 +42,7 @@ class LanguageManagerUtils {
       countryLanguageCode: LanguageEnum.tr,
       countryFlag: AppIcons.turkeyFlag,
       countryCode: 90,
+      phoneNumberLength: 10,
     ),
     LanguageEnum.fa: CountryEntity(
       countryName: "فارسی",
@@ -45,6 +50,7 @@ class LanguageManagerUtils {
       countryLanguageCode: LanguageEnum.fa,
       countryFlag: AppIcons.iranFlag,
       countryCode: 98,
+      phoneNumberLength: 10,
     ),
   };
 
@@ -59,6 +65,7 @@ class LanguageManagerUtils {
       countryLanguageCode: info.countryLanguageCode,
       countryFlag: info.countryFlag,
       countryCode: info.countryCode,
+      phoneNumberLength: info.phoneNumberLength,
     );
   }
 

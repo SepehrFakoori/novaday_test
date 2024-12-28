@@ -5,19 +5,21 @@ import 'package:novaday_test/core/constants/app_border_weight.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/constants/app_layout_grid.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
-import 'package:novaday_test/core/enums/language_enum.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/utils/language_manager.dart';
-import 'package:novaday_test/core/widgets/custom_check_icon.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/country_entity.dart';
 
 class SelectCountryBottomSheet extends StatelessWidget {
-  const SelectCountryBottomSheet({super.key});
+  const SelectCountryBottomSheet({super.key, required this.onCountrySelected});
+
+  final ValueChanged<CountryEntity> onCountrySelected;
 
   @override
   Widget build(BuildContext context) {
+    final List<CountryEntity> countries = LanguageManagerUtils.allLanguages;
+
     return Container(
       width: context.width,
       margin: const EdgeInsets.only(
@@ -35,86 +37,58 @@ class SelectCountryBottomSheet extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemBuilder: (BuildContext context, int index) {
-            return _CountryContainer(
-              countryEntity: LanguageManagerUtils.allLanguages[index],
+            final CountryEntity country = countries[index];
+            return GestureDetector(
+              onTap: () {
+                onCountrySelected(country);
+                Navigator.pop(context);
+              },
+              child: Container(
+                height: AppHeight.h48,
+                decoration: BoxDecoration(
+                  color: context.colorScheme.secondary,
+                  border: Border(
+                    bottom: BorderSide(
+                      color: context.colorScheme.outline,
+                      width: AppBorderWeight.sm,
+                    ),
+                  ),
+                ),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppLayoutGrid.margin,
+                ),
+                child: Row(
+                  children: [
+                    SvgPicture.asset(country.countryFlag!),
+                    const SizedBox(width: AppSpacing.sp16),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            country.countryLanguage!,
+                            style:
+                                AppTextStyles.textTheme.titleMedium!.copyWith(
+                              color: context.colorScheme.onSurface,
+                            ),
+                          ),
+                          Text(
+                            '+${country.countryCode.toString()}',
+                            style:
+                                AppTextStyles.textTheme.titleMedium!.copyWith(
+                              color: context.colorScheme.onSecondaryContainer,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             );
           },
-          itemCount: LanguageEnum.values.length,
-        ),
-      ),
-    );
-  }
-}
-
-// Language Container Section
-class _CountryContainer extends StatefulWidget {
-  const _CountryContainer({
-    required this.countryEntity,
-  });
-
-  final CountryEntity countryEntity;
-
-  @override
-  State<_CountryContainer> createState() => _CountryContainerState();
-}
-
-class _CountryContainerState extends State<_CountryContainer> {
-
-  bool _isSelected = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          _isSelected = true;
-        });
-        Navigator.pop(context);
-      },
-      child: Container(
-        height: AppHeight.h48,
-        decoration: BoxDecoration(
-          color: !(_isSelected)
-              // country.countryLanguageCode = countryEntity.countryLanguageCode
-              ? context.colorScheme.secondary
-              : context.colorScheme.secondaryContainer,
-          border: Border(
-            bottom: BorderSide(
-              color: context.colorScheme.outline,
-              width: AppBorderWeight.sm,
-            ),
-          ),
-        ),
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppLayoutGrid.margin,
-        ),
-        child: Row(
-          children: [
-            SvgPicture.asset(widget.countryEntity.countryFlag!),
-            const SizedBox(width: AppSpacing.sp16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.countryEntity.countryLanguage!,
-                    style: AppTextStyles.textTheme.titleMedium!.copyWith(
-                      color: context.colorScheme.onSurface,
-                    ),
-                  ),
-                  Text(
-                    '+${widget.countryEntity.countryCode.toString()}',
-                    style: AppTextStyles.textTheme.titleMedium!.copyWith(
-                      color: context.colorScheme.onSecondaryContainer,
-                      fontSize: 14,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            CheckIconWidget(isActive: _isSelected),
-            // country.countryLanguageCode == countryEntity.countryLanguageCode
-          ],
+          itemCount: countries.length,
         ),
       ),
     );

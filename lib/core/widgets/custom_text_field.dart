@@ -6,9 +6,14 @@ import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key, required this.labelText});
+  const CustomTextField({
+    super.key,
+    required this.labelText,
+    required this.hasFocus,
+  });
 
   final String labelText;
+  final bool hasFocus;
 
   @override
   Widget build(BuildContext context) {

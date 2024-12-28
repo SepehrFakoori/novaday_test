@@ -22,7 +22,20 @@ class SetProfileScreen extends StatefulWidget {
 
 class _SetProfileScreenState extends State<SetProfileScreen> {
   final imagePicker = ImagePicker();
+  late FocusNode _focusNode;
   String pickedImage = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +70,7 @@ class _SetProfileScreenState extends State<SetProfileScreen> {
                                     BorderRadius.circular(AppBorderRadius.br48),
                                 child: Image.file(
                                   File(pickedImage),
-                                  fit: BoxFit.fill,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),
@@ -127,11 +140,19 @@ class _SetProfileScreenState extends State<SetProfileScreen> {
                       ),
                 const SizedBox(height: AppSpacing.sp40),
                 CustomTextField(
-                    labelText: context.localization.firstNameAndLastName),
+                  labelText: context.localization.firstNameAndLastName,
+                  hasFocus: _focusNode.hasFocus,
+                ),
                 const SizedBox(height: AppSpacing.sp16),
-                CustomTextField(labelText: context.localization.password),
+                CustomTextField(
+                  labelText: context.localization.password,
+                  hasFocus: _focusNode.hasFocus,
+                ),
                 const SizedBox(height: AppSpacing.sp16),
-                CustomTextField(labelText: context.localization.jobTitle),
+                CustomTextField(
+                  labelText: context.localization.jobTitle,
+                  hasFocus: _focusNode.hasFocus,
+                ),
               ],
             ),
           ),

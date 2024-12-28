@@ -26,7 +26,7 @@ class RouterService {
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
                   create: (context) => LoginCubit(),
-                  child: const LoginScreen(),
+                  child: LoginScreen(),
                 ));
       case AppRoutes.otpScreen:
         return MaterialPageRoute(

@@ -6,6 +6,7 @@ class CountryEntity {
   final LanguageEnum? countryLanguageCode;
   final String? countryFlag;
   final int? countryCode;
+  final int? phoneNumberLength;
 
   CountryEntity({
     required this.countryName,
@@ -13,5 +14,6 @@ class CountryEntity {
     required this.countryLanguageCode,
     required this.countryFlag,
     required this.countryCode,
+    required this.phoneNumberLength,
   });
 }

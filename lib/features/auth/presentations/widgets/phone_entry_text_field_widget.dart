@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
-import 'package:novaday_test/core/utils/formatters/phone_number_formatter.dart';
 
 class PhoneEntryTextFieldWidget extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;
+  final int phoneNumberLength;
   final String? Function(String?)? validator;
 
   const PhoneEntryTextFieldWidget({
     super.key,
     required this.controller,
     required this.hintText,
+    required this.phoneNumberLength,
     this.validator,
   });
 
@@ -22,13 +23,11 @@ class PhoneEntryTextFieldWidget extends StatefulWidget {
 
 class _PhoneEntryTextFieldWidget extends State<PhoneEntryTextFieldWidget> {
   late FocusNode _focusNode;
-  late TextInputFormatter _inputFormatter;
 
   @override
   void initState() {
     super.initState();
     _focusNode = FocusNode();
-    _inputFormatter = PhoneNumberFormatter();
   }
 
   @override
@@ -51,15 +50,19 @@ class _PhoneEntryTextFieldWidget extends State<PhoneEntryTextFieldWidget> {
           fontWeight: FontWeight.w700,
           color: context.colorScheme.onSecondary,
         ),
-        inputFormatters: [_inputFormatter],
+        inputFormatters: [
+          FilteringTextInputFormatter.digitsOnly,
+          LengthLimitingTextInputFormatter(widget.phoneNumberLength),
+        ],
         validator: widget.validator ??
             (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter a phone number';
               }
               // Phone number length validation (should be more than 10 digits)
-              if (value.replaceAll(RegExp(r'\D'), '').length < 10) {
-                return 'Phone number must be at least 10 digits';
+              if (value.replaceAll(RegExp(r'\D'), '').length <
+                  widget.phoneNumberLength) {
+                return 'Phone number must be at least ${widget.phoneNumberLength} digits';
               }
               return null;
             },
