@@ -8,6 +8,7 @@ import 'package:novaday_test/features/auth/presentations/pages/otp_screen.dart';
 import 'package:novaday_test/features/auth/presentations/pages/biometric_auth_screen.dart';
 import 'package:novaday_test/features/onboarding/presentations/pages/onboarding_screen.dart';
 import 'package:novaday_test/features/onboarding/presentations/pages/set_locale_screen.dart';
+import 'package:novaday_test/features/onboarding/presentations/pages/set_profile_screen.dart';
 import 'package:novaday_test/features/onboarding/presentations/pages/set_theme_screen.dart';
 
 class RouterService {
@@ -16,8 +17,7 @@ class RouterService {
 
     switch (settings.name) {
       case AppRoutes.onboardingScreen:
-        return MaterialPageRoute(
-            builder: (_) => const OnBoardingScreen());
+        return MaterialPageRoute(builder: (_) => const OnBoardingScreen());
       case AppRoutes.setLocaleScreen:
         return MaterialPageRoute(builder: (_) => const SetLocaleScreen());
       case AppRoutes.setThemeScreen:
@@ -36,6 +36,8 @@ class RouterService {
                 ));
       case AppRoutes.setBiometricAuthScreen:
         return MaterialPageRoute(builder: (_) => const BiometricAuthScreen());
+      case AppRoutes.profileScreen:
+        return MaterialPageRoute(builder: (_) => const SetProfileScreen());
       default:
         return MaterialPageRoute(builder: (_) => const SetLocaleScreen());
       // case '/set-theme':

@@ -6,4 +6,5 @@ class AppBorderRadius {
   static const br16 = 16.0;
   static const br20 = 20.0;
   static const br24 = 24.0;
+  static const br48 = 48.0; // Added this
 }

@@ -23,5 +23,9 @@
   "biometricSettings": "تنظیمات بیومتریک",
   "activateFingerPrintAuth": "فعالسازی اثر انگشت",
   "savedSuccessfully": "با موفقیت ذخیره شد.",
-  "canceled": "لغو شد"
+  "canceled": "لغو شد",
+  "completeProfile": "تکمیل پروفایل",
+  "firstNameAndLastName": "نام و نام خانوادگی",
+  "password": "رمز عبور",
+  "jobTitle": "عنوان شغلی"
 }
