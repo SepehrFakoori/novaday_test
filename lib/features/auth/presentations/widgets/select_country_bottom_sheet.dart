@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:novaday_test/core/constants/app_border_radius.dart';
 import 'package:novaday_test/core/constants/app_border_weight.dart';
@@ -11,7 +10,7 @@ import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/utils/language_manager.dart';
-import 'package:novaday_test/core/widgets/check_icon_widget.dart';
+import 'package:novaday_test/core/widgets/custom_check_icon.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/country_entity.dart';
 
 class SelectCountryBottomSheet extends StatelessWidget {
@@ -48,7 +47,7 @@ class SelectCountryBottomSheet extends StatelessWidget {
 }
 
 // Language Container Section
-class _CountryContainer extends StatelessWidget {
+class _CountryContainer extends StatefulWidget {
   const _CountryContainer({
     required this.countryEntity,
   });
@@ -56,16 +55,26 @@ class _CountryContainer extends StatelessWidget {
   final CountryEntity countryEntity;
 
   @override
+  State<_CountryContainer> createState() => _CountryContainerState();
+}
+
+class _CountryContainerState extends State<_CountryContainer> {
+
+  bool _isSelected = false;
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print("**STATE** -----------> ${countryEntity.countryName}");
+        setState(() {
+          _isSelected = true;
+        });
         Navigator.pop(context);
       },
       child: Container(
         height: AppHeight.h48,
         decoration: BoxDecoration(
-          color: !(true)
+          color: !(_isSelected)
               // country.countryLanguageCode = countryEntity.countryLanguageCode
               ? context.colorScheme.secondary
               : context.colorScheme.secondaryContainer,
@@ -81,20 +90,20 @@ class _CountryContainer extends StatelessWidget {
         ),
         child: Row(
           children: [
-            SvgPicture.asset(countryEntity.countryFlag!),
-            const SizedBox(width: 16),
+            SvgPicture.asset(widget.countryEntity.countryFlag!),
+            const SizedBox(width: AppSpacing.sp16),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    countryEntity.countryLanguage!,
+                    widget.countryEntity.countryLanguage!,
                     style: AppTextStyles.textTheme.titleMedium!.copyWith(
                       color: context.colorScheme.onSurface,
                     ),
                   ),
                   Text(
-                    '+${countryEntity.countryCode.toString()}',
+                    '+${widget.countryEntity.countryCode.toString()}',
                     style: AppTextStyles.textTheme.titleMedium!.copyWith(
                       color: context.colorScheme.onSecondaryContainer,
                       fontSize: 14,
@@ -103,7 +112,7 @@ class _CountryContainer extends StatelessWidget {
                 ],
               ),
             ),
-            const CheckIconWidget(isActive: true),
+            CheckIconWidget(isActive: _isSelected),
             // country.countryLanguageCode == countryEntity.countryLanguageCode
           ],
         ),

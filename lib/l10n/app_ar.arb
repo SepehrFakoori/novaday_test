@@ -19,5 +19,7 @@
     }
   },
   "otpSendCodeAgain": "إعادة إرسال الرمز",
-  "otpTimeOutError": "انتهت صلاحية الرمز المدخل."
+  "otpTimeOutError": "انتهت صلاحية الرمز المدخل.",
+  "biometricSettings": "إعدادات البيومترية",
+  "activateFingerPrintAuth": "تفعيل بصمة الأصبع"
 }

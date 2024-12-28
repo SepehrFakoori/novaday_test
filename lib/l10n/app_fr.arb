@@ -19,5 +19,7 @@
     }
   },
   "otpSendCodeAgain": "Renvoyer le code",
-  "otpTimeOutError": "Le code saisi a expiré."
+  "otpTimeOutError": "Le code saisi a expiré.",
+  "biometricSettings": "Paramètres biométriques",
+  "activateFingerPrintAuth": "Activer l'authentification par empreinte digitale"
 }

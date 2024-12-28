@@ -19,5 +19,7 @@
     }
   },
   "otpSendCodeAgain": "Kodu tekrar gönder",
-  "otpTimeOutError": "Girilen kodun süresi doldu."
+  "otpTimeOutError": "Girilen kodun süresi doldu.",
+  "biometricSettings": "Biyometrik Ayarları",
+  "activateFingerPrintAuth": "Parmak İzi Doğrulamasını Etkinleştir"
 }

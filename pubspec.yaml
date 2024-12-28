@@ -50,6 +50,7 @@ dependencies:
   google_fonts: ^6.2.1
   another_flushbar: ^1.12.30
   connectivity_plus: ^6.1.1
+  local_auth: ^2.1.7
 
 dev_dependencies:
   flutter_test:

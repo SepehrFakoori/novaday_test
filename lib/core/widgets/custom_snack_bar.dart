@@ -4,15 +4,16 @@ import 'package:novaday_test/core/constants/app_border_radius.dart';
 import 'package:novaday_test/core/constants/app_border_weight.dart';
 import 'package:novaday_test/core/constants/app_layout_grid.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
-import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
+import 'package:novaday_test/core/theme/app_text_styles.dart';
 
-Flushbar customFlushBar(BuildContext context) {
+Flushbar customFlushBar(BuildContext context, {required String messageText}) {
+  //context.localization.otpTimeOutError
   return Flushbar(
     messageColor: context.colorScheme.onError,
     messageText: Text(
-      context.localization.otpTimeOutError,
-      style: TextStyle(
+      messageText,
+      style: AppTextStyles.textTheme.bodyMedium!.copyWith(
         color: context.colorScheme.onError,
       ),
     ),

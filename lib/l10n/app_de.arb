@@ -19,5 +19,7 @@
     }
   },
   "otpSendCodeAgain": "Code erneut senden",
-  "otpTimeOutError": "Der eingegebene Code ist abgelaufen."
+  "otpTimeOutError": "Der eingegebene Code ist abgelaufen.",
+  "biometricSettings": "Biometrische Einstellungen",
+  "activateFingerPrintAuth": "Fingerabdruck-Authentifizierung aktivieren"
 }

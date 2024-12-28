@@ -7,13 +7,14 @@ import 'package:novaday_test/core/constants/app_border_weight.dart';
 import 'package:novaday_test/core/constants/app_constants.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/constants/app_layout_grid.dart';
+import 'package:novaday_test/core/constants/app_routes.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/enums/button_state_enum.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
-import 'package:novaday_test/core/widgets/filled_button_widget.dart';
-import 'package:novaday_test/core/widgets/custom_app_bar_widget.dart';
+import 'package:novaday_test/core/widgets/custom_filled_button.dart';
+import 'package:novaday_test/core/widgets/custom_app_bar.dart';
 import 'package:novaday_test/features/auth/presentations/cubits/otp_cubit.dart';
 import 'package:novaday_test/features/auth/presentations/cubits/otp_state.dart';
 
@@ -74,7 +75,7 @@ class _OtpScreenState extends State<OtpScreen> {
             builder: (context, state) {
               return Column(
                 children: [
-                  CustomAppBarWidget(
+                  CustomAppBar(
                     haveBackButton: false,
                     title: context.localization.authTitle,
                     subtitle: context.localization.authSubtitle("+9301914321"),
@@ -129,10 +130,17 @@ class _OtpScreenState extends State<OtpScreen> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FilledButtonWidget(
+      floatingActionButton: CustomFilledButton(
         buttonText: context.localization.continueButtonTitle,
-        buttonState: ButtonStateEnum.deActive,
-        onPressed: () {},
+        buttonState: ButtonStateEnum.active,
+        onPressed: () {
+          if (AppConstants.kIsWeb) {
+            Navigator.pushNamed(context, AppRoutes.setLocaleScreen);
+          } else {
+            Navigator.pushReplacementNamed(
+                context, AppRoutes.setBiometricAuthScreen);
+          }
+        },
       ),
     );
   }
