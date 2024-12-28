@@ -21,5 +21,7 @@
   "otpSendCodeAgain": "ارسال دوباره کد",
   "otpTimeOutError": "زمان کد وارد شده به اتمام رسیده است.",
   "biometricSettings": "تنظیمات بیومتریک",
-  "activateFingerPrintAuth": "فعالسازی اثر انگشت"
+  "activateFingerPrintAuth": "فعالسازی اثر انگشت",
+  "savedSuccessfully": "با موفقیت ذخیره شد.",
+  "canceled": "لغو شد"
 }

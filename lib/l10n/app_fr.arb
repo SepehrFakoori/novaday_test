@@ -21,5 +21,7 @@
   "otpSendCodeAgain": "Renvoyer le code",
   "otpTimeOutError": "Le code saisi a expiré.",
   "biometricSettings": "Paramètres biométriques",
-  "activateFingerPrintAuth": "Activer l'authentification par empreinte digitale"
+  "activateFingerPrintAuth": "Activer l'authentification par empreinte digitale",
+  "savedSuccessfully": "Enregistré avec succès",
+  "canceled": "Annulé"
 }

@@ -48,6 +48,7 @@ class LightThemeData {
       tertiary: AppLightColors.backgroundTertiaryColor,
       onError: AppLightColors.dangerColor,
       outline: AppLightColors.defaultBorderColor,
+      surfaceTint: AppLightColors.successColor,
     ),
   );
 }

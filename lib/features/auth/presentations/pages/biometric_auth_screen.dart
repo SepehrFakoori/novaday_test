@@ -77,14 +77,21 @@ class BiometricAuthScreen extends StatelessWidget {
                                   context
                                       .read<BiometricCubit>()
                                       .changeBiometric(isActive: true);
-                                  customFlushBar(context,
-                                      messageText: 'با موفقیت ذخیره شد.');
+                                  customFlushBar(
+                                    context,
+                                    messageText: context.localization.savedSuccessfully,
+                                    isError: false,
+                                  );
                                 }
                               } else {
                                 context
                                     .read<BiometricCubit>()
                                     .changeBiometric(isActive: false);
-                                customFlushBar(context, messageText: 'لغو شد');
+                                customFlushBar(
+                                  context,
+                                  messageText: context.localization.canceled,
+                                  isError: true,
+                                );
                               }
                             },
                           ),

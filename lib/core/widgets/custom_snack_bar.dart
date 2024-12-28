@@ -7,22 +7,34 @@ import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 
-Flushbar customFlushBar(BuildContext context, {required String messageText}) {
+Flushbar customFlushBar(BuildContext context,
+    {required String messageText, required bool isError}) {
   //context.localization.otpTimeOutError
   return Flushbar(
     messageColor: context.colorScheme.onError,
     messageText: Text(
       messageText,
       style: AppTextStyles.textTheme.bodyMedium!.copyWith(
-        color: context.colorScheme.onError,
+        color: isError
+            ? context.colorScheme.onError
+            : context.colorScheme.surfaceTint,
       ),
     ),
     margin: const EdgeInsets.symmetric(horizontal: AppLayoutGrid.margin),
     borderRadius: BorderRadius.circular(AppBorderRadius.br16),
     backgroundColor: context.colorScheme.tertiary,
-    borderColor: context.colorScheme.onError,
+    borderColor:
+        isError ? context.colorScheme.onError : context.colorScheme.surfaceTint,
     borderWidth: AppBorderWeight.lg1,
-    icon: const Icon(Icons.cancel, color: Colors.red),
+    icon: isError
+        ? Icon(
+            Icons.cancel,
+            color: context.colorScheme.onError,
+          )
+        : Icon(
+            Icons.check,
+            color: context.colorScheme.surfaceTint,
+          ),
     shouldIconPulse: false,
     padding: const EdgeInsets.symmetric(
       horizontal: AppSpacing.sp12,

@@ -21,5 +21,7 @@
   "otpSendCodeAgain": "Kodu tekrar gönder",
   "otpTimeOutError": "Girilen kodun süresi doldu.",
   "biometricSettings": "Biyometrik Ayarları",
-  "activateFingerPrintAuth": "Parmak İzi Doğrulamasını Etkinleştir"
+  "activateFingerPrintAuth": "Parmak İzi Doğrulamasını Etkinleştir",
+  "savedSuccessfully": "Başarıyla kaydedildi",
+  "canceled": "İptal edildi"
 }

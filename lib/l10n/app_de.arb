@@ -21,5 +21,7 @@
   "otpSendCodeAgain": "Code erneut senden",
   "otpTimeOutError": "Der eingegebene Code ist abgelaufen.",
   "biometricSettings": "Biometrische Einstellungen",
-  "activateFingerPrintAuth": "Fingerabdruck-Authentifizierung aktivieren"
+  "activateFingerPrintAuth": "Fingerabdruck-Authentifizierung aktivieren",
+  "savedSuccessfully": "Erfolgreich gespeichert",
+  "canceled": "Abgebrochen"
 }

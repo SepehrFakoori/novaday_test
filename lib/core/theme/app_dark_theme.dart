@@ -48,6 +48,7 @@ class DarkThemeData {
       tertiary: AppDarkColors.backgroundTertiaryColor,
       onError: AppDarkColors.dangerColor,
       outline: AppDarkColors.defaultBorderColor,
+      surfaceTint: AppDarkColors.successColor,
     ),
   );
 }
