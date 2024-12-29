@@ -8,8 +8,8 @@ import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/constants/app_icons.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 
-class OnBoardingScreen extends StatelessWidget {
-  const OnBoardingScreen({super.key});
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

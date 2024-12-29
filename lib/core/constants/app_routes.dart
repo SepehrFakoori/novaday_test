@@ -1,5 +1,5 @@
 class AppRoutes {
-  static const onboardingScreen = '/onboarding';
+  static const splashScreen = '/splash';
   static const setLocaleScreen = '/set-locale';
   static const setThemeScreen = '/set-theme';
   static const loginScreen = '/login';

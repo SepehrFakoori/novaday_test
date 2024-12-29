@@ -1,18 +1,18 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:novaday_test/core/constants/app_constants.dart';
-import 'package:novaday_test/features/onboarding/presentations/cubits/onboarding_state.dart';
+import 'package:novaday_test/features/onboarding/presentations/cubits/splash_state.dart';
 
-class OnboardingCubit extends Cubit<OnboardingState> {
-  OnboardingCubit() : super(OnBoardingLoadingState());
+class SplashCubit extends Cubit<SplashState> {
+  SplashCubit() : super(SplashLoadingState());
 
   Future<void> getBiometricSetting() async {
     final box = Hive.box(AppConstants.settingBoxDb);
     try {
       final bool isActive = await box.get(AppConstants.biometricAuthKeyDb);
-      emit(OnBoardingSuccessState(isActive));
+      emit(SplashSuccessState(isActive));
     } catch (e) {
-      emit(OnBoardingSuccessState(false));
+      emit(SplashSuccessState(false));
     }
   }
 
