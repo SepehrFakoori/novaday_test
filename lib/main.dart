@@ -3,21 +3,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:novaday_test/core/constants/app_constants.dart';
 import 'package:novaday_test/core/constants/app_routes.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
+import 'package:novaday_test/core/constants/hive_constants/hive_box_constants.dart';
 import 'package:novaday_test/core/enums/theme_enum.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/services/router_service.dart';
 import 'package:novaday_test/core/theme/app_dark_theme.dart';
 import 'package:novaday_test/core/theme/app_light_theme.dart';
-import 'package:novaday_test/features/onboarding/presentations/cubits/locale_cubit.dart';
-import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit.dart';
-import 'package:novaday_test/features/onboarding/presentations/pages/set_locale_screen.dart';
+import 'package:novaday_test/features/onboarding/presentations/cubits/locale_cubit/locale_cubit.dart';
+import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit/theme_cubit.dart';
+import 'package:novaday_test/features/onboarding/presentations/pages/splash_screen.dart';
 
 void main() async {
   await Hive.initFlutter();
-  await Hive.openBox(AppConstants.settingBoxDb);
+  await Hive.openBox(HiveBoxConstants.settingBox);
   runApp(const MyApp());
 }
 
@@ -57,8 +57,8 @@ class MyApp extends StatelessWidget {
                       supportedLocales: AppLocalizations.supportedLocales,
                       locale: locale,
                       onGenerateRoute: RouterService.generateRoute,
-                      initialRoute: AppRoutes.setLocaleScreen,
-                      home: const SetLocaleScreen(),
+                      initialRoute: AppRoutes.splashScreen,
+                      home: const SplashScreen(),
                     ),
                   );
                 },

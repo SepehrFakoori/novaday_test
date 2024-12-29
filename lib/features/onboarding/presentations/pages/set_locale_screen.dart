@@ -17,7 +17,7 @@ import 'package:novaday_test/core/widgets/custom_check_icon.dart';
 import 'package:novaday_test/core/widgets/custom_filled_button.dart';
 import 'package:novaday_test/core/widgets/custom_app_bar.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/country_entity.dart';
-import 'package:novaday_test/features/onboarding/presentations/cubits/locale_cubit.dart';
+import 'package:novaday_test/features/onboarding/presentations/cubits/locale_cubit/locale_cubit.dart';
 
 class SetLocaleScreen extends StatelessWidget {
   const SetLocaleScreen({super.key});

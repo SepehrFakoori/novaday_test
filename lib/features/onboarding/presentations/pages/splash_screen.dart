@@ -44,6 +44,7 @@ class SplashScreen extends StatelessWidget {
           children: [
             Text(
               context.localization.failedToConnect,
+              textAlign: TextAlign.center,
               style: AppTextStyles.textTheme.bodyMedium!.copyWith(
                 color: context.colorScheme.onSecondaryContainer,
               ),
@@ -56,7 +57,7 @@ class SplashScreen extends StatelessWidget {
 
   Positioned _loadingSection(BuildContext context) {
     return Positioned(
-      top: context.height * 0.5 + AppHeight.h72,
+      top: context.height * 0.5 + AppHeight.h92,
       child: SizedBox(
         width: context.width,
         height: context.height * 0.5,
