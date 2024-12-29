@@ -9,7 +9,7 @@ import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/widgets/custom_radio_button.dart';
 import 'package:novaday_test/core/widgets/custom_filled_button.dart';
 import 'package:novaday_test/core/widgets/custom_app_bar.dart';
-import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit.dart';
+import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit/theme_cubit.dart';
 
 class SetThemeScreen extends StatelessWidget {
   const SetThemeScreen({super.key});

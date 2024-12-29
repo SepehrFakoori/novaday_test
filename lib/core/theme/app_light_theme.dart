@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:novaday_test/core/constants/app_border_radius.dart';
-import 'package:novaday_test/core/theme/app_light_colors.dart';
+import 'package:novaday_test/core/constants/theme_constants/app_light_colors.dart';
 
 class LightThemeData {
   static ThemeData themeData = ThemeData(

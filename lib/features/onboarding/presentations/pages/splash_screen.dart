@@ -8,8 +8,8 @@ import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/constants/app_icons.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 
-class OnBoardingScreen extends StatelessWidget {
-  const OnBoardingScreen({super.key});
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +44,7 @@ class OnBoardingScreen extends StatelessWidget {
           children: [
             Text(
               context.localization.failedToConnect,
+              textAlign: TextAlign.center,
               style: AppTextStyles.textTheme.bodyMedium!.copyWith(
                 color: context.colorScheme.onSecondaryContainer,
               ),
@@ -56,7 +57,7 @@ class OnBoardingScreen extends StatelessWidget {
 
   Positioned _loadingSection(BuildContext context) {
     return Positioned(
-      top: context.height * 0.5 + AppHeight.h72,
+      top: context.height * 0.5 + AppHeight.h92,
       child: SizedBox(
         width: context.width,
         height: context.height * 0.5,

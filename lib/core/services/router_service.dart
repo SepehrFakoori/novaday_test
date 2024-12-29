@@ -6,7 +6,7 @@ import 'package:novaday_test/features/auth/presentations/cubits/otp_cubit.dart';
 import 'package:novaday_test/features/auth/presentations/pages/login_screen.dart';
 import 'package:novaday_test/features/auth/presentations/pages/otp_screen.dart';
 import 'package:novaday_test/features/auth/presentations/pages/biometric_auth_screen.dart';
-import 'package:novaday_test/features/onboarding/presentations/pages/onboarding_screen.dart';
+import 'package:novaday_test/features/onboarding/presentations/pages/splash_screen.dart';
 import 'package:novaday_test/features/onboarding/presentations/pages/set_locale_screen.dart';
 import 'package:novaday_test/features/onboarding/presentations/pages/set_profile_screen.dart';
 import 'package:novaday_test/features/onboarding/presentations/pages/set_theme_screen.dart';
@@ -16,8 +16,8 @@ class RouterService {
     final args = settings.arguments;
 
     switch (settings.name) {
-      case AppRoutes.onboardingScreen:
-        return MaterialPageRoute(builder: (_) => const OnBoardingScreen());
+      case AppRoutes.splashScreen:
+        return MaterialPageRoute(builder: (_) => const SplashScreen());
       case AppRoutes.setLocaleScreen:
         return MaterialPageRoute(builder: (_) => const SetLocaleScreen());
       case AppRoutes.setThemeScreen:
@@ -26,7 +26,7 @@ class RouterService {
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
                   create: (context) => LoginCubit(),
-                  child: LoginScreen(),
+                  child: const LoginScreen(),
                 ));
       case AppRoutes.otpScreen:
         return MaterialPageRoute(
