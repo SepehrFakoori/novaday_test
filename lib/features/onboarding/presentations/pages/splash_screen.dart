@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
+import 'package:novaday_test/core/constants/app_routes.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/constants/app_icons.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
+import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_cubit.dart';
+import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_state.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -15,14 +21,47 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colorScheme.surface,
-      body: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          _appLogoSection(),
-          _failedSection(context),
-          _loadingSection(context),
-          _appVersionNumberSection(context),
-        ],
+      body: BlocListener<SplashCubit, SplashState>(
+        listener: (context, state) {
+          state.when(
+            initialState: () =>
+                context.read<SplashCubit>().checkUserRegistration(),
+            userRegistered: () =>
+                context.read<SplashCubit>().checkBiometricStatus(),
+            userNotRegistered: () => Navigator.pushReplacementNamed(
+                context, AppRoutes.setLocaleScreen),
+            biometricAuthIsOn: () async {
+              try {
+                final isAuthenticate = await LocalAuthentication()
+                    .authenticate(localizedReason: 'Privacy');
+                if (isAuthenticate) {
+                  Future.delayed(const Duration(seconds: 2));
+                  context.read<SplashCubit>().checkData(true);
+                } else {
+                  Future.delayed(const Duration(seconds: 2));
+                  context.read<SplashCubit>().checkData(true);
+                }
+              } on PlatformException catch (ex) {
+                print("EXCEPTION: $ex");
+              }
+            },
+            biometricAuthIsOff: () =>
+                context.read<SplashCubit>().checkData(true),
+            dataIsInDatabase: () => Navigator.pushReplacementNamed(
+                context, AppRoutes.profileScreen),
+            dataIsNotInDatabase: () => Navigator.pushReplacementNamed(
+                context, AppRoutes.profileScreen),
+          );
+        },
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            _appLogoSection(),
+            _failedSection(context),
+            _loadingSection(context),
+            _appVersionNumberSection(context),
+          ],
+        ),
       ),
     );
   }
@@ -97,3 +136,5 @@ class SplashScreen extends StatelessWidget {
     );
   }
 }
+
+Future<void> fetchPostDataFromApi() async {}

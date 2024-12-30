@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:novaday_test/core/constants/app_border_radius.dart';
@@ -134,7 +135,7 @@ class _OtpScreenState extends State<OtpScreen> {
         buttonText: context.localization.continueButtonTitle,
         buttonState: ButtonStateEnum.active,
         onPressed: () {
-          if (AppConstants.kIsWeb) {
+          if (kIsWeb) {
             Navigator.pushNamed(context, AppRoutes.setLocaleScreen);
           } else {
             Navigator.pushReplacementNamed(

@@ -12,6 +12,7 @@ import 'package:novaday_test/core/services/router_service.dart';
 import 'package:novaday_test/core/theme/app_dark_theme.dart';
 import 'package:novaday_test/core/theme/app_light_theme.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/locale_cubit/locale_cubit.dart';
+import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit/theme_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/pages/splash_screen.dart';
 
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
                     padding: constraints.maxWidth > 840
                         ? EdgeInsets.symmetric(horizontal: context.width * 0.3)
                         : const EdgeInsets.symmetric(
-                            horizontal: AppSpacing.sp0),
+                        horizontal: AppSpacing.sp0),
                     child: MaterialApp(
                       debugShowCheckedModeBanner: false,
                       title: 'Flutter Demo',
@@ -58,7 +59,10 @@ class MyApp extends StatelessWidget {
                       locale: locale,
                       onGenerateRoute: RouterService.generateRoute,
                       initialRoute: AppRoutes.splashScreen,
-                      home: const SplashScreen(),
+                      home: BlocProvider(
+                        create: (context) => SplashCubit(),
+                        child: const SplashScreen(),
+                      ),
                     ),
                   );
                 },
