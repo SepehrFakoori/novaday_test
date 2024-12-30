@@ -1,66 +1,75 @@
 import 'package:flutter/material.dart';
 
 class AppTextStyles {
-  static const TextStyle _base = TextStyle(
+  static const TextStyle _nonLatinBase = TextStyle(
     fontFamily: 'IranYekan',
     fontStyle: FontStyle.normal,
   );
-  static final textTheme = TextTheme(
-    displayLarge: _base.copyWith(
-      fontWeight: FontWeight.w400,
-      fontSize: 36.0,
+
+  static final nonLatinTextTheme = TextTheme(
+    headlineSmall: _nonLatinBase.copyWith(
+      fontWeight: FontWeight.w700,
     ),
-    displayMedium: _base.copyWith(
-      fontWeight: FontWeight.w400,
-      fontSize: 32.0,
+    titleLarge: _nonLatinBase.copyWith(
+      fontWeight: FontWeight.w700,
+      fontSize: 20,
     ),
-    displaySmall: _base.copyWith(
-      fontWeight: FontWeight.w400,
-      fontSize: 28.0,
+    titleMedium: _nonLatinBase.copyWith(
+      fontWeight: FontWeight.w700,
     ),
-    headlineMedium: _base.copyWith(
-      fontWeight: FontWeight.w400,
-      fontSize: 24.0,
-    ),
-    headlineSmall: _base.copyWith(
-      fontWeight: FontWeight.w400,
-      fontStyle: FontStyle.normal,
-      fontSize: 20.0,
-    ),
-    titleLarge: _base.copyWith(
-      fontWeight: FontWeight.bold,
-      fontSize: 20.0,
-      // color: AppColors.lightTitleColor,
-    ),
-    titleMedium: _base.copyWith(
-      fontWeight: FontWeight.bold,
-      fontSize: 16.0,
-    ),
-    titleSmall: _base.copyWith(
-      fontWeight: FontWeight.bold,
-      fontSize: 14.0,
-    ),
-    bodyLarge: _base.copyWith(
-      fontWeight: FontWeight.w400,
-      fontSize: 16.0,
-    ),
-    bodyMedium: _base.copyWith(
-      fontWeight: FontWeight.w400,
-      fontStyle: FontStyle.normal,
-      fontSize: 14.0,
-    ),
-    bodySmall: _base.copyWith(
-      fontWeight: FontWeight.w400,
-      fontSize: 12.0,
-    ),
-    labelLarge: _base.copyWith(
+    bodyLarge: _nonLatinBase.copyWith(
       fontWeight: FontWeight.w500,
-      fontStyle: FontStyle.normal,
-      fontSize: 14.0,
     ),
-    labelSmall: _base.copyWith(
-      fontWeight: FontWeight.w400,
-      fontSize: 10.0,
+    bodyMedium: _nonLatinBase.copyWith(
+      fontWeight: FontWeight.w500,
+    ),
+    bodySmall: _nonLatinBase.copyWith(
+      fontWeight: FontWeight.w500,
+    ),
+    labelLarge: _nonLatinBase.copyWith(
+      fontWeight: FontWeight.w500,
+    ),
+    labelMedium: _nonLatinBase.copyWith(
+      fontWeight: FontWeight.w500,
+    ),
+    labelSmall: _nonLatinBase.copyWith(
+      fontWeight: FontWeight.w700,
+    ),
+  );
+
+  static const TextStyle _latinBase = TextStyle(
+    fontFamily: 'Mulish',
+    fontStyle: FontStyle.normal,
+  );
+
+  static final latinTextTheme = TextTheme(
+    headlineSmall: _latinBase.copyWith(
+      fontWeight: FontWeight.w700,
+    ),
+    titleLarge: _latinBase.copyWith(
+      fontWeight: FontWeight.w700,
+      fontSize: 20,
+    ),
+    titleMedium: _latinBase.copyWith(
+      fontWeight: FontWeight.w700,
+    ),
+    bodyLarge: _latinBase.copyWith(
+      fontWeight: FontWeight.w500,
+    ),
+    bodyMedium: _latinBase.copyWith(
+      fontWeight: FontWeight.w500,
+    ),
+    bodySmall: _latinBase.copyWith(
+      fontWeight: FontWeight.w500,
+    ),
+    labelLarge: _latinBase.copyWith(
+      fontWeight: FontWeight.w500,
+    ),
+    labelMedium: _latinBase.copyWith(
+      fontWeight: FontWeight.w500,
+    ),
+    labelSmall: _latinBase.copyWith(
+      fontWeight: FontWeight.w700,
     ),
   );
 }

@@ -7,6 +7,8 @@ class DarkThemeData {
     // Scaffold Background Color
     scaffoldBackgroundColor: AppDarkColors.backgroundPrimaryColor,
 
+    textTheme: const TextTheme(),
+
     // Filled Button Theme
     filledButtonTheme: const FilledButtonThemeData(
       style: ButtonStyle(

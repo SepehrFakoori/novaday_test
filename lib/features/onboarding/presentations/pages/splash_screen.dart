@@ -7,7 +7,6 @@ import 'package:novaday_test/core/constants/constants.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
-import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_state.dart';
 
@@ -30,12 +29,12 @@ class SplashScreen extends StatelessWidget {
               try {
                 final isAuthenticate = await LocalAuthentication()
                     .authenticate(localizedReason: 'Privacy');
-                LocalAuthentication().stopAuthentication().then((onValue){
+                LocalAuthentication().stopAuthentication().then((onValue) {
                   if (onValue) {
-                    Future.delayed(const Duration(seconds: 2));
+                    Future.delayed(const Duration(seconds: 15));
                     context.read<SplashCubit>().checkData(true);
                   } else {
-                    Future.delayed(const Duration(seconds: 2));
+                    Future.delayed(const Duration(seconds: 15));
                     context.read<SplashCubit>().checkData(true);
                   }
                 });
@@ -83,7 +82,7 @@ class SplashScreen extends StatelessWidget {
             Text(
               context.localization.failedToConnect,
               textAlign: TextAlign.center,
-              style: AppTextStyles.textTheme.bodyMedium!.copyWith(
+              style: context.textTheme.bodyMedium!.copyWith(
                 color: context.colorScheme.onSecondaryContainer,
               ),
             ),
@@ -119,14 +118,14 @@ class SplashScreen extends StatelessWidget {
         children: [
           Text(
             context.localization.appVersion,
-            style: AppTextStyles.textTheme.titleSmall!.copyWith(
+            style: context.textTheme.titleLarge!.copyWith(
               color: context.colorScheme.onSecondaryContainer,
             ),
           ),
           const SizedBox(width: AppSpacing.sp4),
           Text(
             '1.19',
-            style: AppTextStyles.textTheme.titleSmall!.copyWith(
+            style: context.textTheme.titleLarge!.copyWith(
               color: context.colorScheme.onSecondaryContainer,
             ),
           ),

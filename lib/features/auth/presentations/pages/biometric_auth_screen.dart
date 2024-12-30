@@ -4,7 +4,6 @@ import 'package:local_auth/local_auth.dart';
 import 'package:novaday_test/core/constants/constants.dart';
 import 'package:novaday_test/core/enums/enums.dart';
 import 'package:novaday_test/core/extensions/extensions.dart';
-import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/widgets/widgets.dart';
 import 'package:novaday_test/features/auth/presentations/cubits/biometric_auth_cubit.dart';
 
@@ -48,8 +47,7 @@ class BiometricAuthScreen extends StatelessWidget {
                           Expanded(
                             child: Text(
                               context.localization.activateFingerPrintAuth,
-                              style:
-                                  AppTextStyles.textTheme.titleMedium!.copyWith(
+                              style: context.textTheme.bodyLarge!.copyWith(
                                 fontWeight: FontWeight.w600,
                                 color: context.colorScheme.onSecondary,
                               ),
@@ -70,7 +68,8 @@ class BiometricAuthScreen extends StatelessWidget {
                                       .changeBiometric(isActive: true);
                                   customFlushBar(
                                     context,
-                                    messageText: context.localization.savedSuccessfully,
+                                    messageText:
+                                        context.localization.savedSuccessfully,
                                     isError: false,
                                   );
                                 }

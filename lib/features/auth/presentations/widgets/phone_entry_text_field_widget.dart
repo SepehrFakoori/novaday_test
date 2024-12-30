@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:novaday_test/core/extensions/extensions.dart';
-import 'package:novaday_test/core/theme/app_text_styles.dart';
 
 class PhoneEntryTextFieldWidget extends StatefulWidget {
   final TextEditingController controller;
@@ -46,9 +45,9 @@ class _PhoneEntryTextFieldWidget extends State<PhoneEntryTextFieldWidget> {
         keyboardType: TextInputType.phone,
         textAlign: TextAlign.left,
         textAlignVertical: TextAlignVertical.center,
-        style: AppTextStyles.textTheme.titleLarge!.copyWith(
-          fontWeight: FontWeight.w700,
+        style: context.textTheme.titleMedium!.copyWith(
           color: context.colorScheme.onSecondary,
+          fontSize: 18,
         ),
         inputFormatters: [
           FilteringTextInputFormatter.digitsOnly,
@@ -68,9 +67,9 @@ class _PhoneEntryTextFieldWidget extends State<PhoneEntryTextFieldWidget> {
             },
         decoration: InputDecoration(
           hintText: widget.hintText,
-          hintStyle: AppTextStyles.textTheme.titleLarge!.copyWith(
-            fontWeight: FontWeight.w700,
+          hintStyle: context.textTheme.titleMedium!.copyWith(
             color: context.colorScheme.onSecondaryContainer,
+            fontSize: 18,
           ),
           border: InputBorder.none,
         ),

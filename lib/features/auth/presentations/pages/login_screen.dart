@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:novaday_test/core/constants/constants.dart';
 import 'package:novaday_test/core/enums/enums.dart';
 import 'package:novaday_test/core/extensions/extensions.dart';
-import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/widgets/widgets.dart';
 import 'package:novaday_test/features/auth/presentations/widgets/phone_entry_text_field_widget.dart';
 import 'package:novaday_test/features/auth/presentations/widgets/select_country_bottom_sheet.dart';
@@ -141,8 +140,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                   color: context.colorScheme.onSurface,
                                 ),
                                 const SizedBox(width: AppSpacing.sp12),
-                                Text("${selectedCountry.countryCode}+",
-                                    style: AppTextStyles.textTheme.titleMedium),
+                                Text(
+                                  "${selectedCountry.countryCode}+",
+                                  style:
+                                      context.textTheme.titleMedium!.copyWith(
+                                    fontSize: 18,
+                                  ),
+                                ),
                                 const SizedBox(width: AppSpacing.sp12),
                                 SvgPicture.asset(selectedCountry.countryFlag!),
                               ],

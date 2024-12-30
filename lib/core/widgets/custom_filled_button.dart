@@ -6,7 +6,6 @@ import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/enums/button_state_enum.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
-import 'package:novaday_test/core/theme/app_text_styles.dart';
 
 class CustomFilledButton extends StatelessWidget {
   const CustomFilledButton({
@@ -44,8 +43,7 @@ class CustomFilledButton extends StatelessWidget {
               )
             : Text(
                 buttonText,
-                style: AppTextStyles.textTheme.bodyLarge!.copyWith(
-                  fontWeight: FontWeight.bold,
+                style: context.textTheme.titleMedium!.copyWith(
                   fontSize: 18,
                   color: (buttonState == ButtonStateEnum.deActive)
                       ? context.colorScheme.onSecondaryContainer

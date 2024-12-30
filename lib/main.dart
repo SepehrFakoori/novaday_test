@@ -11,13 +11,14 @@ import 'package:novaday_test/core/injector/injector.dart';
 import 'package:novaday_test/core/services/router_service.dart';
 import 'package:novaday_test/core/theme/app_dark_theme.dart';
 import 'package:novaday_test/core/theme/app_light_theme.dart';
+import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/locale_cubit/locale_cubit.dart';
-import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit/theme_cubit.dart';
-import 'package:novaday_test/features/onboarding/presentations/pages/splash_screen.dart';
+import 'package:novaday_test/features/onboarding/presentations/pages/set_locale_screen.dart';
 
 void main() async {
   Injector();
+  await Hive.initFlutter();
   await Hive.openBox(HiveBoxConstants.settingBox);
   runApp(const MyApp());
 }
@@ -47,8 +48,8 @@ class MyApp extends StatelessWidget {
                       debugShowCheckedModeBanner: false,
                       title: 'Flutter Demo',
                       theme: themeEnum == ThemeEnum.light
-                          ? LightThemeData.themeData
-                          : DarkThemeData.themeData,
+                          ? LightThemeData.themeData.copyWith(textTheme: getTextTheme(locale))
+                          : DarkThemeData.themeData.copyWith(textTheme: getTextTheme(locale)),
                       localizationsDelegates: const [
                         AppLocalizations.delegate,
                         GlobalMaterialLocalizations.delegate,
@@ -58,11 +59,8 @@ class MyApp extends StatelessWidget {
                       supportedLocales: AppLocalizations.supportedLocales,
                       locale: locale,
                       onGenerateRoute: RouterService.generateRoute,
-                      initialRoute: AppRoutes.splashScreen,
-                      home: BlocProvider(
-                        create: (context) => SplashCubit(),
-                        child: const SplashScreen(),
-                      ),
+                      initialRoute: AppRoutes.setLocaleScreen,
+                      home: const SetLocaleScreen(),
                     ),
                   );
                 },
@@ -72,5 +70,14 @@ class MyApp extends StatelessWidget {
         },
       ),
     );
+  }
+
+  TextTheme getTextTheme(locale) {
+    if (locale.languageCode == LanguageEnum.fa.name ||
+        locale.languageCode == LanguageEnum.ae) {
+      return AppTextStyles.nonLatinTextTheme;
+    } else {
+      return AppTextStyles.latinTextTheme;
+    }
   }
 }

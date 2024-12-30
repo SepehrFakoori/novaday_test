@@ -6,7 +6,6 @@ import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/constants/app_layout_grid.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/extensions/extensions.dart';
-import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/utils/language_manager.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/country_entity.dart';
 
@@ -67,16 +66,16 @@ class SelectCountryBottomSheet extends StatelessWidget {
                           Text(
                             country.countryLanguage!,
                             style:
-                                AppTextStyles.textTheme.titleMedium!.copyWith(
+                                context.textTheme.titleMedium!.copyWith(
                               color: context.colorScheme.onSurface,
                             ),
                           ),
                           Text(
                             '+${country.countryCode.toString()}',
                             style:
-                                AppTextStyles.textTheme.titleMedium!.copyWith(
+                                context.textTheme.labelLarge!.copyWith(
                               color: context.colorScheme.onSecondaryContainer,
-                              fontSize: 14,
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
                         ],

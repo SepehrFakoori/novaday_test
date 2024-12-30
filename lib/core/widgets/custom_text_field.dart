@@ -3,7 +3,6 @@ import 'package:novaday_test/core/constants/app_border_radius.dart';
 import 'package:novaday_test/core/constants/app_height.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
-import 'package:novaday_test/core/theme/app_text_styles.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
@@ -31,7 +30,7 @@ class CustomTextField extends StatelessWidget {
             ),
             child: Text(
               labelText,
-              style: AppTextStyles.textTheme.titleLarge!.copyWith(
+              style: context.textTheme.bodyLarge!.copyWith(
                 fontWeight: FontWeight.w600,
                 color: context.colorScheme.onSecondaryContainer,
               ),

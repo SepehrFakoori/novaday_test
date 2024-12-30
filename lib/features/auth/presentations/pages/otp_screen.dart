@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:novaday_test/core/constants/constants.dart';
 import 'package:novaday_test/core/enums/enums.dart';
 import 'package:novaday_test/core/extensions/extensions.dart';
-import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/widgets/widgets.dart';
 import 'package:novaday_test/features/auth/presentations/cubits/otp_cubit.dart';
 import 'package:novaday_test/features/auth/presentations/cubits/otp_state.dart';
@@ -69,7 +68,7 @@ class _OtpScreenState extends State<OtpScreen> {
               return Column(
                 children: [
                   CustomAppBar(
-                    haveBackButton: false,
+                    haveBackButton: true,
                     title: context.localization.authTitle,
                     subtitle: context.localization.authSubtitle("+9301914321"),
                   ),
@@ -105,15 +104,16 @@ class _OtpScreenState extends State<OtpScreen> {
                           },
                           child: Text(
                             context.localization.otpSendCodeAgain,
-                            style: AppTextStyles.textTheme.titleLarge!.copyWith(
+                            style: context.textTheme.titleLarge!.copyWith(
                               color: context.colorScheme.onSurface,
                             ),
                           ),
                         )
                       : Text(
                           _formatTime(_remainingSeconds),
-                          style: AppTextStyles.textTheme.titleLarge!.copyWith(
+                          style: context.textTheme.titleMedium!.copyWith(
                             color: context.colorScheme.onSurface,
+                            fontSize: 18,
                           ),
                         ),
                 ],
@@ -163,8 +163,9 @@ Widget myInputBox(
       maxLength: 1,
       textAlign: TextAlign.center,
       keyboardType: TextInputType.number,
-      style: AppTextStyles.textTheme.titleLarge!.copyWith(
+      style: context.textTheme.titleMedium!.copyWith(
         color: context.colorScheme.onSecondaryContainer,
+        fontSize: 18,
       ),
       decoration: const InputDecoration(
         counterText: '',

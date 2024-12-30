@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
-import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/widgets/custom_icon_button.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -47,15 +46,15 @@ class CustomAppBar extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: AppTextStyles.textTheme.titleLarge!.copyWith(
+                  style: context.textTheme.titleLarge!.copyWith(
                     color: context.colorScheme.onSurface,
                   ),
                 ),
                 if (subtitle != null && subtitle!.isNotEmpty)
                   Text(
                     subtitle!,
-                    style: AppTextStyles.textTheme.titleSmall!.copyWith(
-                      fontWeight: FontWeight.w700,
+                    style: context.textTheme.labelLarge!.copyWith(
+                      fontWeight: FontWeight.w600,
                       color: context.colorScheme.onSecondaryContainer,
                     ),
                   ),
