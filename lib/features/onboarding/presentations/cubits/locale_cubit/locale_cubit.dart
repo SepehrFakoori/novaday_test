@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:novaday_test/core/constants/hive_constants/hive_box_constants.dart';
-import 'package:novaday_test/core/constants/hive_constants/hive_key_constants.dart';
-import 'package:novaday_test/core/enums/language_enum.dart';
+import 'package:novaday_test/core/constants/hive_constants/hive_constants.dart';
+import 'package:novaday_test/core/enums/enums.dart';
 
 class LocaleCubit extends Cubit<Locale> {
   LocaleCubit() : super(Locale(LanguageEnum.fa.name)) {

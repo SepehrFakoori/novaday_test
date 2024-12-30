@@ -1,8 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:novaday_test/core/constants/hive_constants/hive_box_constants.dart';
-import 'package:novaday_test/core/constants/hive_constants/hive_key_constants.dart';
-import 'package:novaday_test/core/enums/theme_enum.dart';
+import 'package:novaday_test/core/constants/hive_constants/hive_constants.dart';
+import 'package:novaday_test/core/enums/enums.dart';
 
 class ThemeCubit extends Cubit<ThemeEnum> {
   ThemeCubit() : super(ThemeEnum.light) {

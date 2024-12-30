@@ -2,16 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:novaday_test/core/constants/app_border_radius.dart';
-import 'package:novaday_test/core/constants/app_height.dart';
-import 'package:novaday_test/core/constants/app_layout_grid.dart';
-import 'package:novaday_test/core/constants/app_spacing.dart';
-import 'package:novaday_test/core/enums/button_state_enum.dart';
-import 'package:novaday_test/core/extensions/localization_extension.dart';
-import 'package:novaday_test/core/extensions/theme_extension.dart';
-import 'package:novaday_test/core/widgets/custom_app_bar.dart';
-import 'package:novaday_test/core/widgets/custom_filled_button.dart';
-import 'package:novaday_test/core/widgets/custom_text_field.dart';
+import 'package:novaday_test/core/constants/constants.dart';
+import 'package:novaday_test/core/enums/enums.dart';
+import 'package:novaday_test/core/extensions/extensions.dart';
+import 'package:novaday_test/core/widgets/widgets.dart';
 
 class SetProfileScreen extends StatefulWidget {
   const SetProfileScreen({super.key});
