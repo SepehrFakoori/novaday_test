@@ -578,6 +578,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.0.1"
+  kiwi_generator:
+    dependency: "direct dev"
+    description:
+      name: kiwi_generator
+      sha256: "9e22425fc3655b352ca5a1d59c6fd3939e0343b116c1c2a3f07cb1d3fa9098e2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.1"
   leak_tracker:
     dependency: transitive
     description:

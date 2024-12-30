@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
-import 'package:novaday_test/core/constants/hive_constants/hive_types_constants.dart';
+import 'package:novaday_test/core/constants/hive_constants/hive_constants.dart';
 
 part 'post_entity.g.dart';
 

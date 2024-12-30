@@ -5,8 +5,10 @@ import 'package:novaday_test/features/onboarding/domain/entities/post_entity/pos
 import 'package:novaday_test/features/onboarding/domain/repository/post_repository.dart';
 
 class PostRepositoryImpl extends PostRepository {
-  final CommentRemoteDataSource _commentDataSource = CommentRemoteDataSource();
-  final PostRemoteDataSource _postDataSource = PostRemoteDataSource();
+  final ICommentDataSource _commentDataSource;
+  final IPostDataSource _postDataSource;
+
+  PostRepositoryImpl(this._commentDataSource, this._postDataSource);
 
   @override
   Future<List<CommentEntity>> fetchComments() async {

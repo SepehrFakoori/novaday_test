@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:novaday_test/core/constants/app_layout_grid.dart';
-import 'package:novaday_test/core/constants/app_routes.dart';
-import 'package:novaday_test/core/constants/app_spacing.dart';
-import 'package:novaday_test/core/enums/button_state_enum.dart';
-import 'package:novaday_test/core/enums/theme_enum.dart';
-import 'package:novaday_test/core/extensions/localization_extension.dart';
-import 'package:novaday_test/core/widgets/custom_radio_button.dart';
-import 'package:novaday_test/core/widgets/custom_filled_button.dart';
-import 'package:novaday_test/core/widgets/custom_app_bar.dart';
+import 'package:novaday_test/core/constants/constants.dart';
+import 'package:novaday_test/core/enums/enums.dart';
+import 'package:novaday_test/core/extensions/extensions.dart';
+import 'package:novaday_test/core/widgets/widgets.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit/theme_cubit.dart';
 
 class SetThemeScreen extends StatelessWidget {

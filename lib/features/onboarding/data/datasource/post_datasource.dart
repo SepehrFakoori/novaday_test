@@ -6,8 +6,8 @@ abstract class IPostDataSource {
 }
 
 class PostRemoteDataSource extends IPostDataSource {
-  final Dio _dio =
-      Dio(BaseOptions(baseUrl: "https://jsonplaceholder.typicode.com/"));
+  final Dio _dio;
+  PostRemoteDataSource(this._dio);
 
   @override
   Future<List<PostEntity>> getPosts() async {

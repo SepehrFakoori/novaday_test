@@ -3,13 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:local_auth/local_auth.dart';
-import 'package:novaday_test/core/constants/app_height.dart';
-import 'package:novaday_test/core/constants/app_routes.dart';
-import 'package:novaday_test/core/constants/app_spacing.dart';
+import 'package:novaday_test/core/constants/constants.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
-import 'package:novaday_test/core/constants/app_icons.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_state.dart';
@@ -19,13 +16,12 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final splashCubit = context.read<SplashCubit>();
     return Scaffold(
       backgroundColor: context.colorScheme.surface,
       body: BlocListener<SplashCubit, SplashState>(
         listener: (context, state) {
-          state.when(
-            initialState: () =>
-                context.read<SplashCubit>().checkUserRegistration(),
+          state.whenOrNull(
             userRegistered: () =>
                 context.read<SplashCubit>().checkBiometricStatus(),
             userNotRegistered: () => Navigator.pushReplacementNamed(
@@ -34,15 +30,18 @@ class SplashScreen extends StatelessWidget {
               try {
                 final isAuthenticate = await LocalAuthentication()
                     .authenticate(localizedReason: 'Privacy');
-                if (isAuthenticate) {
-                  Future.delayed(const Duration(seconds: 2));
-                  context.read<SplashCubit>().checkData(true);
-                } else {
-                  Future.delayed(const Duration(seconds: 2));
-                  context.read<SplashCubit>().checkData(true);
-                }
+                LocalAuthentication().stopAuthentication().then((onValue){
+                  if (onValue) {
+                    Future.delayed(const Duration(seconds: 2));
+                    context.read<SplashCubit>().checkData(true);
+                  } else {
+                    Future.delayed(const Duration(seconds: 2));
+                    context.read<SplashCubit>().checkData(true);
+                  }
+                });
               } on PlatformException catch (ex) {
                 print("EXCEPTION: $ex");
+                // print(ex.stacktrace);
               }
             },
             biometricAuthIsOff: () =>

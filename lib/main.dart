@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:novaday_test/core/constants/app_routes.dart';
-import 'package:novaday_test/core/constants/app_spacing.dart';
-import 'package:novaday_test/core/constants/hive_constants/hive_box_constants.dart';
-import 'package:novaday_test/core/enums/theme_enum.dart';
-import 'package:novaday_test/core/extensions/size_extension.dart';
+import 'package:novaday_test/core/constants/constants.dart';
+import 'package:novaday_test/core/constants/hive_constants/hive_constants.dart';
+import 'package:novaday_test/core/enums/enums.dart';
+import 'package:novaday_test/core/extensions/extensions.dart';
+import 'package:novaday_test/core/injector/injector.dart';
 import 'package:novaday_test/core/services/router_service.dart';
 import 'package:novaday_test/core/theme/app_dark_theme.dart';
 import 'package:novaday_test/core/theme/app_light_theme.dart';
@@ -17,7 +17,7 @@ import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubi
 import 'package:novaday_test/features/onboarding/presentations/pages/splash_screen.dart';
 
 void main() async {
-  await Hive.initFlutter();
+  Injector();
   await Hive.openBox(HiveBoxConstants.settingBox);
   runApp(const MyApp());
 }
