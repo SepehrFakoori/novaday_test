@@ -14,34 +14,6 @@ import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_state.dart';
 
-// initialState: () =>
-// context.read<SplashCubit>().checkAuthentication(),
-// authenticatedState: () async {
-// bool isBiometricEnabled =
-//     await context.read<SplashCubit>().checkIfFingerPrintEnabled();
-// if (isBiometricEnabled) {
-//
-// } else {
-//
-// }
-// },
-// unAuthenticatedState: () =>
-// context.read<SplashCubit>().navigateToOnboarding(),
-// fingerPrintEnabledState: () =>
-// context.read<SplashCubit>().checkPostData(),
-// fingerPrintDisabledState: () =>
-// context.read<SplashCubit>().checkPostData(),
-// postDataAvailableState: () =>
-// context.read<SplashCubit>().navigateToDashboard(),
-// postDataNotAvailableState: () async {
-// await fetchPostDataFromApi();
-// context.read<SplashCubit>().navigateToDashboard();
-// },
-// navigateToDashboard: () => Navigator.of(context)
-//     .pushReplacementNamed(AppRoutes.profileScreen),
-// navigateToOnboarding: () => Navigator.of(context)
-//     .pushReplacementNamed(AppRoutes.setLocaleScreen),
-
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
@@ -62,7 +34,6 @@ class SplashScreen extends StatelessWidget {
               try {
                 final isAuthenticate = await LocalAuthentication()
                     .authenticate(localizedReason: 'Privacy');
-
                 if (isAuthenticate) {
                   Future.delayed(const Duration(seconds: 2));
                   context.read<SplashCubit>().checkData(true);
