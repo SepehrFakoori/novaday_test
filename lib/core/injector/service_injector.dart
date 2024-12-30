@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kiwi/kiwi.dart';
 
 class ServiceInjector {
@@ -11,7 +10,5 @@ class ServiceInjector {
         BaseOptions(baseUrl: "https://jsonplaceholder.typicode.com/"),
       ),
     );
-
-    container.registerInstance((container) async => await Hive.initFlutter());
   }
 }

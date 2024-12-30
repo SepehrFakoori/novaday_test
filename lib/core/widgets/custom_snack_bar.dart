@@ -5,7 +5,6 @@ import 'package:novaday_test/core/constants/app_border_weight.dart';
 import 'package:novaday_test/core/constants/app_layout_grid.dart';
 import 'package:novaday_test/core/constants/app_spacing.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
-import 'package:novaday_test/core/theme/app_text_styles.dart';
 
 Flushbar customFlushBar(BuildContext context,
     {required String messageText, required bool isError}) {
@@ -14,7 +13,8 @@ Flushbar customFlushBar(BuildContext context,
     messageColor: context.colorScheme.onError,
     messageText: Text(
       messageText,
-      style: AppTextStyles.textTheme.bodyMedium!.copyWith(
+      style: context.textTheme.bodyMedium!.copyWith(
+        fontWeight: FontWeight.w600,
         color: isError
             ? context.colorScheme.onError
             : context.colorScheme.surfaceTint,

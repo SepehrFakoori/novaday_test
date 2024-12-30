@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
-import 'package:novaday_test/core/theme/app_text_styles.dart';
 
 class CustomPhoneEntryTextField extends StatelessWidget {
   const CustomPhoneEntryTextField({
@@ -28,7 +27,7 @@ class CustomPhoneEntryTextField extends StatelessWidget {
       keyboardType: TextInputType.phone,
       textAlign: TextAlign.left,
       textAlignVertical: TextAlignVertical.center,
-      style: AppTextStyles.textTheme.titleLarge!.copyWith(
+      style: context.textTheme.titleLarge!.copyWith(
         fontWeight: FontWeight.w700,
         color: context.colorScheme.onSecondary,
       ),
@@ -45,7 +44,7 @@ class CustomPhoneEntryTextField extends StatelessWidget {
           },
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: AppTextStyles.textTheme.titleLarge!.copyWith(
+        hintStyle: context.textTheme.titleLarge!.copyWith(
           fontWeight: FontWeight.w700,
           color: context.colorScheme.onSecondaryContainer,
         ),

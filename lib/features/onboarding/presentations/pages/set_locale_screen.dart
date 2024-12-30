@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:novaday_test/core/constants/constants.dart';
 import 'package:novaday_test/core/enums/enums.dart';
 import 'package:novaday_test/core/extensions/extensions.dart';
-import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/core/utils/language_manager.dart';
 import 'package:novaday_test/core/widgets/widgets.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/country_entity.dart';
@@ -111,15 +110,15 @@ class _LanguageContainer extends StatelessWidget {
                     children: [
                       Text(
                         languageEntity.countryName!,
-                        style: AppTextStyles.textTheme.titleMedium!.copyWith(
+                        style: context.textTheme.titleMedium!.copyWith(
                           color: context.colorScheme.onSurface,
                         ),
                       ),
                       Text(
                         languageEntity.countryLanguage!,
-                        style: AppTextStyles.textTheme.titleMedium!.copyWith(
+                        style: context.textTheme.labelLarge!.copyWith(
                           color: context.colorScheme.onSecondaryContainer,
-                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
                     ],
