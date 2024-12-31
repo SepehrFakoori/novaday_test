@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kiwi/kiwi.dart';
 import 'package:novaday_test/core/constants/constants.dart';
+import 'package:novaday_test/core/injector/injector.dart';
 import 'package:novaday_test/features/auth/presentations/cubits/login_cubit.dart';
 import 'package:novaday_test/features/auth/presentations/cubits/otp_cubit.dart';
 import 'package:novaday_test/features/auth/presentations/pages/login_screen.dart';
 import 'package:novaday_test/features/auth/presentations/pages/otp_screen.dart';
 import 'package:novaday_test/features/auth/presentations/pages/biometric_auth_screen.dart';
+import 'package:novaday_test/features/onboarding/domain/repository/post_repository.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/pages/splash_screen.dart';
 import 'package:novaday_test/features/onboarding/presentations/pages/set_locale_screen.dart';
@@ -15,12 +18,13 @@ import 'package:novaday_test/features/onboarding/presentations/pages/set_theme_s
 class RouterService {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
+    final di = KiwiContainer();
 
     switch (settings.name) {
       case AppRoutes.splashScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => SplashCubit(),
+            create: (context) => SplashCubit(di.resolve<PostRepository>()),
             child: const SplashScreen(),
           ),
         );

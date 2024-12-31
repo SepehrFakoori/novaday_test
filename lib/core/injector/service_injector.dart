@@ -6,7 +6,7 @@ class ServiceInjector {
     KiwiContainer container = KiwiContainer();
 
     container.registerSingleton<Dio>(
-      (container) => Dio(
+      (c) => Dio(
         BaseOptions(baseUrl: "https://jsonplaceholder.typicode.com/"),
       ),
     );

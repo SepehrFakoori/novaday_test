@@ -1,22 +1,30 @@
 import 'package:dio/dio.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:novaday_test/core/constants/hive_constants/hive_box_constants.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/comment_entity/comment_entity.dart';
 
 abstract class ICommentDataSource {
-  Future<List<CommentEntity>> getComments();
+  Future<void> getComments();
 }
 
-class CommentRemoteDataSource extends ICommentDataSource {
+class CommentDataSource extends ICommentDataSource {
   final Dio _dio =
       Dio(BaseOptions(baseUrl: "https://jsonplaceholder.typicode.com/"));
 
   @override
-  Future<List<CommentEntity>> getComments() async {
+  Future<void> getComments() async {
+    var box = Hive.box<CommentEntity>(HiveBoxConstants.commentsBox);
     try {
-      var response = await _dio.get("comments/");
-      return response.data
-          .map<CommentEntity>(
-              (jsonObject) => CommentEntity.fromJson(jsonObject))
-          .toList;
+      if (box.values.isEmpty) {
+        var response = await _dio.get("comments/");
+        List<CommentEntity> comments = response.data
+            .map<CommentEntity>(
+                (jsonObject) => CommentEntity.fromJson(jsonObject))
+            .toList;
+        for (CommentEntity comment in comments) {
+          box.add(comment);
+        }
+      }
     } catch (ex) {
       throw Exception("Failed!");
     }

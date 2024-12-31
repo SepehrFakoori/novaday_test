@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:kiwi/kiwi.dart';
 import 'package:novaday_test/core/constants/constants.dart';
 import 'package:novaday_test/core/constants/hive_constants/hive_constants.dart';
 import 'package:novaday_test/core/enums/enums.dart';
@@ -12,9 +13,11 @@ import 'package:novaday_test/core/services/router_service.dart';
 import 'package:novaday_test/core/theme/app_dark_theme.dart';
 import 'package:novaday_test/core/theme/app_light_theme.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
+import 'package:novaday_test/features/onboarding/domain/repository/post_repository.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/locale_cubit/locale_cubit.dart';
+import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit/theme_cubit.dart';
-import 'package:novaday_test/features/onboarding/presentations/pages/set_locale_screen.dart';
+import 'package:novaday_test/features/onboarding/presentations/pages/splash_screen.dart';
 
 void main() async {
   Injector();
@@ -43,13 +46,15 @@ class MyApp extends StatelessWidget {
                     padding: constraints.maxWidth > 840
                         ? EdgeInsets.symmetric(horizontal: context.width * 0.3)
                         : const EdgeInsets.symmetric(
-                        horizontal: AppSpacing.sp0),
+                            horizontal: AppSpacing.sp0),
                     child: MaterialApp(
                       debugShowCheckedModeBanner: false,
                       title: 'Flutter Demo',
                       theme: themeEnum == ThemeEnum.light
-                          ? LightThemeData.themeData.copyWith(textTheme: getTextTheme(locale))
-                          : DarkThemeData.themeData.copyWith(textTheme: getTextTheme(locale)),
+                          ? LightThemeData.themeData
+                              .copyWith(textTheme: getTextTheme(locale))
+                          : DarkThemeData.themeData
+                              .copyWith(textTheme: getTextTheme(locale)),
                       localizationsDelegates: const [
                         AppLocalizations.delegate,
                         GlobalMaterialLocalizations.delegate,
@@ -59,8 +64,8 @@ class MyApp extends StatelessWidget {
                       supportedLocales: AppLocalizations.supportedLocales,
                       locale: locale,
                       onGenerateRoute: RouterService.generateRoute,
-                      initialRoute: AppRoutes.setLocaleScreen,
-                      home: const SetLocaleScreen(),
+                      initialRoute: AppRoutes.splashScreen,
+                      home: const SplashScreen(),
                     ),
                   );
                 },

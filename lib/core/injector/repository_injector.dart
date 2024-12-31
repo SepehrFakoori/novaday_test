@@ -9,9 +9,9 @@ class RepositoryInjector {
     final KiwiContainer container = KiwiContainer();
 
     container.registerFactory<PostRepository>(
-      (container) => PostRepositoryImpl(
-        container.resolve<ICommentDataSource>(),
-        container.resolve<IPostDataSource>(),
+      (c) => PostRepositoryImpl(
+        c.resolve<ICommentDataSource>(),
+        c.resolve<IPostDataSource>(),
       ),
     );
   }

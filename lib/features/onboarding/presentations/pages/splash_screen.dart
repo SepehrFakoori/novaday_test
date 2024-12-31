@@ -32,10 +32,10 @@ class SplashScreen extends StatelessWidget {
                 LocalAuthentication().stopAuthentication().then((onValue) {
                   if (onValue) {
                     Future.delayed(const Duration(seconds: 15));
-                    context.read<SplashCubit>().checkData(true);
+                    context.read<SplashCubit>().checkData();
                   } else {
                     Future.delayed(const Duration(seconds: 15));
-                    context.read<SplashCubit>().checkData(true);
+                    context.read<SplashCubit>().checkData();
                   }
                 });
               } on PlatformException catch (ex) {
@@ -44,11 +44,14 @@ class SplashScreen extends StatelessWidget {
               }
             },
             biometricAuthIsOff: () =>
-                context.read<SplashCubit>().checkData(true),
+                context.read<SplashCubit>().checkData(),
             dataIsInDatabase: () => Navigator.pushReplacementNamed(
                 context, AppRoutes.profileScreen),
-            dataIsNotInDatabase: () => Navigator.pushReplacementNamed(
-                context, AppRoutes.profileScreen),
+            dataIsNotInDatabase: () {
+              context.read<SplashCubit>().getData();
+              return Navigator.pushReplacementNamed(
+                context, AppRoutes.profileScreen);
+            },
           );
         },
         child: Stack(
