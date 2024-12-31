@@ -4,7 +4,7 @@ import 'package:novaday_test/core/constants/hive_constants/hive_constants.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_state.dart';
 
 class SplashCubit extends Cubit<SplashState> {
-  SplashCubit() : super(const SplashState.initialState()){
+  SplashCubit() : super(const SplashState.initialState()) {
     checkUserRegistration();
   }
 
