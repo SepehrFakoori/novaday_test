@@ -27,5 +27,7 @@
   "completeProfile": "Profil Tamamla",
   "firstNameAndLastName": "Ad ve Soyad",
   "password": "Şifre",
-  "jobTitle": "İş Unvanı"
+  "jobTitle": "İş Unvanı",
+  "otpCorrect": "Kod doğru",
+  "otpIncorrect": "Kod yanlış"
 }

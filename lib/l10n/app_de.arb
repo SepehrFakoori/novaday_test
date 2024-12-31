@@ -27,5 +27,7 @@
   "completeProfile": "Profil vervollständigen",
   "firstNameAndLastName": "Vor- und Nachname",
   "password": "Passwort",
-  "jobTitle": "Berufsbezeichnung"
+  "jobTitle": "Berufsbezeichnung",
+  "otpCorrect": "Code ist korrekt",
+  "otpIncorrect": "Code ist falsch"
 }

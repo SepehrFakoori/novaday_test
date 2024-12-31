@@ -16,20 +16,7 @@ class SetProfileScreen extends StatefulWidget {
 
 class _SetProfileScreenState extends State<SetProfileScreen> {
   final imagePicker = ImagePicker();
-  late FocusNode _focusNode;
   String pickedImage = '';
-
-  @override
-  void initState() {
-    super.initState();
-    _focusNode = FocusNode();
-  }
-
-  @override
-  void dispose() {
-    _focusNode.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,10 +64,6 @@ class _SetProfileScreenState extends State<SetProfileScreen> {
                                 setState(() {
                                   pickedImage = pickedFile.path;
                                 });
-                              } else {
-                                setState(() {
-                                  pickedImage = '';
-                                });
                               }
                             },
                             child: Container(
@@ -88,7 +71,7 @@ class _SetProfileScreenState extends State<SetProfileScreen> {
                               height: AppHeight.h36,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: context.colorScheme.onPrimary,
+                                color: context.colorScheme.secondary,
                                 border: Border.all(
                                     color: context.colorScheme.outline),
                               ),
@@ -135,17 +118,14 @@ class _SetProfileScreenState extends State<SetProfileScreen> {
                 const SizedBox(height: AppSpacing.sp40),
                 CustomTextField(
                   labelText: context.localization.firstNameAndLastName,
-                  hasFocus: _focusNode.hasFocus,
                 ),
                 const SizedBox(height: AppSpacing.sp16),
                 CustomTextField(
                   labelText: context.localization.password,
-                  hasFocus: _focusNode.hasFocus,
                 ),
                 const SizedBox(height: AppSpacing.sp16),
                 CustomTextField(
                   labelText: context.localization.jobTitle,
-                  hasFocus: _focusNode.hasFocus,
                 ),
               ],
             ),

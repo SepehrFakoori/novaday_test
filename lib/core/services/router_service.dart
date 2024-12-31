@@ -38,7 +38,7 @@ class RouterService {
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
                   create: (context) => OtpCubit(),
-                  child: const OtpScreen(),
+                  child: OtpScreen(phoneNumber: args as String),
                 ));
       case AppRoutes.setBiometricAuthScreen:
         return MaterialPageRoute(builder: (_) => const BiometricAuthScreen());

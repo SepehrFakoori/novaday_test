@@ -27,5 +27,7 @@
   "completeProfile": "إكمال الملف الشخصي",
   "firstNameAndLastName": "الاسم الأول واسم العائلة",
   "password": "كلمة المرور",
-  "jobTitle": "المسمى الوظيفي"
+  "jobTitle": "المسمى الوظيفي",
+  "otpCorrect": "الرمز صحيح",
+  "otpIncorrect": "الرمز غير صحيح"
 }
