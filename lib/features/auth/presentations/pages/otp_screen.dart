@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:novaday_test/core/constants/constants.dart';
@@ -123,8 +122,10 @@ class _OtpScreenState extends State<OtpScreen> {
                         hapticFeedbackType: HapticFeedbackType.lightImpact,
                         onCompleted: (pin) {
                           if (pin == '2222') {
-                            Navigator.pushReplacementNamed(
-                                context, AppRoutes.setBiometricAuthScreen);
+                            Navigator.pushNamedAndRemoveUntil(
+                                context,
+                                AppRoutes.setBiometricAuthScreen,
+                                (Route<dynamic> route) => false);
                           } else {
                             debugPrint('onCompleted: $pin');
                           }

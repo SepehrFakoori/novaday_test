@@ -62,6 +62,9 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
             color: context.colorScheme.onSecondaryContainer,
             fontSize: 18,
           ),
+          errorStyle: context.textTheme.labelMedium!.copyWith(
+            color: context.colorScheme.error,
+          ),
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           border: OutlineInputBorder(
@@ -139,7 +142,7 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
         validator: widget.validator ??
             (value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter a phone number';
+                return 'لطفا شماره خود را وارد کنید';
               }
               // Phone number length validation (should be more than 10 digits)
               if (value.replaceAll(RegExp(r'\D'), '').length <

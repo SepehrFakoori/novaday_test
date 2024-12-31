@@ -44,7 +44,9 @@ class _SetProfileScreenState extends State<SetProfileScreen> {
                                 borderRadius:
                                     BorderRadius.circular(AppBorderRadius.br48),
                                 border: Border.all(
-                                    color: context.colorScheme.outline),
+                                  color: context.colorScheme.primary,
+                                  width: AppBorderWeight.lg1,
+                                ),
                               ),
                               child: ClipRRect(
                                 borderRadius:
