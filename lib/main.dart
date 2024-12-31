@@ -74,7 +74,7 @@ class MyApp extends StatelessWidget {
 
   TextTheme getTextTheme(locale) {
     if (locale.languageCode == LanguageEnum.fa.name ||
-        locale.languageCode == LanguageEnum.ae) {
+        locale.languageCode == 'ar') {
       return AppTextStyles.nonLatinTextTheme;
     } else {
       return AppTextStyles.latinTextTheme;

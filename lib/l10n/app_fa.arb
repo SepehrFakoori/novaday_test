@@ -27,5 +27,7 @@
   "completeProfile": "تکمیل پروفایل",
   "firstNameAndLastName": "نام و نام خانوادگی",
   "password": "رمز عبور",
-  "jobTitle": "عنوان شغلی"
+  "jobTitle": "عنوان شغلی",
+  "otpCorrect": "کد تایید شد.",
+  "otpIncorrect": "کد نادرست است."
 }
