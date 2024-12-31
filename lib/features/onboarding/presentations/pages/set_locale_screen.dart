@@ -17,10 +17,7 @@ class SetLocaleScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppLayoutGrid.margin,
-            vertical: AppLayoutGrid.margin,
-          ),
+          padding: const EdgeInsets.all(AppLayoutGrid.margin),
           child: SingleChildScrollView(
             physics: const NeverScrollableScrollPhysics(),
             child: Column(

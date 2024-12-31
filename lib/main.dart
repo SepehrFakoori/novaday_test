@@ -12,9 +12,9 @@ import 'package:novaday_test/core/services/router_service.dart';
 import 'package:novaday_test/core/theme/app_dark_theme.dart';
 import 'package:novaday_test/core/theme/app_light_theme.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
+import 'package:novaday_test/features/dashboard/presentations/pages/home_screen.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/locale_cubit/locale_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit/theme_cubit.dart';
-import 'package:novaday_test/features/onboarding/presentations/pages/set_locale_screen.dart';
 
 void main() async {
   Injector();
@@ -43,13 +43,16 @@ class MyApp extends StatelessWidget {
                     padding: constraints.maxWidth > 840
                         ? EdgeInsets.symmetric(horizontal: context.width * 0.3)
                         : const EdgeInsets.symmetric(
-                        horizontal: AppSpacing.sp0),
+                            horizontal: AppSpacing.sp0,
+                          ),
                     child: MaterialApp(
                       debugShowCheckedModeBanner: false,
                       title: 'Flutter Demo',
                       theme: themeEnum == ThemeEnum.light
-                          ? LightThemeData.themeData.copyWith(textTheme: getTextTheme(locale))
-                          : DarkThemeData.themeData.copyWith(textTheme: getTextTheme(locale)),
+                          ? LightThemeData.themeData
+                              .copyWith(textTheme: getTextTheme(locale))
+                          : DarkThemeData.themeData
+                              .copyWith(textTheme: getTextTheme(locale)),
                       localizationsDelegates: const [
                         AppLocalizations.delegate,
                         GlobalMaterialLocalizations.delegate,
@@ -59,8 +62,8 @@ class MyApp extends StatelessWidget {
                       supportedLocales: AppLocalizations.supportedLocales,
                       locale: locale,
                       onGenerateRoute: RouterService.generateRoute,
-                      initialRoute: AppRoutes.setLocaleScreen,
-                      home: const SetLocaleScreen(),
+                      initialRoute: AppRoutes.homeScreen,
+                      home: const HomeScreen(),
                     ),
                   );
                 },
