@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:novaday_test/core/constants/constants.dart';
-import 'package:novaday_test/core/injector/injector.dart';
 import 'package:novaday_test/features/auth/presentations/cubits/login_cubit.dart';
 import 'package:novaday_test/features/auth/presentations/cubits/otp_cubit.dart';
 import 'package:novaday_test/features/auth/presentations/pages/login_screen.dart';

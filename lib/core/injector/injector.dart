@@ -1,4 +1,3 @@
-import 'package:novaday_test/core/injector/cubit_injector.dart';
 import 'package:novaday_test/core/injector/datasource_injector.dart';
 import 'package:novaday_test/core/injector/repository_injector.dart';
 import 'package:novaday_test/core/injector/service_injector.dart';
@@ -8,6 +7,5 @@ class Injector {
     ServiceInjector.injector();
     DataSourceInjector.injector();
     RepositoryInjector.injector();
-    CubitInjector.injector();
   }
 }

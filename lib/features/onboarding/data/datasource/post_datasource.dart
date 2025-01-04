@@ -14,8 +14,8 @@ class PostDataSource extends IPostDataSource {
 
   @override
   Future<void> getPosts() async {
-    var box = Hive.box<PostEntity>(HiveBoxConstants.postsBox);
     try {
+      var box = Hive.box<PostEntity>(HiveBoxConstants.postsBox);
       if (box.values.isEmpty) {
         var response = await _dio.get("posts/");
         List<PostEntity> posts =  response.data
@@ -26,7 +26,7 @@ class PostDataSource extends IPostDataSource {
         }
       }
     } catch (ex) {
-      throw Exception("Failed!");
+      throw Exception("Failed! *************************> $ex");
     }
   }
 }

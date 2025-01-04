@@ -6,7 +6,7 @@ part 'comment_entity.g.dart';
 
 @JsonSerializable()
 @HiveType(typeId: HiveTypesConstants.commentHiveType)
-class CommentEntity {
+class CommentEntity extends HiveObject {
   @JsonKey(name: 'postId')
   @HiveField(0)
   final int? postId;

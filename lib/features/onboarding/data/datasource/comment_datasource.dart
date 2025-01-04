@@ -8,8 +8,9 @@ abstract class ICommentDataSource {
 }
 
 class CommentDataSource extends ICommentDataSource {
-  final Dio _dio =
-      Dio(BaseOptions(baseUrl: "https://jsonplaceholder.typicode.com/"));
+  final Dio _dio;
+
+  CommentDataSource(this._dio);
 
   @override
   Future<void> getComments() async {
@@ -26,7 +27,7 @@ class CommentDataSource extends ICommentDataSource {
         }
       }
     } catch (ex) {
-      throw Exception("Failed!");
+      throw Exception("Failed! *+*+*+*+*+*+*+*+*+*> $ex");
     }
   }
 }

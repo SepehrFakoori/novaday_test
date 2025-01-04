@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:kiwi/kiwi.dart';
+import 'package:novaday_test/features/onboarding/data/datasource/comment_datasource.dart';
 import 'package:novaday_test/features/onboarding/data/datasource/post_datasource.dart';
 
 class DataSourceInjector {
@@ -7,6 +8,11 @@ class DataSourceInjector {
     KiwiContainer container = KiwiContainer();
 
     container.registerFactory<IPostDataSource>(
-        (c) => PostDataSource(c.resolve<Dio>()));
+      (c) => PostDataSource(c.resolve<Dio>()),
+    );
+
+    container.registerFactory<ICommentDataSource>(
+      (c) => CommentDataSource(c.resolve<Dio>()),
+    );
   }
 }

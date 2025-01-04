@@ -6,7 +6,7 @@ import 'package:novaday_test/features/onboarding/domain/repository/post_reposito
 
 class RepositoryInjector {
   static void injector() {
-    final KiwiContainer container = KiwiContainer();
+    KiwiContainer container = KiwiContainer();
 
     container.registerFactory<PostRepository>(
       (c) => PostRepositoryImpl(

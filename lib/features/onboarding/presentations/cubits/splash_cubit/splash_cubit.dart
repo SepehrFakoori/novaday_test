@@ -1,11 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:novaday_test/core/constants/hive_constants/hive_constants.dart';
+import 'package:novaday_test/features/onboarding/domain/entities/comment_entity/comment_entity.dart';
+import 'package:novaday_test/features/onboarding/domain/entities/post_entity/post_entity.dart';
 import 'package:novaday_test/features/onboarding/domain/repository/post_repository.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_state.dart';
 
 class SplashCubit extends Cubit<SplashState> {
-  PostRepository postRepository;
+  final PostRepository postRepository;
 
   SplashCubit(this.postRepository) : super(const SplashState.initialState()) {
     checkUserRegistration();
@@ -43,8 +45,8 @@ class SplashCubit extends Cubit<SplashState> {
 
   Future<void> checkData() async {
     try {
-      var commentBox = Hive.box(HiveBoxConstants.commentsBox);
-      var postBox = Hive.box(HiveBoxConstants.postsBox);
+      var commentBox = Hive.box<CommentEntity>(HiveBoxConstants.commentsBox);
+      var postBox = Hive.box<PostEntity>(HiveBoxConstants.postsBox);
       if (commentBox.values.isEmpty && postBox.values.isEmpty) {
         print("NOT DATA ++++++++++++++++++");
         emit(const SplashState.dataIsNotInDatabase());
@@ -62,5 +64,6 @@ class SplashCubit extends Cubit<SplashState> {
     postRepository
       ..fetchComments()
       ..fetchPosts();
+    print("GET DATA");
   }
 }

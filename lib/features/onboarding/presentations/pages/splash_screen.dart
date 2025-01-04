@@ -46,11 +46,11 @@ class SplashScreen extends StatelessWidget {
             biometricAuthIsOff: () =>
                 context.read<SplashCubit>().checkData(),
             dataIsInDatabase: () => Navigator.pushReplacementNamed(
-                context, AppRoutes.profileScreen),
+                context, AppRoutes.homeScreen),
             dataIsNotInDatabase: () {
               context.read<SplashCubit>().getData();
               return Navigator.pushReplacementNamed(
-                context, AppRoutes.profileScreen);
+                context, AppRoutes.homeScreen);
             },
           );
         },
