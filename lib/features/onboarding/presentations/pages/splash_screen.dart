@@ -36,6 +36,13 @@ class _SplashScreenState extends State<SplashScreen> {
               try {
                 final isAuthenticate = await LocalAuthentication()
                     .authenticate(localizedReason: 'Privacy');
+                LocalAuthentication().stopAuthentication().then((onValue) {
+                  if (onValue) {
+                    context.read<SplashCubit>().checkData();
+                  } else {
+                    context.read<SplashCubit>().checkData();
+                  }
+                });
                 if (isAuthenticate) {
                   context.read<SplashCubit>().checkData();
                 }
@@ -50,8 +57,8 @@ class _SplashScreenState extends State<SplashScreen> {
                 context, AppRoutes.homeScreen),
             dataIsNotInDatabase: () {
               context.read<SplashCubit>().getData();
-              return Navigator.pushReplacementNamed(
-                context, AppRoutes.homeScreen);
+              // return Navigator.pushReplacementNamed(
+              //   context, AppRoutes.homeScreen);
             },
             noInternetConnection: () {
               setState(() {
@@ -94,10 +101,6 @@ class _SplashScreenState extends State<SplashScreen> {
                 color: context.colorScheme.onSecondaryContainer,
               ),
             ),
-            const SizedBox.square(
-              dimension: AppHeight.h36,
-              child: Icon(Icons.refresh),
-            ),
           ],
         ),
       ),
@@ -113,7 +116,10 @@ class _SplashScreenState extends State<SplashScreen> {
         child: const Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            CircularProgressIndicator(),
+            SizedBox.square(
+              dimension: AppHeight.h36,
+              child: Icon(Icons.refresh),
+            ),
           ],
         ),
       ),

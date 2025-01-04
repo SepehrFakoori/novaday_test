@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:novaday_test/core/constants/hive_constants/hive_constants.dart';
@@ -61,7 +60,7 @@ class SplashCubit extends Cubit<SplashState> {
       postRepository
         ..fetchComments()
         ..fetchPosts();
-    } on DioException catch (ex) {
+    } catch (ex) {
       emit(const SplashState.noInternetConnection());
     }
   }
