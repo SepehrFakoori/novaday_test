@@ -1,10 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:novaday_test/core/constants/hive_constants/hive_constants.dart';
+import 'package:novaday_test/features/onboarding/domain/repository/post_repository.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_state.dart';
 
 class SplashCubit extends Cubit<SplashState> {
-  SplashCubit() : super(const SplashState.initialState()) {
+  PostRepository postRepository;
+
+  SplashCubit(this.postRepository) : super(const SplashState.initialState()) {
     checkUserRegistration();
   }
 
@@ -38,14 +41,26 @@ class SplashCubit extends Cubit<SplashState> {
     }
   }
 
-  Future<void> checkData(bool haveData) async {
-    // todo: Use try-catch to detect data is in database or not
-    if (haveData) {
-      emit(const SplashState.dataIsInDatabase());
-      print("HAS DATA ++++++++++++++++++");
-    } else {
+  Future<void> checkData() async {
+    try {
+      var commentBox = Hive.box(HiveBoxConstants.commentsBox);
+      var postBox = Hive.box(HiveBoxConstants.postsBox);
+      if (commentBox.values.isEmpty && postBox.values.isEmpty) {
+        print("NOT DATA ++++++++++++++++++");
+        emit(const SplashState.dataIsNotInDatabase());
+      } else {
+        print("HAS DATA ++++++++++++++++++");
+        emit(const SplashState.dataIsInDatabase());
+      }
+    } catch (ex) {
+      print("ERROR ++++++++++++++++++ : $ex");
       emit(const SplashState.dataIsNotInDatabase());
-      print("HAS NOT DATA ++++++++++++++++++");
     }
+  }
+
+  Future<void> getData() async {
+    postRepository
+      ..fetchComments()
+      ..fetchPosts();
   }
 }

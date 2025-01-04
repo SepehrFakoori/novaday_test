@@ -7,6 +7,6 @@ class DataSourceInjector {
     KiwiContainer container = KiwiContainer();
 
     container.registerFactory<IPostDataSource>(
-        (container) => PostRemoteDataSource(container.resolve<Dio>()));
+        (c) => PostDataSource(c.resolve<Dio>()));
   }
 }

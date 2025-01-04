@@ -1,22 +1,30 @@
 import 'package:dio/dio.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:novaday_test/core/constants/hive_constants/hive_box_constants.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/post_entity/post_entity.dart';
 
 abstract class IPostDataSource {
-  Future<List<PostEntity>> getPosts();
+  Future<void> getPosts();
 }
 
-class PostRemoteDataSource extends IPostDataSource {
+class PostDataSource extends IPostDataSource {
   final Dio _dio;
-  PostRemoteDataSource(this._dio);
+
+  PostDataSource(this._dio);
 
   @override
-  Future<List<PostEntity>> getPosts() async {
+  Future<void> getPosts() async {
+    var box = Hive.box<PostEntity>(HiveBoxConstants.postsBox);
     try {
-      var response = await _dio.get("comments/");
-      return response.data
-          .map<PostEntity>(
-              (jsonObject) => PostEntity.fromJson(jsonObject))
-          .toList;
+      if (box.values.isEmpty) {
+        var response = await _dio.get("posts/");
+        List<PostEntity> posts =  response.data
+            .map<PostEntity>((jsonObject) => PostEntity.fromJson(jsonObject))
+            .toList;
+        for (PostEntity post in posts) {
+          box.add(post);
+        }
+      }
     } catch (ex) {
       throw Exception("Failed!");
     }
