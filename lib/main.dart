@@ -14,6 +14,7 @@ import 'package:novaday_test/core/theme/app_dark_theme.dart';
 import 'package:novaday_test/core/theme/app_light_theme.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/features/onboarding/domain/repository/post_repository.dart';
+import 'package:novaday_test/features/dashboard/presentations/pages/home_screen.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/locale_cubit/locale_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit/theme_cubit.dart';

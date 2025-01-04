@@ -9,6 +9,8 @@ import 'package:novaday_test/features/auth/presentations/pages/login_screen.dart
 import 'package:novaday_test/features/auth/presentations/pages/otp_screen.dart';
 import 'package:novaday_test/features/auth/presentations/pages/biometric_auth_screen.dart';
 import 'package:novaday_test/features/onboarding/domain/repository/post_repository.dart';
+import 'package:novaday_test/features/dashboard/presentations/pages/comments_screen.dart';
+import 'package:novaday_test/features/dashboard/presentations/pages/home_screen.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/pages/splash_screen.dart';
 import 'package:novaday_test/features/onboarding/presentations/pages/set_locale_screen.dart';
@@ -48,6 +50,10 @@ class RouterService {
         return MaterialPageRoute(builder: (_) => const BiometricAuthScreen());
       case AppRoutes.profileScreen:
         return MaterialPageRoute(builder: (_) => const SetProfileScreen());
+      case AppRoutes.homeScreen:
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
+      case AppRoutes.commentScreen:
+        return MaterialPageRoute(builder: (_) => const CommentsScreen());
       default:
         return MaterialPageRoute(builder: (_) => const SetLocaleScreen());
       // case '/set-theme':
