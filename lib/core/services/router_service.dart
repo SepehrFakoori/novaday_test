@@ -7,6 +7,8 @@ import 'package:novaday_test/features/auth/presentations/cubits/otp_cubit.dart';
 import 'package:novaday_test/features/auth/presentations/pages/login_screen.dart';
 import 'package:novaday_test/features/auth/presentations/pages/otp_screen.dart';
 import 'package:novaday_test/features/auth/presentations/pages/biometric_auth_screen.dart';
+import 'package:novaday_test/features/auth/presentations/utils/login_arguments.dart';
+import 'package:novaday_test/features/dashboard/presentations/pages/users_screen.dart';
 import 'package:novaday_test/features/onboarding/domain/repository/post_repository.dart';
 import 'package:novaday_test/features/dashboard/presentations/pages/comments_screen.dart';
 import 'package:novaday_test/features/dashboard/presentations/pages/home_screen.dart';
@@ -43,7 +45,7 @@ class RouterService {
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
                   create: (context) => OtpCubit(),
-                  child: OtpScreen(phoneNumber: args as String),
+                  child: OtpScreen(loginArguments: args as LoginArguments),
                 ));
       case AppRoutes.setBiometricAuthScreen:
         return MaterialPageRoute(builder: (_) => const BiometricAuthScreen());
@@ -53,39 +55,10 @@ class RouterService {
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       case AppRoutes.commentScreen:
         return MaterialPageRoute(builder: (_) => const CommentsScreen());
+      case AppRoutes.usersScreen:
+        return MaterialPageRoute(builder: (_) => const UsersScreen());
       default:
         return MaterialPageRoute(builder: (_) => const SetLocaleScreen());
-      // case '/set-theme':
-      //   return MaterialPageRoute(
-      //     builder: (_) => DetailsPage(data: args),
-      //     settings: settings,
-      //   );
     }
   }
-
-// static Future<T?> navigateTo<T>(
-//   BuildContext context,
-//   String routeName, {
-//   Object? arguments,
-//   NavigationTypeEnum navigateType = NavigationTypeEnum.push,
-// }) {
-//   switch (navigateType) {
-//     case NavigationTypeEnum.push:
-//       return context.navigator.pushNamedAndRemoveUntil<T>(
-//         routeName,
-//         (route) => false,
-//         arguments: arguments,
-//       );
-//     case NavigationTypeEnum.pushReplacement:
-//       return context.navigator.pushReplacementNamed(
-//         routeName,
-//         arguments: arguments,
-//       );
-//     default:
-//       return context.navigator.pushNamed<T>(
-//         routeName,
-//         arguments: arguments,
-//       );
-//   }
-// }
 }

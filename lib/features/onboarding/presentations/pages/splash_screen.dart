@@ -10,8 +10,15 @@ import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_state.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  bool hasInternetConnection = true;
 
   @override
   Widget build(BuildContext context) {
@@ -29,15 +36,9 @@ class SplashScreen extends StatelessWidget {
               try {
                 final isAuthenticate = await LocalAuthentication()
                     .authenticate(localizedReason: 'Privacy');
-                LocalAuthentication().stopAuthentication().then((onValue) {
-                  if (onValue) {
-                    Future.delayed(const Duration(seconds: 15));
-                    context.read<SplashCubit>().checkData();
-                  } else {
-                    Future.delayed(const Duration(seconds: 15));
-                    context.read<SplashCubit>().checkData();
-                  }
-                });
+                if (isAuthenticate) {
+                  context.read<SplashCubit>().checkData();
+                }
               } on PlatformException catch (ex) {
                 print("EXCEPTION: $ex");
                 // print(ex.stacktrace);
@@ -52,14 +53,18 @@ class SplashScreen extends StatelessWidget {
               return Navigator.pushReplacementNamed(
                 context, AppRoutes.homeScreen);
             },
+            noInternetConnection: () {
+              setState(() {
+                hasInternetConnection = false;
+              });
+            }
           );
         },
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
             _appLogoSection(),
-            _failedSection(context),
-            _loadingSection(context),
+            hasInternetConnection ? _loadingSection(context) : _failedSection(context),
             _appVersionNumberSection(context),
           ],
         ),
@@ -89,6 +94,10 @@ class SplashScreen extends StatelessWidget {
                 color: context.colorScheme.onSecondaryContainer,
               ),
             ),
+            const SizedBox.square(
+              dimension: AppHeight.h36,
+              child: Icon(Icons.refresh),
+            ),
           ],
         ),
       ),
@@ -104,10 +113,7 @@ class SplashScreen extends StatelessWidget {
         child: const Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox.square(
-              dimension: AppHeight.h36,
-              child: Icon(Icons.refresh),
-            ),
+            CircularProgressIndicator(),
           ],
         ),
       ),

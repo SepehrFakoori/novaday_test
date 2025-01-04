@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:novaday_test/core/constants/hive_constants/hive_constants.dart';
@@ -17,11 +18,13 @@ class SplashCubit extends Cubit<SplashState> {
     try {
       final box = Hive.box(HiveBoxConstants.settingBox);
       final String theme = await box.get(HiveKeyConstants.themeKey);
-      emit(const SplashState.userRegistered());
-      print("REGISTERED ++++++++++++++++++");
+      if (theme.isNotEmpty) {
+        emit(const SplashState.userRegistered());
+      } else {
+        emit(const SplashState.userNotRegistered());
+      }
     } catch (ex) {
       emit(const SplashState.userNotRegistered());
-      print("NOT REGISTERED ++++++++++++++++++");
     }
   }
 
@@ -29,17 +32,13 @@ class SplashCubit extends Cubit<SplashState> {
     try {
       final box = Hive.box(HiveBoxConstants.settingBox);
       final bool isEnabled = box.get(HiveKeyConstants.biometricAuthKey);
-      print(isEnabled);
       if (isEnabled) {
         emit(const SplashState.biometricAuthIsOn());
-        print("BIOMETRIC IS ON ++++++++++++++++++");
       } else {
         emit(const SplashState.biometricAuthIsOff());
-        print("BIOMERIC IS OFF ++++++++++++++++++");
       }
     } catch (ex) {
       emit(const SplashState.biometricAuthIsOff());
-      print("BIOMETRIC ERROR ++++++++++++++++++");
     }
   }
 
@@ -48,22 +47,22 @@ class SplashCubit extends Cubit<SplashState> {
       var commentBox = Hive.box<CommentEntity>(HiveBoxConstants.commentsBox);
       var postBox = Hive.box<PostEntity>(HiveBoxConstants.postsBox);
       if (commentBox.values.isEmpty && postBox.values.isEmpty) {
-        print("NOT DATA ++++++++++++++++++");
         emit(const SplashState.dataIsNotInDatabase());
       } else {
-        print("HAS DATA ++++++++++++++++++");
         emit(const SplashState.dataIsInDatabase());
       }
     } catch (ex) {
-      print("ERROR ++++++++++++++++++ : $ex");
       emit(const SplashState.dataIsNotInDatabase());
     }
   }
 
   Future<void> getData() async {
-    postRepository
-      ..fetchComments()
-      ..fetchPosts();
-    print("GET DATA");
+    try {
+      postRepository
+        ..fetchComments()
+        ..fetchPosts();
+    } on DioException catch (ex) {
+      emit(const SplashState.noInternetConnection());
+    }
   }
 }
