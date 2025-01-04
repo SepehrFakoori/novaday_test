@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:novaday_test/core/constants/constants.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
+import 'package:novaday_test/features/dashboard/presentations/widgets/dashboard_custom_app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -16,140 +17,77 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Row(
-                children: [
-                  SizedBox(
-                    width: 60,
-                    child: Stack(
-                      alignment: AlignmentDirectional.centerEnd,
+              const DashboardCustomAppBar(),
+              const SizedBox(height: AppSpacing.sp24),
+              Container(
+                width: context.width,
+                height: 400,
+                padding: const EdgeInsets.all(AppLayoutGrid.margin),
+                decoration: BoxDecoration(
+                  color: context.colorScheme.secondary,
+                  borderRadius: BorderRadius.circular(AppBorderRadius.br12),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SizedBox.square(
-                          dimension: AppHeight.h40,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: context.colorScheme.primary,
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: context.colorScheme.outline,
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "m".toUpperCase(),
-                                style: context.textTheme.titleMedium!.copyWith(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600,
-                                  color: context.colorScheme.onPrimary,
-                                ),
-                              ),
-                            ),
+                        Text(
+                          "پست ها",
+                          style: context.textTheme.titleMedium!.copyWith(
+                            fontSize: 18,
+                            color: context.colorScheme.onSurface,
                           ),
                         ),
-                        Positioned(
-                          right: 0,
-                          child: Container(
-                            width: AppHeight.h40,
-                            height: AppHeight.h40,
-                            decoration: BoxDecoration(
-                              // todo: change color
-                              color: Colors.white,
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: context.colorScheme.outline,
-                              ),
-                            ),
-                            child: ClipRRect(
-                              borderRadius:
-                                  BorderRadius.circular(AppBorderRadius.br24),
-                              child: Image.asset("assets/mark.png"),
-                            ),
-                          ),
+                        const Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          size: AppHeight.h16,
                         ),
                       ],
                     ),
-                  ),
-                  const SizedBox(width: AppSpacing.sp12),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "مصطفی گریزمان",
-                        style: context.textTheme.titleMedium!.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: context.colorScheme.onSurface,
-                        ),
-                      ),
-                      Text(
-                        "شرکت نوادی",
-                        style: context.textTheme.labelMedium!.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: context.colorScheme.onSecondaryContainer,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
-                  Container(
-                    width: AppHeight.h40,
-                    height: AppHeight.h40,
-                    decoration: BoxDecoration(
-                      color: context.colorScheme.secondary,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Center(
-                      child: Icon(
-                        Icons.notifications_none_rounded,
-                        color: context.colorScheme.onSecondary,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: AppSpacing.sp24),
-              Expanded(
-                child: Container(
-                  width: context.width,
-                  padding: const EdgeInsets.all(AppLayoutGrid.margin),
-                  decoration: BoxDecoration(
-                    color: context.colorScheme.secondary,
-                    borderRadius: BorderRadius.circular(AppBorderRadius.br12),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "فضاها",
-                            style: context.textTheme.titleMedium!.copyWith(
-                              fontSize: 18,
-                              color: context.colorScheme.onSurface,
+                    const SizedBox(height: AppHeight.h24),
+                    SizedBox(
+                      height: 310,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return SizedBox(
+                            width: 178,
+                            child: Card(
+                              color: context.colorScheme.secondary,
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(AppBorderRadius.br12),
+                                side: BorderSide(
+                                  color: context.colorScheme.outline,
+                                ),
+                              ),
+                              child: const Padding(
+                                padding: EdgeInsets.all(
+                                  AppLayoutGrid.count,
+                                ),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    SizedBox(height: AppSpacing.sp12),
+                                    Text(
+                                      "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
-                          ),
-                          const Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            size: AppHeight.h16,
-                          ),
-                        ],
+                          );
+                        },
                       ),
-                      const SizedBox(height: AppHeight.h24),
-                      SizedBox(
-                        height: AppHeight.h80,
-                        child: Card(
-                          color: context.colorScheme.secondary,
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(AppBorderRadius.br12),
-                            side: BorderSide(
-                              color: context.colorScheme.outline,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                    )
+                  ],
                 ),
               ),
             ],
