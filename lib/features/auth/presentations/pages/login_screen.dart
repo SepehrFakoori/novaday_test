@@ -3,6 +3,7 @@ import 'package:novaday_test/core/constants/constants.dart';
 import 'package:novaday_test/core/enums/enums.dart';
 import 'package:novaday_test/core/extensions/extensions.dart';
 import 'package:novaday_test/core/widgets/widgets.dart';
+import 'package:novaday_test/features/auth/presentations/utils/login_arguments.dart';
 import 'package:novaday_test/features/auth/presentations/widgets/phone_entry_text_field_widget.dart';
 import 'package:novaday_test/features/auth/presentations/widgets/select_country_bottom_sheet.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/country_entity.dart';
@@ -56,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void _submitForm(String phoneNumber) {
+  void _submitForm(String countryCode, String phoneNumber) {
     if (_formKey.currentState?.validate() ?? false) {
       _formKey.currentState?.save();
       customFlushBar(
@@ -67,7 +68,8 @@ class _LoginScreenState extends State<LoginScreen> {
       Navigator.pushReplacementNamed(
         context,
         AppRoutes.otpScreen,
-        arguments: phoneNumber,
+        arguments:
+            LoginArguments(countryCode: countryCode, phoneNumber: phoneNumber),
       );
     } else {
       customFlushBar(
@@ -106,7 +108,10 @@ class _LoginScreenState extends State<LoginScreen> {
           buttonText: context.localization.continueButtonTitle,
           buttonState: ButtonStateEnum.active,
           onPressed: () {
-            _submitForm(phoneController.text);
+            _submitForm(
+              selectedCountry.countryCode.toString(),
+              phoneController.text,
+            );
           },
         ),
       ),

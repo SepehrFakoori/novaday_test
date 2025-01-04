@@ -13,12 +13,15 @@ import 'package:novaday_test/core/services/router_service.dart';
 import 'package:novaday_test/core/theme/app_dark_theme.dart';
 import 'package:novaday_test/core/theme/app_light_theme.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
+import 'package:novaday_test/features/dashboard/presentations/pages/comments_screen.dart';
+import 'package:novaday_test/features/dashboard/presentations/pages/users_screen.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/comment_entity/comment_entity.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/post_entity/post_entity.dart';
 import 'package:novaday_test/features/onboarding/domain/repository/post_repository.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/locale_cubit/locale_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit/theme_cubit.dart';
+import 'package:novaday_test/features/onboarding/presentations/pages/set_locale_screen.dart';
 import 'package:novaday_test/features/onboarding/presentations/pages/splash_screen.dart';
 
 void main() async {
@@ -72,12 +75,8 @@ class MyApp extends StatelessWidget {
                       supportedLocales: AppLocalizations.supportedLocales,
                       locale: locale,
                       onGenerateRoute: RouterService.generateRoute,
-                      initialRoute: AppRoutes.splashScreen,
-                      home: BlocProvider(
-                        create: (context) =>
-                            SplashCubit(di.resolve<PostRepository>()),
-                        child: const SplashScreen(),
-                      ),
+                      initialRoute: AppRoutes.setLocaleScreen,
+                      home: const SetLocaleScreen(),
                     ),
                   );
                 },

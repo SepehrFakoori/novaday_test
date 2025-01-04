@@ -7,13 +7,16 @@ import 'package:novaday_test/core/extensions/extensions.dart';
 import 'package:novaday_test/core/widgets/widgets.dart';
 import 'package:novaday_test/features/auth/presentations/cubits/otp_cubit.dart';
 import 'package:novaday_test/features/auth/presentations/cubits/otp_state.dart';
+import 'package:novaday_test/features/auth/presentations/utils/login_arguments.dart';
 import 'package:pinput/pinput.dart';
 import 'package:smart_auth/smart_auth.dart';
 
 class OtpScreen extends StatefulWidget {
-  const OtpScreen({super.key, required this.phoneNumber});
+  const OtpScreen({super.key, required this.loginArguments});
 
-  final String phoneNumber;
+  // final String phoneNumber;
+  // final String countryCode;
+  final LoginArguments loginArguments;
 
   @override
   State<OtpScreen> createState() => _OtpScreenState();
@@ -69,8 +72,6 @@ class _OtpScreenState extends State<OtpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final args = ModalRoute.of(context)!.settings.arguments as String;
-
     final defaultPinTheme = PinTheme(
       width: AppHeight.h56,
       height: AppHeight.h56,
@@ -100,8 +101,9 @@ class _OtpScreenState extends State<OtpScreen> {
                     CustomAppBar(
                       haveBackButton: true,
                       title: context.localization.authTitle,
-                      subtitle: context.localization
-                          .authSubtitle("${widget.phoneNumber}+"),
+                      subtitle: context.localization.authSubtitle(
+                        "+${widget.loginArguments.countryCode}${widget.loginArguments.phoneNumber}",
+                      ),
                     ),
                     const SizedBox(height: AppSpacing.sp24),
                     Directionality(
