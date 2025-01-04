@@ -64,6 +64,6 @@ class SplashCubit extends Cubit<SplashState> {
     postRepository
       ..fetchComments()
       ..fetchPosts();
-    print("GET DATA");
+    emit(const SplashState.dataIsInDatabase());
   }
 }

@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:novaday_test/core/constants/constants.dart';
+import 'package:novaday_test/core/constants/hive_constants/hive_box_constants.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/features/dashboard/presentations/widgets/dashboard_custom_app_bar.dart';
+import 'package:novaday_test/features/onboarding/domain/entities/comment_entity/comment_entity.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var box = Hive.box<CommentEntity>(HiveBoxConstants.commentsBox);
+    List<CommentEntity> commentList = box.values.toList();
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -52,6 +58,8 @@ class HomeScreen extends StatelessWidget {
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
+                          CommentEntity comment = commentList[index];
+
                           return SizedBox(
                             width: 178,
                             child: Card(
@@ -63,28 +71,30 @@ class HomeScreen extends StatelessWidget {
                                   color: context.colorScheme.outline,
                                 ),
                               ),
-                              child: const Padding(
-                                padding: EdgeInsets.all(
+                              child: Padding(
+                                padding: const EdgeInsets.all(
                                   AppLayoutGrid.count,
                                 ),
                                 child: Column(
                                   children: [
                                     Text(
-                                      "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+                                      "${comment.name}",
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                     ),
-                                    SizedBox(height: AppSpacing.sp12),
+                                    const SizedBox(height: AppSpacing.sp12),
                                     Text(
-                                      "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+                                      "${comment.body}",
                                       textAlign: TextAlign.justify,
+                                      maxLines: 10,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                   ],
                                 ),
                               ),
                             ),
                           );
-                        },
+                        }, itemCount: commentList.length,
                       ),
                     )
                   ],

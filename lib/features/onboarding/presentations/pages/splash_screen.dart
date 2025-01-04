@@ -31,10 +31,8 @@ class SplashScreen extends StatelessWidget {
                     .authenticate(localizedReason: 'Privacy');
                 LocalAuthentication().stopAuthentication().then((onValue) {
                   if (onValue) {
-                    Future.delayed(const Duration(seconds: 15));
                     context.read<SplashCubit>().checkData();
                   } else {
-                    Future.delayed(const Duration(seconds: 15));
                     context.read<SplashCubit>().checkData();
                   }
                 });
@@ -49,8 +47,8 @@ class SplashScreen extends StatelessWidget {
                 context, AppRoutes.homeScreen),
             dataIsNotInDatabase: () {
               context.read<SplashCubit>().getData();
-              return Navigator.pushReplacementNamed(
-                context, AppRoutes.homeScreen);
+              // return Navigator.pushReplacementNamed(
+              //   context, AppRoutes.homeScreen);
             },
           );
         },
