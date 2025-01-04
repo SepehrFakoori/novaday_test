@@ -17,4 +17,6 @@ class SplashState with _$SplashState {
   const factory SplashState.dataIsInDatabase() = DataIsInDatabase;
 
   const factory SplashState.dataIsNotInDatabase() = DataIsNotInDatabase;
+
+  const factory SplashState.noInternetConnection() = NoInternetConnection;
 }

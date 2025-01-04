@@ -10,8 +10,15 @@ import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_state.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  bool hasInternetConnection = true;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +43,9 @@ class SplashScreen extends StatelessWidget {
                     context.read<SplashCubit>().checkData();
                   }
                 });
+                if (isAuthenticate) {
+                  context.read<SplashCubit>().checkData();
+                }
               } on PlatformException catch (ex) {
                 print("EXCEPTION: $ex");
                 // print(ex.stacktrace);
@@ -50,14 +60,18 @@ class SplashScreen extends StatelessWidget {
               // return Navigator.pushReplacementNamed(
               //   context, AppRoutes.homeScreen);
             },
+            noInternetConnection: () {
+              setState(() {
+                hasInternetConnection = false;
+              });
+            }
           );
         },
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
             _appLogoSection(),
-            _failedSection(context),
-            _loadingSection(context),
+            hasInternetConnection ? _loadingSection(context) : _failedSection(context),
             _appVersionNumberSection(context),
           ],
         ),

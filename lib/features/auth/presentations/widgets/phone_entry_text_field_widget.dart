@@ -57,9 +57,9 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
         decoration: InputDecoration(
           filled: true,
           fillColor: context.colorScheme.secondary,
-          hintText: "09301914321",
+          hintText: "0000000000",
           hintStyle: context.textTheme.titleMedium!.copyWith(
-            color: context.colorScheme.onSecondaryContainer,
+            color: context.colorScheme.onTertiaryContainer.withOpacity(0.48),
             fontSize: 18,
           ),
           errorStyle: context.textTheme.labelMedium!.copyWith(

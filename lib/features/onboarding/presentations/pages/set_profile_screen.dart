@@ -120,14 +120,18 @@ class _SetProfileScreenState extends State<SetProfileScreen> {
                 const SizedBox(height: AppSpacing.sp40),
                 CustomTextField(
                   labelText: context.localization.firstNameAndLastName,
+                  textInputType: TextInputType.name,
                 ),
                 const SizedBox(height: AppSpacing.sp16),
                 CustomTextField(
                   labelText: context.localization.password,
+                  isPassword: true,
+                  textInputType: TextInputType.visiblePassword,
                 ),
                 const SizedBox(height: AppSpacing.sp16),
                 CustomTextField(
                   labelText: context.localization.jobTitle,
+                  textInputType: TextInputType.text,
                 ),
               ],
             ),
