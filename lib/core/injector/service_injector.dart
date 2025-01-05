@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:kiwi/kiwi.dart';
+import 'package:novaday_test/core/constants/constants.dart';
 
 class ServiceInjector {
   static void injector() {
@@ -7,7 +8,7 @@ class ServiceInjector {
 
     container.registerSingleton<Dio>(
       (c) => Dio(
-        BaseOptions(baseUrl: "https://jsonplaceholder.typicode.com/"),
+        BaseOptions(baseUrl: AppConstants.baseUrl),
       ),
     );
   }

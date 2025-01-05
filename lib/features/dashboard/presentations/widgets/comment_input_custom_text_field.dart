@@ -2,34 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:novaday_test/core/constants/constants.dart';
 import 'package:novaday_test/core/extensions/extensions.dart';
 
-class CustomTextField extends StatefulWidget {
-  const CustomTextField({
+class CommentInputCustomTextField extends StatefulWidget {
+  const CommentInputCustomTextField({
     super.key,
-    required this.labelText,
-    this.isPassword = false,
-    this.textInputType = TextInputType.text,
   });
 
-  final bool isPassword;
-  final String labelText;
-  final TextInputType textInputType;
-
   @override
-  State<CustomTextField> createState() => _CustomTextFieldState();
+  State<CommentInputCustomTextField> createState() =>
+      _CommentInputCustomTextFieldState();
 }
 
-class _CustomTextFieldState extends State<CustomTextField> {
+class _CommentInputCustomTextFieldState
+    extends State<CommentInputCustomTextField> {
   late FocusNode focusNode;
-  final TextEditingController controller = TextEditingController();
+  late TextEditingController controller = TextEditingController();
 
   bool hasFocus = false;
-  bool _isObscured = true;
-
-  void _togglePasswordVisibility() {
-    setState(() {
-      _isObscured = !_isObscured;
-    });
-  }
 
   @override
   void initState() {
@@ -67,9 +55,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
       controller: controller,
       textAlign: TextAlign.start,
       textAlignVertical: TextAlignVertical.center,
-      keyboardType: widget.textInputType,
-      obscureText: widget.isPassword ? _isObscured : false,
-      obscuringCharacter: '•',
+      keyboardType: TextInputType.multiline,
+      minLines: 1,
+      maxLines: 6,
       style: context.textTheme.titleMedium!.copyWith(
         color: context.colorScheme.onSecondary,
         fontSize: 18,
@@ -78,25 +66,21 @@ class _CustomTextFieldState extends State<CustomTextField> {
       decoration: InputDecoration(
         filled: true,
         fillColor: context.colorScheme.secondary,
-        labelText: widget.labelText,
-        labelStyle: context.textTheme.titleMedium!.copyWith(
+        hintText: context.localization.message,
+        hintStyle: context.textTheme.titleMedium!.copyWith(
           color: context.colorScheme.onSecondaryContainer,
           fontSize: 18,
         ),
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: AppSpacing.sp8,
-          vertical: AppSpacing.sp4,
+        contentPadding: const EdgeInsets.all(AppSpacing.sp8),
+        suffixIcon: IconButton(
+          onPressed: () {},
+          icon: Icon(
+            Icons.send,
+            color: controller.text.isNotEmpty
+                ? context.colorScheme.primary
+                : context.colorScheme.tertiaryContainer,
+          ),
         ),
-        suffixIcon: widget.isPassword
-            ? controller.text.isNotEmpty
-                ? IconButton(
-                    icon: Icon(
-                      _isObscured ? Icons.visibility : Icons.visibility_off,
-                    ),
-                    onPressed: _togglePasswordVisibility,
-                  )
-                : null
-            : null,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppBorderRadius.br12),
           borderSide: BorderSide(

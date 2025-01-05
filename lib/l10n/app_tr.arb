@@ -29,5 +29,9 @@
   "password": "Şifre",
   "jobTitle": "İş Unvanı",
   "otpCorrect": "Kod doğru",
-  "otpIncorrect": "Kod yanlış"
+  "otpIncorrect": "Kod yanlış",
+  "posts": "Gönderiler",
+  "comments": "Yorumlar",
+  "message": "Mesaj",
+  "users": "Kullanıcılar"
 }

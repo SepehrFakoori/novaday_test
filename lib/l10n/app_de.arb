@@ -29,5 +29,9 @@
   "password": "Passwort",
   "jobTitle": "Berufsbezeichnung",
   "otpCorrect": "Code ist korrekt",
-  "otpIncorrect": "Code ist falsch"
+  "otpIncorrect": "Code ist falsch",
+  "posts": "Beiträge",
+  "comments": "Kommentare",
+  "message": "Nachricht",
+  "users": "Benutzer"
 }

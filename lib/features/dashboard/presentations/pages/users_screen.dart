@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:novaday_test/core/constants/constants.dart';
 import 'package:novaday_test/core/extensions/extensions.dart';
-import 'package:novaday_test/core/widgets/custom_text_field.dart';
 import 'package:novaday_test/features/dashboard/presentations/widgets/dashboard_custom_app_bar.dart';
 
 class UsersScreen extends StatelessWidget {
@@ -31,7 +30,7 @@ class UsersScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "کاربران",
+                          context.localization.users,
                           style: context.textTheme.titleMedium!.copyWith(
                             fontSize: 18,
                             color: context.colorScheme.onSurface,

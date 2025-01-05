@@ -29,5 +29,9 @@
   "password": "رمز عبور",
   "jobTitle": "عنوان شغلی",
   "otpCorrect": "کد تایید شد.",
-  "otpIncorrect": "کد نادرست است."
+  "otpIncorrect": "کد نادرست است.",
+  "posts": "پست ها",
+  "comments": "نظرات",
+  "message": "پیام",
+  "users": "کاربران"
 }
