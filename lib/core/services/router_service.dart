@@ -54,7 +54,8 @@ class RouterService {
       case AppRoutes.homeScreen:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       case AppRoutes.commentScreen:
-        return MaterialPageRoute(builder: (_) => const CommentsScreen());
+        return MaterialPageRoute(
+            builder: (_) => CommentsScreen(postId: args as int));
       case AppRoutes.usersScreen:
         return MaterialPageRoute(builder: (_) => const UsersScreen());
       default:

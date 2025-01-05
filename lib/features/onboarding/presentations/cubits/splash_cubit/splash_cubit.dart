@@ -57,10 +57,10 @@ class SplashCubit extends Cubit<SplashState> {
 
   Future<void> getData() async {
     try {
-      postRepository
-        ..fetchComments()
-        ..fetchPosts();
+      postRepository.fetchComments();
+        postRepository.fetchPosts();
     } catch (ex) {
+      print(ex);
       emit(const SplashState.noInternetConnection());
     }
   }
