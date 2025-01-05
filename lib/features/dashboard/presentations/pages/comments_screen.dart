@@ -1,14 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:novaday_test/core/constants/constants.dart';
+import 'package:novaday_test/core/constants/hive_constants/hive_box_constants.dart';
 import 'package:novaday_test/core/extensions/extensions.dart';
+import 'package:novaday_test/core/widgets/widgets.dart';
+import 'package:novaday_test/features/dashboard/domain/repository/home_repository.dart';
 import 'package:novaday_test/features/dashboard/presentations/widgets/comment_input_custom_text_field.dart';
 import 'package:novaday_test/features/dashboard/presentations/widgets/dashboard_custom_app_bar.dart';
+import 'package:novaday_test/features/onboarding/domain/entities/comment_entity/comment_entity.dart';
 
 class CommentsScreen extends StatelessWidget {
-  const CommentsScreen({super.key});
+  final HomeRepository homeRepository;
+
+  const CommentsScreen(
+      {super.key, required this.postId, required this.homeRepository});
+
+  final int postId;
 
   @override
   Widget build(BuildContext context) {
+    var box = Hive.box<CommentEntity>(HiveBoxConstants.commentsBox);
+    List<CommentEntity> commentList = box.values.toList();
+    List<CommentEntity> postCommentList =
+        commentList.where((CommentEntity comment) {
+      return comment.postId == postId;
+    }).toList();
+
+    void onSendComment() {
+      homeRepository.addComment(postId).then(
+            (_) => customFlushBar(context,
+            messageText: context.localization.postAddedSuccessfully,
+            isError: false),
+      );
+    }
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -28,7 +53,8 @@ class CommentsScreen extends StatelessWidget {
                           padding: const EdgeInsets.all(AppLayoutGrid.margin),
                           decoration: BoxDecoration(
                             color: context.colorScheme.secondary,
-                            borderRadius: BorderRadius.circular(AppBorderRadius.br12),
+                            borderRadius:
+                                BorderRadius.circular(AppBorderRadius.br12),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,10 +69,12 @@ class CommentsScreen extends StatelessWidget {
                               const SizedBox(height: AppHeight.h24),
                               Expanded(
                                 child: ListView.builder(
-                                  itemBuilder: (BuildContext context, int index) {
-                                    return CommentCard(index: index);
+                                  itemBuilder: (context, index) {
+                                    CommentEntity comment =
+                                        postCommentList[index];
+                                    return CommentCard(comment: comment);
                                   },
-                                  itemCount: 5,
+                                  itemCount: postCommentList.length,
                                 ),
                               ),
                             ],
@@ -57,7 +85,7 @@ class CommentsScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const CommentInputCustomTextField(),
+                CommentInputCustomTextField(onSendComment: onSendComment),
               ],
             ),
           ),
@@ -70,10 +98,10 @@ class CommentsScreen extends StatelessWidget {
 class CommentCard extends StatelessWidget {
   const CommentCard({
     super.key,
-    required this.index,
+    required this.comment,
   });
 
-  final int index;
+  final CommentEntity comment;
 
   @override
   Widget build(BuildContext context) {
@@ -94,54 +122,60 @@ class CommentCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    height: AppHeight.h32,
-                    width: AppHeight.h32,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(AppBorderRadius.br8),
-                      color: context.colorScheme.primary,
-                    ),
-                    child: Center(
-                      child: Text(
-                        "${index + 1}",
-                        style: context.textTheme.titleMedium!.copyWith(
-                          color: context.colorScheme.onSurface,
+              SizedBox(
+                width: context.width,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: AppHeight.h32,
+                      width: AppHeight.h32,
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            BorderRadius.circular(AppBorderRadius.br8),
+                        color: context.colorScheme.primary,
+                      ),
+                      child: Center(
+                        child: Text(
+                          "${comment.id}",
+                          style: context.textTheme.titleMedium!.copyWith(
+                            color: context.colorScheme.onSurface,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(width: AppSpacing.sp8),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "odio adipisci rerum aut animi",
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: context.textTheme.titleMedium!.copyWith(
-                          color: context.colorScheme.onSurface,
-                        ),
+                    const SizedBox(width: AppSpacing.sp8),
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "${comment.name}",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: context.textTheme.titleMedium!.copyWith(
+                              color: context.colorScheme.onSurface,
+                            ),
+                          ),
+                          Text(
+                            "${comment.email}",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: context.textTheme.labelLarge!.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: context.colorScheme.onSecondaryContainer,
+                            ),
+                          ),
+                        ],
                       ),
-                      Text(
-                        "Nikita@garfield.biz",
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: context.textTheme.labelLarge!.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: context.colorScheme.onSecondaryContainer,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: AppSpacing.sp12),
               Text(
-                "quia molestiae reprehenderit quasi aspernatur\naut expedita occaecati aliquam eveniet laudantium\nomnis quibusdam delectus saepe quia accusamus maiores nam est\ncum et ducimus et vero voluptates excepturi deleniti ratione",
+                "${comment.body}",
                 textAlign: TextAlign.start,
                 style: context.textTheme.bodyMedium!.copyWith(
                   color: context.colorScheme.onSurface,

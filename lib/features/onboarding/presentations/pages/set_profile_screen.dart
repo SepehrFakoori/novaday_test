@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:novaday_test/core/constants/constants.dart';
@@ -15,8 +14,21 @@ class SetProfileScreen extends StatefulWidget {
 }
 
 class _SetProfileScreenState extends State<SetProfileScreen> {
+  late FocusNode focusNode;
   final imagePicker = ImagePicker();
   String pickedImage = '';
+
+  @override
+  void initState() {
+    super.initState();
+    focusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    focusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

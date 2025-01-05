@@ -3,8 +3,11 @@ import 'package:novaday_test/core/constants/constants.dart';
 import 'package:novaday_test/core/extensions/extensions.dart';
 
 class CommentInputCustomTextField extends StatefulWidget {
+  final void Function()? onSendComment;
+
   const CommentInputCustomTextField({
     super.key,
+    required this.onSendComment,
   });
 
   @override
@@ -73,7 +76,7 @@ class _CommentInputCustomTextFieldState
         ),
         contentPadding: const EdgeInsets.all(AppSpacing.sp8),
         suffixIcon: IconButton(
-          onPressed: () {},
+          onPressed: controller.text.isNotEmpty ? widget.onSendComment : null,
           icon: Icon(
             Icons.send,
             color: controller.text.isNotEmpty

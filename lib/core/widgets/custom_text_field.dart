@@ -19,7 +19,6 @@ class CustomTextField extends StatefulWidget {
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
-  late FocusNode focusNode;
   final TextEditingController controller = TextEditingController();
 
   bool hasFocus = false;
@@ -35,30 +34,16 @@ class _CustomTextFieldState extends State<CustomTextField> {
   void initState() {
     super.initState();
     controller.addListener(updateIconVisibility);
-    focusNode = FocusNode();
   }
 
   @override
   void dispose() {
-    focusNode.dispose();
     controller.removeListener(updateIconVisibility);
     super.dispose();
   }
 
   void updateIconVisibility() {
     setState(() {});
-  }
-
-  void focusChanger() {
-    if (focusNode.hasFocus) {
-      setState(() {
-        hasFocus = true;
-      });
-    } else {
-      setState(() {
-        hasFocus = false;
-      });
-    }
   }
 
   @override

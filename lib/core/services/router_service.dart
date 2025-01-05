@@ -8,6 +8,7 @@ import 'package:novaday_test/features/auth/presentations/pages/login_screen.dart
 import 'package:novaday_test/features/auth/presentations/pages/otp_screen.dart';
 import 'package:novaday_test/features/auth/presentations/pages/biometric_auth_screen.dart';
 import 'package:novaday_test/features/auth/presentations/utils/login_arguments.dart';
+import 'package:novaday_test/features/dashboard/domain/repository/home_repository.dart';
 import 'package:novaday_test/features/dashboard/presentations/pages/users_screen.dart';
 import 'package:novaday_test/features/onboarding/domain/repository/post_repository.dart';
 import 'package:novaday_test/features/dashboard/presentations/pages/comments_screen.dart';
@@ -52,9 +53,15 @@ class RouterService {
       case AppRoutes.profileScreen:
         return MaterialPageRoute(builder: (_) => const SetProfileScreen());
       case AppRoutes.homeScreen:
-        return MaterialPageRoute(builder: (_) => const HomeScreen());
+        return MaterialPageRoute(
+            builder: (_) =>
+                HomeScreen(homeRepository: di.resolve<HomeRepository>()));
       case AppRoutes.commentScreen:
-        return MaterialPageRoute(builder: (_) => const CommentsScreen());
+        return MaterialPageRoute(
+            builder: (_) => CommentsScreen(
+                  postId: args as int,
+                  homeRepository: di.resolve<HomeRepository>(),
+                ));
       case AppRoutes.usersScreen:
         return MaterialPageRoute(builder: (_) => const UsersScreen());
       default:
