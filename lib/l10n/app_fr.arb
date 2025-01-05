@@ -33,5 +33,8 @@
   "posts": "Messages",
   "comments": "Commentaires",
   "message": "Message",
-  "users": "Utilisateurs"
+  "users": "Utilisateurs",
+  "postAddedSuccessfully": "Message ajouté avec succès",
+  "addPost": "Ajouter un message",
+  "noResult": "Rien trouvé"
 }

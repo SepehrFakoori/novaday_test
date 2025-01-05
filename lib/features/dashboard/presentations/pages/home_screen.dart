@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:novaday_test/core/constants/constants.dart';
@@ -5,12 +7,15 @@ import 'package:novaday_test/core/constants/hive_constants/hive_box_constants.da
 import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
-import 'package:novaday_test/core/widgets/custom_filled_button.dart';
+import 'package:novaday_test/core/widgets/custom_snack_bar.dart';
+import 'package:novaday_test/features/dashboard/domain/repository/home_repository.dart';
 import 'package:novaday_test/features/dashboard/presentations/widgets/dashboard_custom_app_bar.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/post_entity/post_entity.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  final HomeRepository homeRepository;
+
+  const HomeScreen({super.key, required this.homeRepository});
 
   @override
   Widget build(BuildContext context) {
@@ -81,11 +86,33 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
-      floatingActionButton: SizedBox(
-        width: 150,
-        child: FloatingActionButton(
-          onPressed: () {},
-          child: const Text("اضافه کردن پست"),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          homeRepository.addPost().then(
+                (_) => customFlushBar(context,
+                    messageText: context.localization.postAddedSuccessfully,
+                    isError: false),
+              );
+        },
+        label: Directionality(
+          textDirection: TextDirection.rtl,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.add,
+                color: context.colorScheme.onSurface,
+              ),
+              const SizedBox(width: AppSpacing.sp4),
+              Text(
+                context.localization.addPost,
+                style: context.textTheme.titleMedium!.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: context.colorScheme.onSurface,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -175,14 +202,23 @@ class PostSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) => results.isEmpty
-      ? const Center(
-          child: Text('No Result'),
+      ? Center(
+          child: Text(
+            context.localization.noResult,
+            style: context.textTheme.titleLarge!.copyWith(
+              fontWeight: FontWeight.w600,
+              color: context.colorScheme.onSurface,
+            ),
+          ),
         )
       : Padding(
           padding: const EdgeInsets.all(AppSpacing.sp8),
-          child: ListView.builder(itemBuilder: (context, index) {
-            return PostCard(post: results[index]);
-          }),
+          child: ListView.builder(
+            itemBuilder: (context, index) {
+              return PostCard(post: results[index]);
+            },
+            itemCount: results.length,
+          ),
         );
 
   @override
@@ -195,8 +231,14 @@ class PostSearchDelegate extends SearchDelegate {
     }).toList();
 
     return results.isEmpty
-        ? const Center(
-            child: Text('No Results', style: TextStyle(fontSize: 24)),
+        ? Center(
+            child: Text(
+              context.localization.noResult,
+              style: context.textTheme.titleLarge!.copyWith(
+                fontWeight: FontWeight.w600,
+                color: context.colorScheme.onSurface,
+              ),
+            ),
           )
         : Padding(
             padding: const EdgeInsets.all(AppSpacing.sp8),
@@ -204,6 +246,7 @@ class PostSearchDelegate extends SearchDelegate {
               itemBuilder: (context, index) {
                 return PostCard(post: results[index]);
               },
+              itemCount: results.length,
             ),
           );
   }

@@ -33,5 +33,8 @@
   "posts": "Beiträge",
   "comments": "Kommentare",
   "message": "Nachricht",
-  "users": "Benutzer"
+  "users": "Benutzer",
+  "postAddedSuccessfully": "Beitrag erfolgreich hinzugefügt",
+  "addPost": "Beitrag hinzufügen",
+  "noResult": "Nichts gefunden!"
 }

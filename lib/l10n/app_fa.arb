@@ -33,5 +33,8 @@
   "posts": "پست ها",
   "comments": "نظرات",
   "message": "پیام",
-  "users": "کاربران"
+  "users": "کاربران",
+  "postAddedSuccessfully": "پست با موفقیت اضافه شد",
+  "addPost": "اضافه کردن پست",
+  "noResult": "نتیجه یافت نشد"
 }

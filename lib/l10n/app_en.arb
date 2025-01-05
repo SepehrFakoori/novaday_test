@@ -33,5 +33,8 @@
   "posts": "Posts",
   "comments": "Comments",
   "message": "Message",
-  "users": "Users"
+  "users": "Users",
+  "postAddedSuccessfully": "Post added successfully",
+  "addPost": "Add post",
+  "noResult": "Nothing found!"
 }

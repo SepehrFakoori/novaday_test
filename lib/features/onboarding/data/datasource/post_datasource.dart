@@ -44,7 +44,6 @@ class PostDataSource extends IPostDataSource {
         }
       }
     } catch (ex) {
-      print(ex.toString());
       throw Exception("$ex");
     }
   }

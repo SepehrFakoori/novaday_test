@@ -60,7 +60,6 @@ class SplashCubit extends Cubit<SplashState> {
       postRepository.fetchComments();
         postRepository.fetchPosts();
     } catch (ex) {
-      print(ex);
       emit(const SplashState.noInternetConnection());
     }
   }

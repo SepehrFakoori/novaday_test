@@ -3,12 +3,17 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:novaday_test/core/constants/constants.dart';
 import 'package:novaday_test/core/constants/hive_constants/hive_box_constants.dart';
 import 'package:novaday_test/core/extensions/extensions.dart';
+import 'package:novaday_test/core/widgets/widgets.dart';
+import 'package:novaday_test/features/dashboard/domain/repository/home_repository.dart';
 import 'package:novaday_test/features/dashboard/presentations/widgets/comment_input_custom_text_field.dart';
 import 'package:novaday_test/features/dashboard/presentations/widgets/dashboard_custom_app_bar.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/comment_entity/comment_entity.dart';
 
 class CommentsScreen extends StatelessWidget {
-  const CommentsScreen({super.key, required this.postId});
+  final HomeRepository homeRepository;
+
+  const CommentsScreen(
+      {super.key, required this.postId, required this.homeRepository});
 
   final int postId;
 
@@ -20,6 +25,15 @@ class CommentsScreen extends StatelessWidget {
         commentList.where((CommentEntity comment) {
       return comment.postId == postId;
     }).toList();
+
+    void onSendComment() {
+      homeRepository.addComment(postId).then(
+            (_) => customFlushBar(context,
+            messageText: context.localization.postAddedSuccessfully,
+            isError: false),
+      );
+    }
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -56,7 +70,8 @@ class CommentsScreen extends StatelessWidget {
                               Expanded(
                                 child: ListView.builder(
                                   itemBuilder: (context, index) {
-                                    CommentEntity comment = postCommentList[index];
+                                    CommentEntity comment =
+                                        postCommentList[index];
                                     return CommentCard(comment: comment);
                                   },
                                   itemCount: postCommentList.length,
@@ -70,7 +85,7 @@ class CommentsScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const CommentInputCustomTextField(),
+                CommentInputCustomTextField(onSendComment: onSendComment),
               ],
             ),
           ),

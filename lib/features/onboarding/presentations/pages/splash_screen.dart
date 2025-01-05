@@ -47,7 +47,6 @@ class _SplashScreenState extends State<SplashScreen> {
                   context.read<SplashCubit>().checkData();
                 }
               } on PlatformException catch (ex) {
-                print("EXCEPTION: $ex");
                 // print(ex.stacktrace);
               }
             },

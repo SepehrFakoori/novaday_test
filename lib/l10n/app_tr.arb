@@ -33,5 +33,8 @@
   "posts": "Gönderiler",
   "comments": "Yorumlar",
   "message": "Mesaj",
-  "users": "Kullanıcılar"
+  "users": "Kullanıcılar",
+  "postAddedSuccessfully": "Gönderi başarıyla eklendi",
+  "addPost": "Gönderi Ekle",
+  "noResult": "Hiçbir şey bulunamadı"
 }
