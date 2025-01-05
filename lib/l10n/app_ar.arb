@@ -29,5 +29,9 @@
   "password": "كلمة المرور",
   "jobTitle": "المسمى الوظيفي",
   "otpCorrect": "الرمز صحيح",
-  "otpIncorrect": "الرمز غير صحيح"
+  "otpIncorrect": "الرمز غير صحيح",
+  "posts": "دعامات",
+  "comments": "تعليقات",
+  "message": "رسالة",
+  "users": "المستخدمين"
 }

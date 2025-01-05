@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:novaday_test/core/constants/constants.dart';
 import 'package:novaday_test/core/constants/hive_constants/hive_box_constants.dart';
+import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/features/dashboard/presentations/widgets/dashboard_custom_app_bar.dart';
@@ -40,7 +41,7 @@ class HomeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "پست ها",
+                          context.localization.posts,
                           style: context.textTheme.titleMedium!.copyWith(
                             fontSize: 18,
                             color: context.colorScheme.onSurface,
@@ -86,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                                     Text(
                                       "${comment.body}",
                                       textAlign: TextAlign.justify,
-                                      maxLines: 10,
+                                      maxLines: null,
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                   ],

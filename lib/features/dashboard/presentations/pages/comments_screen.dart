@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:novaday_test/core/constants/constants.dart';
 import 'package:novaday_test/core/extensions/extensions.dart';
-import 'package:novaday_test/core/widgets/custom_text_field.dart';
+import 'package:novaday_test/features/dashboard/presentations/widgets/comment_input_custom_text_field.dart';
 import 'package:novaday_test/features/dashboard/presentations/widgets/dashboard_custom_app_bar.dart';
 
 class CommentsScreen extends StatelessWidget {
@@ -17,59 +17,47 @@ class CommentsScreen extends StatelessWidget {
             height: context.height,
             child: Column(
               children: [
-                const DashboardCustomAppBar(),
-                const SizedBox(height: AppSpacing.sp24),
                 Expanded(
-                  child: Container(
-                    width: context.width,
-                    padding: const EdgeInsets.all(AppLayoutGrid.margin),
-                    decoration: BoxDecoration(
-                      color: context.colorScheme.secondary,
-                      borderRadius: BorderRadius.circular(AppBorderRadius.br12),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "نظرات",
-                          style: context.textTheme.titleMedium!.copyWith(
-                            fontSize: 18,
-                            color: context.colorScheme.onSurface,
-                          ),
-                        ),
-                        const SizedBox(height: AppHeight.h24),
-                        Expanded(
-                          child: ListView.builder(
-                            itemBuilder: (BuildContext context, int index) {
-                              return CommentCard(index: index);
-                            },
-                            itemCount: 5,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: AppSpacing.sp12),
-                SizedBox(
-                  height: 60,
-                  width: context.width,
-                  child: Row(
+                  child: Column(
                     children: [
-                      const Expanded(
-                        child: CustomTextField(labelText: 'labelText'),
-                      ),
-                      const SizedBox(width: AppSpacing.sp8),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.send,
-                          color: context.colorScheme.primary,
+                      const DashboardCustomAppBar(),
+                      const SizedBox(height: AppSpacing.sp24),
+                      Expanded(
+                        child: Container(
+                          width: context.width,
+                          padding: const EdgeInsets.all(AppLayoutGrid.margin),
+                          decoration: BoxDecoration(
+                            color: context.colorScheme.secondary,
+                            borderRadius: BorderRadius.circular(AppBorderRadius.br12),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                context.localization.comments,
+                                style: context.textTheme.titleMedium!.copyWith(
+                                  fontSize: 18,
+                                  color: context.colorScheme.onSurface,
+                                ),
+                              ),
+                              const SizedBox(height: AppHeight.h24),
+                              Expanded(
+                                child: ListView.builder(
+                                  itemBuilder: (BuildContext context, int index) {
+                                    return CommentCard(index: index);
+                                  },
+                                  itemCount: 5,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
+                      const SizedBox(height: AppSpacing.sp12),
                     ],
                   ),
                 ),
+                const CommentInputCustomTextField(),
               ],
             ),
           ),
