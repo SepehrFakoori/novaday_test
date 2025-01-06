@@ -40,5 +40,6 @@
   "noResult": "Hiçbir şey bulunamadı",
   "home": "Ev",
   "profile": "Profil",
-  "offlineAlert": "Çevrimdışısınız. İnternet bağlantınızı kontrol edin."
+  "offlineAlert": "Çevrimdışısınız. İnternet bağlantınızı kontrol edin.",
+  "saveSuccess": "Başarıyla kaydedildi"
 }
