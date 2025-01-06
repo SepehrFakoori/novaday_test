@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:novaday_test/core/constants/constants.dart';
+import 'package:novaday_test/core/enums/NavigateProfileFromEnum.dart';
 import 'package:novaday_test/core/enums/enums.dart';
 import 'package:novaday_test/core/extensions/extensions.dart';
 import 'package:novaday_test/core/widgets/widgets.dart';
@@ -99,7 +100,11 @@ class BiometricAuthScreen extends StatelessWidget {
           buttonText: context.localization.continueButtonTitle,
           buttonState: ButtonStateEnum.active,
           onPressed: () {
-            Navigator.pushNamed(context, AppRoutes.profileScreen);
+            Navigator.pushNamed(
+              context,
+              AppRoutes.profileScreen,
+              arguments: NavigateProfileFromEnum.onboarding,
+            );
           },
         ),
       ),

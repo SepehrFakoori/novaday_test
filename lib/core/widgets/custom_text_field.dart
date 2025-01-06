@@ -5,23 +5,28 @@ import 'package:novaday_test/core/extensions/extensions.dart';
 class CustomTextField extends StatefulWidget {
   const CustomTextField({
     super.key,
+    required this.controller,
+    required this.focusNode,
+    this.readOnly = false,
     required this.labelText,
     this.isPassword = false,
     this.textInputType = TextInputType.text,
+    this.onFieldSubmitted,
   });
 
+  final TextEditingController controller;
+  final FocusNode focusNode;
+  final bool readOnly;
   final bool isPassword;
   final String labelText;
   final TextInputType textInputType;
+  final void Function(String)? onFieldSubmitted;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
-  final TextEditingController controller = TextEditingController();
-
-  bool hasFocus = false;
   bool _isObscured = true;
 
   void _togglePasswordVisibility() {
@@ -33,12 +38,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   void initState() {
     super.initState();
-    controller.addListener(updateIconVisibility);
+    widget.controller.addListener(updateIconVisibility);
   }
 
   @override
   void dispose() {
-    controller.removeListener(updateIconVisibility);
+    widget.controller.removeListener(updateIconVisibility);
     super.dispose();
   }
 
@@ -49,7 +54,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: controller,
+      controller: widget.controller,
+      focusNode: widget.focusNode,
+      onFieldSubmitted: widget.onFieldSubmitted,
       textAlign: TextAlign.start,
       textAlignVertical: TextAlignVertical.center,
       keyboardType: widget.textInputType,
@@ -59,6 +66,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         color: context.colorScheme.onSecondary,
         fontSize: 18,
       ),
+      readOnly: widget.readOnly,
       enableSuggestions: false,
       decoration: InputDecoration(
         filled: true,
@@ -73,7 +81,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           vertical: AppSpacing.sp4,
         ),
         suffixIcon: widget.isPassword
-            ? controller.text.isNotEmpty
+            ? widget.controller.text.isNotEmpty
                 ? IconButton(
                     icon: Icon(
                       _isObscured ? Icons.visibility : Icons.visibility_off,

@@ -2,20 +2,21 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:novaday_test/core/constants/constants.dart';
+import 'package:novaday_test/core/constants/hive_constants/hive_constants.dart';
 import 'package:novaday_test/core/extensions/extensions.dart';
 import 'package:novaday_test/core/widgets/widgets.dart';
 import 'package:novaday_test/features/auth/presentations/cubits/otp_cubit.dart';
 import 'package:novaday_test/features/auth/presentations/cubits/otp_state.dart';
 import 'package:novaday_test/features/auth/presentations/utils/login_arguments.dart';
+import 'package:novaday_test/features/onboarding/domain/entities/user_entity/user_entity.dart';
 import 'package:pinput/pinput.dart';
 import 'package:smart_auth/smart_auth.dart';
 
 class OtpScreen extends StatefulWidget {
   const OtpScreen({super.key, required this.loginArguments});
 
-  // final String phoneNumber;
-  // final String countryCode;
   final LoginArguments loginArguments;
 
   @override
@@ -124,6 +125,7 @@ class _OtpScreenState extends State<OtpScreen> {
                         hapticFeedbackType: HapticFeedbackType.lightImpact,
                         onCompleted: (pin) {
                           if (pin == '2222') {
+                            _savePhoneNumber();
                             Navigator.pushNamedAndRemoveUntil(
                                 context,
                                 AppRoutes.setBiometricAuthScreen,
@@ -203,6 +205,14 @@ class _OtpScreenState extends State<OtpScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _savePhoneNumber() async {
+    var box = Hive.box<UserEntity>(HiveBoxConstants.userProfileBox);
+    UserEntity user = box.get(HiveKeyConstants.userProfileKey) ?? UserEntity();
+    user.phoneNumber =
+        "+${widget.loginArguments.countryCode}${widget.loginArguments.phoneNumber}";
+    await box.put(HiveKeyConstants.userProfileKey, user);
   }
 }
 
