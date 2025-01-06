@@ -37,5 +37,8 @@
   "users": "Users",
   "postAddedSuccessfully": "Post added successfully",
   "addPost": "Add post",
-  "noResult": "Nothing found!"
+  "noResult": "Nothing found!",
+  "home": "Home",
+  "profile": "Profile",
+  "offlineAlert": "You're offline. Check your internet."
 }

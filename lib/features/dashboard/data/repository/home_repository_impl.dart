@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:novaday_test/features/dashboard/data/datasource/home_datasource.dart';
 import 'package:novaday_test/features/dashboard/domain/repository/home_repository.dart';
 
@@ -10,7 +12,7 @@ class HomeRepositoryImpl extends HomeRepository {
   Future<void> addPost() async {
     try {
       await _homeDataSource.addPost();
-    } catch (ex) {
+    } on SocketException {
       throw Exception("Failed");
     }
   }
@@ -19,8 +21,8 @@ class HomeRepositoryImpl extends HomeRepository {
   Future<void> addComment(int postId) async {
     try {
       await _homeDataSource.addComment(postId);
-    } catch (ex) {
-      throw Exception("Failed!");
+    } on SocketException {
+      throw Exception("Failed");
     }
   }
 }

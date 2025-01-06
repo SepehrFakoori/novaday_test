@@ -6,7 +6,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:novaday_test/core/constants/constants.dart';
 import 'package:novaday_test/core/constants/hive_constants/hive_constants.dart';
-import 'package:novaday_test/core/enums/NavigateProfileFromEnum.dart';
 import 'package:novaday_test/core/enums/enums.dart';
 import 'package:novaday_test/core/extensions/extensions.dart';
 import 'package:novaday_test/core/injector/injector.dart';
@@ -17,9 +16,11 @@ import 'package:novaday_test/core/theme/app_text_styles.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/comment_entity/comment_entity.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/post_entity/post_entity.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/user_entity/user_entity.dart';
+import 'package:novaday_test/features/onboarding/domain/repository/post_repository.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/locale_cubit/locale_cubit.dart';
+import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit/theme_cubit.dart';
-import 'package:novaday_test/features/onboarding/presentations/pages/profile_screen.dart';
+import 'package:novaday_test/features/onboarding/presentations/pages/splash_screen.dart';
 
 void main() async {
   Injector.injector();
@@ -74,9 +75,12 @@ class MyApp extends StatelessWidget {
                       supportedLocales: AppLocalizations.supportedLocales,
                       locale: locale,
                       onGenerateRoute: RouterService.generateRoute,
-                      initialRoute: AppRoutes.profileScreen,
-                      home: const ProfileScreen(
-                        navigateFrom: NavigateProfileFromEnum.dashboard,
+                      initialRoute: AppRoutes.splashScreen,
+                      home: BlocProvider(
+                        create: (context) => SplashCubit(
+                          di.resolve<PostRepository>(),
+                        ),
+                        child: const SplashScreen(),
                       ),
                     ),
                   );

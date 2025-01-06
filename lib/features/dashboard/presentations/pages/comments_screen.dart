@@ -27,11 +27,20 @@ class CommentsScreen extends StatelessWidget {
     }).toList();
 
     void onSendComment() {
-      homeRepository.addComment(postId).then(
+      homeRepository
+          .addComment(postId)
+          .then(
             (_) => customFlushBar(context,
-            messageText: context.localization.postAddedSuccessfully,
-            isError: false),
-      );
+                messageText: context.localization.postAddedSuccessfully,
+                isError: false),
+          )
+          .onError(
+            (error, stackTrace) => customFlushBar(
+              context,
+              messageText: context.localization.offlineAlert,
+              isError: true,
+            ),
+          );
     }
 
     return Scaffold(

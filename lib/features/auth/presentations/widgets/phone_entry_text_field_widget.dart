@@ -11,13 +11,13 @@ class PhoneTextField extends StatefulWidget {
     required this.controller,
     required this.showSelectCountryBottomSheet,
     required this.selectedCountry,
-    this.validator,
+    required this.onChanged,
   });
 
   final TextEditingController controller;
   final void Function() showSelectCountryBottomSheet;
   final CountryEntity selectedCountry;
-  final String? Function(String?)? validator;
+  final ValueChanged<String> onChanged;
 
   @override
   State<PhoneTextField> createState() => _PhoneTextFieldState();
@@ -139,18 +139,7 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
           LengthLimitingTextInputFormatter(
               widget.selectedCountry.phoneNumberLength),
         ],
-        validator: widget.validator ??
-            (value) {
-              if (value == null || value.isEmpty) {
-                return 'لطفا شماره خود را وارد کنید';
-              }
-              // Phone number length validation (should be more than 10 digits)
-              if (value.replaceAll(RegExp(r'\D'), '').length <
-                  widget.selectedCountry.phoneNumberLength!.toInt()) {
-                return 'Phone number must be at least ${widget.selectedCountry.phoneNumberLength} digits';
-              }
-              return null;
-            },
+        onChanged: widget.onChanged,
       ),
     );
   }

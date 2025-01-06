@@ -37,5 +37,8 @@
   "users": "Kullanıcılar",
   "postAddedSuccessfully": "Gönderi başarıyla eklendi",
   "addPost": "Gönderi Ekle",
-  "noResult": "Hiçbir şey bulunamadı"
+  "noResult": "Hiçbir şey bulunamadı",
+  "home": "Ev",
+  "profile": "Profil",
+  "offlineAlert": "Çevrimdışısınız. İnternet bağlantınızı kontrol edin."
 }

@@ -37,5 +37,8 @@
   "users": "Benutzer",
   "postAddedSuccessfully": "Beitrag erfolgreich hinzugefügt",
   "addPost": "Beitrag hinzufügen",
-  "noResult": "Nichts gefunden!"
+  "noResult": "Nichts gefunden!",
+  "home": "Heim",
+  "profile": "Profil",
+  "offlineAlert": "Sie sind offline. Überprüfen Sie Ihre Internetverbindung."
 }

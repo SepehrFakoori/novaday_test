@@ -8,7 +8,7 @@ class AppLightColors {
   // Layers
   static const backgroundPrimaryColor = Color(0xffF5F7FA);
   static const backgroundSecondaryColor = Color(0xffFFFFFF);
-  static const backgroundTertiaryColor = Color(0xffF8F8F8);
+  static const backgroundTertiaryColor = Color(0xffF6F6F6);
 
   // Border
   static const defaultBorderColor = Color(0xffEDEDED);

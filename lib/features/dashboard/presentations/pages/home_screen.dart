@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:novaday_test/core/constants/constants.dart';
@@ -10,6 +9,7 @@ import 'package:novaday_test/core/widgets/custom_snack_bar.dart';
 import 'package:novaday_test/features/dashboard/domain/repository/home_repository.dart';
 import 'package:novaday_test/features/dashboard/presentations/widgets/dashboard_custom_app_bar.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/post_entity/post_entity.dart';
+import 'package:share_plus/share_plus.dart';
 
 class HomeScreen extends StatelessWidget {
   final HomeRepository homeRepository;
@@ -87,10 +87,19 @@ class HomeScreen extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          homeRepository.addPost().then(
+          homeRepository
+              .addPost()
+              .then(
                 (_) => customFlushBar(context,
                     messageText: context.localization.postAddedSuccessfully,
                     isError: false),
+              )
+              .onError(
+                (error, stackTrace) => customFlushBar(
+                  context,
+                  messageText: context.localization.offlineAlert,
+                  isError: true,
+                ),
               );
         },
         label: Directionality(
@@ -129,6 +138,9 @@ class PostCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onLongPress: () {
+        Share.share(post.body!, subject: post.title);
+      },
       onTap: () {
         Navigator.pushNamed(
           context,

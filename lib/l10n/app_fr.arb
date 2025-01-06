@@ -37,5 +37,8 @@
   "users": "Utilisateurs",
   "postAddedSuccessfully": "Message ajouté avec succès",
   "addPost": "Ajouter un message",
-  "noResult": "Rien trouvé"
+  "noResult": "Rien trouvé",
+  "home": "Maison",
+  "profile": "Profil",
+  "offlineAlert": "Vous êtes hors ligne. Vérifiez votre connexion Internet."
 }

@@ -53,7 +53,7 @@ class _SplashScreenState extends State<SplashScreen> {
             biometricAuthIsOff: () =>
                 context.read<SplashCubit>().checkData(),
             dataIsInDatabase: () => Navigator.pushReplacementNamed(
-                context, AppRoutes.homeScreen),
+                context, AppRoutes.mainScreen),
             dataIsNotInDatabase: () {
               context.read<SplashCubit>().getData();
               // return Navigator.pushReplacementNamed(
