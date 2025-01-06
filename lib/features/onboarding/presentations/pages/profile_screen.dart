@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
@@ -167,7 +168,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(
                                           AppBorderRadius.br48),
-                                      child: Image.file(
+                                      child: kIsWeb ? Image.network(pickedImage, fit: BoxFit.cover,): Image.file(
                                         File(pickedImage),
                                         fit: BoxFit.cover,
                                       ),

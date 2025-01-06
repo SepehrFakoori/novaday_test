@@ -10,6 +10,7 @@ import 'package:novaday_test/features/auth/presentations/pages/otp_screen.dart';
 import 'package:novaday_test/features/auth/presentations/pages/biometric_auth_screen.dart';
 import 'package:novaday_test/features/auth/presentations/utils/login_arguments.dart';
 import 'package:novaday_test/features/dashboard/domain/repository/home_repository.dart';
+import 'package:novaday_test/features/dashboard/presentations/pages/main_screen.dart';
 import 'package:novaday_test/features/onboarding/domain/repository/post_repository.dart';
 import 'package:novaday_test/features/dashboard/presentations/pages/comments_screen.dart';
 import 'package:novaday_test/features/dashboard/presentations/pages/home_screen.dart';
@@ -66,10 +67,15 @@ class RouterService {
           builder: (_) => const BiometricAuthScreen(),
         );
 
+      case AppRoutes.mainScreen:
+        return MaterialPageRoute(
+          builder: (_) => const MainScreen(),
+        );
+
       case AppRoutes.profileScreen:
         return MaterialPageRoute(
-          builder: (_) => const ProfileScreen(
-              navigateFrom: NavigateProfileFromEnum.dashboard),
+          builder: (_) => ProfileScreen(
+              navigateFrom: args as NavigateProfileFromEnum),
         );
 
       case AppRoutes.homeScreen:

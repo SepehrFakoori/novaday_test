@@ -1,10 +1,12 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:novaday_test/core/constants/constants.dart';
 import 'package:novaday_test/core/constants/hive_constants/hive_constants.dart';
+import 'package:novaday_test/core/enums/NavigateProfileFromEnum.dart';
 import 'package:novaday_test/core/extensions/extensions.dart';
 import 'package:novaday_test/core/widgets/widgets.dart';
 import 'package:novaday_test/features/auth/presentations/cubits/otp_cubit.dart';
@@ -125,11 +127,19 @@ class _OtpScreenState extends State<OtpScreen> {
                         hapticFeedbackType: HapticFeedbackType.lightImpact,
                         onCompleted: (pin) {
                           if (pin == '2222') {
-                            _savePhoneNumber();
-                            Navigator.pushNamedAndRemoveUntil(
+                            if (kIsWeb) {
+                              Navigator.pushNamed(
                                 context,
-                                AppRoutes.setBiometricAuthScreen,
-                                (Route<dynamic> route) => false);
+                                AppRoutes.profileScreen,
+                                arguments: NavigateProfileFromEnum.onboarding,
+                              );
+                            } else {
+                              _savePhoneNumber();
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context,
+                                  AppRoutes.setBiometricAuthScreen,
+                                  (Route<dynamic> route) => false);
+                            }
                           } else {
                             debugPrint('onCompleted: $pin');
                           }
@@ -288,17 +298,3 @@ class SmsRetrieverImpl implements SmsRetriever {
 //     ),
 //   );
 // }
-
-//floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-//         floatingActionButton: CustomFilledButton(
-//           buttonText: context.localization.continueButtonTitle,
-//           buttonState: ButtonStateEnum.active,
-//           onPressed: () {
-//             if (kIsWeb) {
-//               Navigator.pushNamed(context, AppRoutes.setLocaleScreen);
-//             } else {
-//               Navigator.pushReplacementNamed(
-//                   context, AppRoutes.setBiometricAuthScreen);
-//             }
-//           },
-//         ),

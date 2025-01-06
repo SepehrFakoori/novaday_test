@@ -15,4 +15,10 @@ class AppIcons {
   static const uaeFlag = '$_basePath/uae_flag.svg';
   static const turkeyFlag = '$_basePath/turkey_flag.svg';
   static const iranFlag = '$_basePath/iran_flag.svg';
+
+  // Navigation Buttons Icon
+  static const homeActive = '$_basePath/home_active.svg';
+  static const homeDeActive = '$_basePath/home_deactive.svg';
+  static const profileActive = '$_basePath/profile_active.svg';
+  static const profileDeActive = '$_basePath/profile_deactive.svg';
 }

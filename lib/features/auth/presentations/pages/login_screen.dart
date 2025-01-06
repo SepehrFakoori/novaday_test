@@ -19,6 +19,9 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   late FocusNode _focusNode;
 
+  ButtonStateEnum buttonState = ButtonStateEnum.deActive;
+  final isShowButton = ValueNotifier<ButtonStateEnum>(ButtonStateEnum.deActive);
+
   CountryEntity selectedCountry = CountryEntity(
     countryName: "فارسی",
     countryLanguage: "Persian",
@@ -60,22 +63,11 @@ class _LoginScreenState extends State<LoginScreen> {
   void _submitForm(String countryCode, String phoneNumber) {
     if (_formKey.currentState?.validate() ?? false) {
       _formKey.currentState?.save();
-      customFlushBar(
-        context,
-        messageText: 'Success',
-        isError: false,
-      );
       Navigator.pushReplacementNamed(
         context,
         AppRoutes.otpScreen,
         arguments:
             LoginArguments(countryCode: countryCode, phoneNumber: phoneNumber),
-      );
-    } else {
-      customFlushBar(
-        context,
-        messageText: 'Please fix the errors',
-        isError: true,
       );
     }
   }
@@ -98,22 +90,54 @@ class _LoginScreenState extends State<LoginScreen> {
                   controller: phoneController,
                   showSelectCountryBottomSheet: showCountryCodeBottomSheet,
                   selectedCountry: selectedCountry,
+                  onChanged: (String value) {
+                    if(value.isNotEmpty) {
+                      if(value.length >= 7) {
+                        if (value.length <
+                            selectedCountry.phoneNumberLength!.toInt()) {
+                        //  buttonState = ButtonStateEnum.deActive;
+                          isShowButton.value = ButtonStateEnum.deActive;
+                        }
+                      //  buttonState = ButtonStateEnum.active;
+                        isShowButton.value = ButtonStateEnum.active;
+                      //  setState(() {});
+                      }
+                    }
+                    // if (value.isEmpty) {
+                    //     buttonState = ButtonStateEnum.deActive;
+                    //     return;
+                    // }
+                    // if (value.length <
+                    //     selectedCountry.phoneNumberLength!.toInt()) {
+                    //     buttonState = ButtonStateEnum.deActive;
+                    //     return;
+                    // }
+                    // if (value.length >= 7) {
+                    //
+                    // }
+                    //   buttonState = ButtonStateEnum.active;
+                    // setState(() {
+                    //
+                    // });
+                  },
                 ),
               ],
             ),
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: CustomFilledButton(
-          buttonText: context.localization.continueButtonTitle,
-          buttonState: ButtonStateEnum.active,
-          onPressed: () {
-            _submitForm(
-              selectedCountry.countryCode.toString(),
-              phoneController.text,
-            );
-          },
-        ),
+        floatingActionButton: ValueListenableBuilder(valueListenable: isShowButton, builder: (context, value, child) {
+          return CustomFilledButton(
+            buttonText: context.localization.continueButtonTitle,
+            buttonState: value,
+            onPressed: () {
+              _submitForm(
+                selectedCountry.countryCode.toString(),
+                phoneController.text,
+              );
+            },
+          );
+        },),
       ),
     );
   }
