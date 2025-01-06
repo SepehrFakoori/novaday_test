@@ -148,5 +148,3 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
-
-Future<void> fetchPostDataFromApi() async {}

@@ -168,10 +168,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(
                                           AppBorderRadius.br48),
-                                      child: kIsWeb ? Image.network(pickedImage, fit: BoxFit.cover,): Image.file(
-                                        File(pickedImage),
-                                        fit: BoxFit.cover,
-                                      ),
+                                      child: kIsWeb
+                                          ? Image.network(
+                                              pickedImage,
+                                              fit: BoxFit.cover,
+                                            )
+                                          : Image.file(
+                                              File(pickedImage),
+                                              fit: BoxFit.cover,
+                                            ),
                                     ),
                                   ),
                                 ),
@@ -538,10 +543,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 .then(
               (_) {
                 if (context.mounted) {
-                  customFlushBar(context, messageText: 'Done', isError: false);
+                  customFlushBar(
+                    context,
+                    messageText: context.localization.savedSuccessfully,
+                    isError: false,
+                  );
                 }
               },
             );
+            widget.navigateFrom == NavigateProfileFromEnum.onboarding
+                ? Navigator.pushNamed(context, AppRoutes.mainScreen)
+                : null;
           },
         ),
       ),

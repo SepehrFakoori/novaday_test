@@ -40,5 +40,6 @@
   "noResult": "Nichts gefunden!",
   "home": "Heim",
   "profile": "Profil",
-  "offlineAlert": "Sie sind offline. Überprüfen Sie Ihre Internetverbindung."
+  "offlineAlert": "Sie sind offline. Überprüfen Sie Ihre Internetverbindung.",
+  "saveSuccess": "Erfolgreich gespeichert"
 }
