@@ -1,0 +1,1 @@
+enum NavigateProfileFromEnum { onboarding, dashboard }
