@@ -67,7 +67,7 @@ class SettingsScreen extends StatelessWidget {
                       child: Row(
                         children: [
                           Icon(
-                            Icons.person,
+                            Icons.person_outline,
                             color: context.colorScheme.primary,
                           ),
                           const SizedBox(width: AppSpacing.sp16),
@@ -134,7 +134,7 @@ class SettingsScreen extends StatelessWidget {
                             child: Row(
                               children: [
                                 Icon(
-                                  Icons.light_mode,
+                                  Icons.light_mode_outlined,
                                   color: context.colorScheme.primary,
                                 ),
                                 const SizedBox(width: AppSpacing.sp16),
@@ -182,7 +182,7 @@ class SettingsScreen extends StatelessWidget {
                             child: Row(
                               children: [
                                 Icon(
-                                  Icons.language,
+                                  Icons.language_outlined,
                                   color: context.colorScheme.primary,
                                 ),
                                 const SizedBox(width: AppSpacing.sp16),

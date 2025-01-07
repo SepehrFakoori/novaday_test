@@ -34,6 +34,8 @@ class _OtpScreenState extends State<OtpScreen> {
   int _remainingSeconds = AppConstants.timerCount;
   bool _isButtonVisible = false;
 
+  bool hasError = false;
+
   @override
   void initState() {
     super.initState();
@@ -119,11 +121,6 @@ class _OtpScreenState extends State<OtpScreen> {
                         separatorBuilder: (index) => const SizedBox(
                           width: AppSpacing.sp8,
                         ),
-                        validator: (value) {
-                          return value == '2222'
-                              ? context.localization.otpCorrect
-                              : context.localization.otpIncorrect;
-                        },
                         hapticFeedbackType: HapticFeedbackType.lightImpact,
                         onCompleted: (pin) {
                           if (pin == '2222') {
@@ -141,10 +138,16 @@ class _OtpScreenState extends State<OtpScreen> {
                                   (Route<dynamic> route) => false);
                             }
                           } else {
+                            setState(() {
+                              hasError = true;
+                            });
                             debugPrint('onCompleted: $pin');
                           }
                         },
                         onChanged: (value) {
+                          setState(() {
+                            hasError = false;
+                          });
                           debugPrint('onChanged: $value');
                         },
                         cursor: Column(
@@ -174,8 +177,11 @@ class _OtpScreenState extends State<OtpScreen> {
                             color: context.colorScheme.secondary,
                             borderRadius:
                                 BorderRadius.circular(AppBorderRadius.br8),
-                            border:
-                                Border.all(color: context.colorScheme.primary),
+                            border: Border.all(
+                              color: hasError
+                                  ? context.colorScheme.error
+                                  : context.colorScheme.primary,
+                            ),
                           ),
                         ),
                         errorPinTheme: defaultPinTheme.copyBorderWith(
@@ -183,6 +189,16 @@ class _OtpScreenState extends State<OtpScreen> {
                         ),
                       ),
                     ),
+                    const SizedBox(height: AppSpacing.sp8),
+                    hasError
+                        ? Text(
+                            context.localization.otpIncorrect,
+                            style: context.textTheme.labelLarge!.copyWith(
+                              color: context.colorScheme.error,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          )
+                        : const SizedBox(),
                     const SizedBox(height: AppSpacing.sp40),
                     _isButtonVisible
                         ? TextButton(

@@ -98,27 +98,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         //  buttonState = ButtonStateEnum.deActive;
                           isShowButton.value = ButtonStateEnum.deActive;
                         }
-                      //  buttonState = ButtonStateEnum.active;
                         isShowButton.value = ButtonStateEnum.active;
-                      //  setState(() {});
                       }
                     }
-                    // if (value.isEmpty) {
-                    //     buttonState = ButtonStateEnum.deActive;
-                    //     return;
-                    // }
-                    // if (value.length <
-                    //     selectedCountry.phoneNumberLength!.toInt()) {
-                    //     buttonState = ButtonStateEnum.deActive;
-                    //     return;
-                    // }
-                    // if (value.length >= 7) {
-                    //
-                    // }
-                    //   buttonState = ButtonStateEnum.active;
-                    // setState(() {
-                    //
-                    // });
                   },
                 ),
               ],

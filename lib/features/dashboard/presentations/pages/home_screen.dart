@@ -87,14 +87,17 @@ class HomeScreen extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: context.colorScheme.primary,
         onPressed: () {
           homeRepository.addPost().then(
             (_) async {
               // var box = Hive.box<bool>(HiveBoxConstants.settingBox);
               // await box.put(HiveKeyConstants.dataKey, true);
-              return customFlushBar(context,
-                  messageText: context.localization.postAddedSuccessfully,
-                  isError: false);
+              return customFlushBar(
+                context,
+                messageText: context.localization.postAddedSuccessfully,
+                isError: false,
+              );
             },
           );
         },
@@ -105,14 +108,14 @@ class HomeScreen extends StatelessWidget {
             children: [
               Icon(
                 Icons.add,
-                color: context.colorScheme.onSurface,
+                color: context.colorScheme.onPrimary,
               ),
               const SizedBox(width: AppSpacing.sp4),
               Text(
                 context.localization.addPost,
                 style: context.textTheme.titleMedium!.copyWith(
                   fontWeight: FontWeight.w600,
-                  color: context.colorScheme.onSurface,
+                  color: context.colorScheme.onPrimary,
                 ),
               ),
             ],

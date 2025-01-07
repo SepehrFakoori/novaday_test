@@ -28,7 +28,7 @@ Flushbar customFlushBar(BuildContext context,
     borderWidth: AppBorderWeight.lg1,
     icon: isError
         ? Icon(
-            Icons.cancel,
+            Icons.cancel_outlined,
             color: context.colorScheme.onError,
           )
         : Icon(

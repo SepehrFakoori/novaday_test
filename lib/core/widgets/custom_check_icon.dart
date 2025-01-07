@@ -12,7 +12,7 @@ class CheckIconWidget extends StatelessWidget {
     return Offstage(
       offstage: !isActive,
       child: Icon(
-        Icons.check_circle,
+        Icons.check_circle_outline,
         color: context.colorScheme.primary,
         size: AppHeight.h24,
       ),

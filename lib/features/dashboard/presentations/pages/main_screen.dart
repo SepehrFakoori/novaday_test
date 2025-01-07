@@ -112,7 +112,7 @@ class _MainScreenState extends State<MainScreen> {
                               color: context.colorScheme.secondaryContainer,
                             ),
                             child: Icon(
-                              Icons.settings,
+                              Icons.settings_outlined,
                               color: context.colorScheme.primary,
                             ),
                           ),
@@ -138,7 +138,7 @@ class _MainScreenState extends State<MainScreen> {
                               vertical: AppSpacing.sp4 + 2,
                             ),
                             child: Icon(
-                              Icons.settings,
+                              Icons.settings_outlined,
                               color: context.colorScheme.onSecondaryContainer,
                             ),
                           ),
