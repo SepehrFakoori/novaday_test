@@ -201,10 +201,13 @@ class PostSearchDelegate extends SearchDelegate {
 
   @override
   List<Widget>? buildActions(BuildContext context) => [
-        IconButton(
-          icon: const Icon(Icons.clear),
-          onPressed: () => query.isEmpty ? close(context, null) : query = '',
-        ),
+        query.isNotEmpty
+            ? IconButton(
+                icon: const Icon(Icons.clear),
+                onPressed: () =>
+                    query.isEmpty ? close(context, null) : query = '',
+              )
+            : const SizedBox(),
       ];
 
   @override
