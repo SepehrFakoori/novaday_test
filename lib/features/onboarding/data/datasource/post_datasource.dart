@@ -23,7 +23,6 @@ class PostDataSource extends IPostDataSource {
       if (box.values.isEmpty) {
         var response = await _dio.get("posts/");
         var postList = response.data as List<dynamic>;
-        log("${postList.map((x) => x)}");
         for (var item in postList) {
           posts.add(
             PostEntity(
@@ -34,11 +33,6 @@ class PostDataSource extends IPostDataSource {
             ),
           );
         }
-        // List<PostEntity> posts =
-        // response.data.map<PostEntity>((map) => PostEntity.fromJson(map));
-        // List<PostEntity> posts =  response.data
-        //     .map<PostEntity>((jsonObject) => PostEntity.fromJson(jsonObject))
-        //     .toList;
         for (PostEntity post in posts) {
           box.add(post);
         }

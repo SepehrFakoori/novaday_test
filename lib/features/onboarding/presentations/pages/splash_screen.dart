@@ -22,11 +22,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final splashCubit = context.read<SplashCubit>();
     return Scaffold(
       backgroundColor: context.colorScheme.surface,
       body: BlocListener<SplashCubit, SplashState>(
         listener: (context, state) {
+          print('SplashScreen: $state');
           state.whenOrNull(
             userRegistered: () =>
                 context.read<SplashCubit>().checkBiometricStatus(),
@@ -50,10 +50,9 @@ class _SplashScreenState extends State<SplashScreen> {
                 // print(ex.stacktrace);
               }
             },
-            biometricAuthIsOff: () =>
-                context.read<SplashCubit>().checkData(),
-            dataIsInDatabase: () => Navigator.pushReplacementNamed(
-                context, AppRoutes.mainScreen),
+            biometricAuthIsOff: () => context.read<SplashCubit>().checkData(),
+            dataIsInDatabase: () =>
+                Navigator.pushReplacementNamed(context, AppRoutes.mainScreen),
             dataIsNotInDatabase: () {
               context.read<SplashCubit>().getData();
               // return Navigator.pushReplacementNamed(
@@ -63,14 +62,16 @@ class _SplashScreenState extends State<SplashScreen> {
               setState(() {
                 hasInternetConnection = false;
               });
-            }
+            },
           );
         },
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
             _appLogoSection(),
-            hasInternetConnection ? _loadingSection(context) : _failedSection(context),
+            hasInternetConnection
+                ? _loadingSection(context)
+                : _failedSection(context),
             _appVersionNumberSection(context),
           ],
         ),
@@ -81,6 +82,25 @@ class _SplashScreenState extends State<SplashScreen> {
   Center _appLogoSection() {
     return Center(
       child: SvgPicture.asset(AppIcons.lightAppLogo),
+    );
+  }
+
+  Positioned _loadingSection(BuildContext context) {
+    return Positioned(
+      top: context.height * 0.5 + AppHeight.h92,
+      child: SizedBox(
+        width: context.width,
+        height: context.height * 0.5,
+        child: const Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox.square(
+              dimension: AppHeight.h36,
+              child: CircularProgressIndicator(),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -100,25 +120,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 color: context.colorScheme.onSecondaryContainer,
               ),
             ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Positioned _loadingSection(BuildContext context) {
-    return Positioned(
-      top: context.height * 0.5 + AppHeight.h92,
-      child: SizedBox(
-        width: context.width,
-        height: context.height * 0.5,
-        child: const Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox.square(
-              dimension: AppHeight.h36,
-              child: Icon(Icons.refresh),
-            ),
+            // _reloadSection(context),
           ],
         ),
       ),

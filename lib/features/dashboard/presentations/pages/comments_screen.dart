@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:novaday_test/core/constants/constants.dart';
 import 'package:novaday_test/core/constants/hive_constants/hive_box_constants.dart';
+import 'package:novaday_test/core/constants/hive_constants/hive_constants.dart';
 import 'package:novaday_test/core/extensions/extensions.dart';
 import 'package:novaday_test/core/widgets/widgets.dart';
 import 'package:novaday_test/features/dashboard/domain/repository/home_repository.dart';
@@ -30,16 +31,13 @@ class CommentsScreen extends StatelessWidget {
       homeRepository
           .addComment(postId)
           .then(
-            (_) => customFlushBar(context,
+            (_) async {
+              var box = Hive.box<bool>(HiveBoxConstants.settingBox);
+              await box.put(HiveKeyConstants.dataKey, true);
+              return customFlushBar(context,
                 messageText: context.localization.postAddedSuccessfully,
-                isError: false),
-          )
-          .onError(
-            (error, stackTrace) => customFlushBar(
-              context,
-              messageText: context.localization.offlineAlert,
-              isError: true,
-            ),
+                isError: false);
+            },
           );
     }
 

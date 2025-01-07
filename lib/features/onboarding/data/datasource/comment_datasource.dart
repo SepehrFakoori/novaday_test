@@ -23,7 +23,6 @@ class CommentDataSource extends ICommentDataSource {
         var response = await _dio.get("comments/");
         var commentList =
             response.data as List<dynamic>;
-        log("${commentList.map((x) => x)}");
         for (var item in commentList) {
           comments.add(
             CommentEntity(
@@ -35,12 +34,6 @@ class CommentDataSource extends ICommentDataSource {
             ),
           );
         }
-        // List<CommentEntity> comments =
-        //     response.data.map<CommentEntity>((map) => CommentEntity.fromJson(map));
-        // List<CommentEntity> comments = response.data
-        //     .map<CommentEntity>(
-        //         (jsonObject) => CommentEntity.fromJson(jsonObject))
-        //     .toList;
         for (CommentEntity comment in comments) {
           box.add(comment);
         }

@@ -22,6 +22,8 @@ import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cub
 import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit/theme_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/pages/splash_screen.dart';
 
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 void main() async {
   Injector.injector();
   await Hive.initFlutter();
@@ -60,6 +62,7 @@ class MyApp extends StatelessWidget {
                             horizontal: AppSpacing.sp0),
                     child: MaterialApp(
                       debugShowCheckedModeBanner: false,
+                      navigatorKey: navigatorKey,
                       title: 'Flutter Demo',
                       theme: themeEnum == ThemeEnum.light
                           ? LightThemeData.themeData

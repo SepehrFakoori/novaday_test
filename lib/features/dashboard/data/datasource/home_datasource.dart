@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:novaday_test/core/widgets/custom_snack_bar.dart';
 
 abstract class IHomeDataSource {
   Future<void> addPost();
@@ -20,7 +23,7 @@ class HomeDataSource extends IHomeDataSource {
         'userId': 1
       };
       await _dio.post("posts/", data: data);
-    } catch (ex) {
+    } on Exception catch (ex) {
       throw Exception(ex);
     }
   }
@@ -35,7 +38,7 @@ class HomeDataSource extends IHomeDataSource {
         'userId': 1
       };
       await _dio.post("comments/", data: data);
-    } catch (ex) {
+    } on Exception catch (ex) {
       throw Exception(ex);
     }
   }
