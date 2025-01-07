@@ -27,15 +27,18 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: context.colorScheme.surface,
       body: BlocListener<SplashCubit, SplashState>(
         listener: (context, state) {
-          print('SplashScreen: $state');
+          print("SplashScreen -----> SplashState : $state");
           state.whenOrNull(
             userRegistered: () =>
                 context.read<SplashCubit>().checkBiometricStatus(),
-            userNotRegistered: () => Navigator.pushReplacementNamed(
+            userNotRegistered: () {
+              context.read<SplashCubit>().getData();
+              return Navigator.pushReplacementNamed(
               context,
               AppRoutes.setLocaleScreen,
               arguments: NavigateProfileFromEnum.onboarding,
-            ),
+            );
+            },
             biometricAuthIsOn: () async {
               try {
                 final isAuthenticate = await LocalAuthentication()

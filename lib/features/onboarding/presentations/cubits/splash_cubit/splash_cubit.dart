@@ -17,17 +17,16 @@ class SplashCubit extends Cubit<SplashState> {
   Future<void> checkUserRegistration() async {
     try {
       final box = Hive.box<UserEntity>(HiveBoxConstants.userProfileBox);
-      final UserEntity? user = box.get(HiveKeyConstants.userProfileKey);
+      final UserEntity? user = await box.get(HiveKeyConstants.userProfileKey);
       final String fullName = user!.fullName ?? "";
       if (fullName.isEmpty) {
         emit(const SplashState.userNotRegistered());
       } else {
-        emit(const SplashState.userRegistered());
+        emit(const SplashState.userNotRegistered());
       }
     } catch (ex) {
       emit(const SplashState.userNotRegistered());
     }
-    print("checkUserRegistration: $state");
   }
 
   Future<void> checkBiometricStatus() async {
@@ -61,7 +60,7 @@ class SplashCubit extends Cubit<SplashState> {
   Future<void> getData() async {
     try {
       postRepository.fetchComments();
-        postRepository.fetchPosts();
+      postRepository.fetchPosts();
     } catch (ex) {
       emit(const SplashState.noInternetConnection());
     }

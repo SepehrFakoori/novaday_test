@@ -58,21 +58,23 @@ class MyApp extends StatelessWidget {
                 builder: (BuildContext context, BoxConstraints constraints) {
                   return MaterialApp(
                     builder: (context, child) => ResponsiveBreakpoints.builder(
-                      child: child!, breakpoints: [
-                      const Breakpoint(start: 0, end: 450, name: MOBILE),
-                      const Breakpoint(start: 451, end: 800, name: TABLET),
-                      const Breakpoint(start: 801, end: 1920, name: DESKTOP),
-                      const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
-                    ],
+                      child: child!,
+                      breakpoints: [
+                        const Breakpoint(start: 0, end: 450, name: MOBILE),
+                        const Breakpoint(start: 451, end: 800, name: TABLET),
+                        const Breakpoint(start: 801, end: 1920, name: DESKTOP),
+                        const Breakpoint(
+                            start: 1921, end: double.infinity, name: '4K'),
+                      ],
                     ),
                     debugShowCheckedModeBanner: false,
                     navigatorKey: navigatorKey,
                     title: 'Flutter Demo',
                     theme: themeEnum == ThemeEnum.light
                         ? LightThemeData.themeData
-                        .copyWith(textTheme: getTextTheme(locale))
+                            .copyWith(textTheme: getTextTheme(locale))
                         : DarkThemeData.themeData
-                        .copyWith(textTheme: getTextTheme(locale)),
+                            .copyWith(textTheme: getTextTheme(locale)),
                     localizationsDelegates: const [
                       AppLocalizations.delegate,
                       GlobalMaterialLocalizations.delegate,
@@ -82,8 +84,13 @@ class MyApp extends StatelessWidget {
                     supportedLocales: AppLocalizations.supportedLocales,
                     locale: locale,
                     onGenerateRoute: RouterService.generateRoute,
-                    initialRoute: AppRoutes.mainScreen,
-                    home: const MainScreen(),
+                    initialRoute: AppRoutes.splashScreen,
+                    home: BlocProvider(
+                      create: (context) => SplashCubit(
+                        di.resolve<PostRepository>(),
+                      ),
+                      child: const SplashScreen(),
+                    ),
                   );
                 },
               );

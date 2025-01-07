@@ -146,7 +146,7 @@ class CommentCard extends StatelessWidget {
                         child: Text(
                           "${comment.id}",
                           style: context.textTheme.titleMedium!.copyWith(
-                            color: context.colorScheme.onSurface,
+                            color: context.colorScheme.onPrimary,
                           ),
                         ),
                       ),
