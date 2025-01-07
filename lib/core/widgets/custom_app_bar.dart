@@ -6,6 +6,7 @@ import 'package:novaday_test/core/widgets/custom_icon_button.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
+    this.centerTitle = false,
     this.haveBackButton = true,
     required this.title,
     this.subtitle,
@@ -13,6 +14,7 @@ class CustomAppBar extends StatelessWidget {
     super.key,
   });
 
+  final bool centerTitle;
   final bool haveBackButton;
   final String title;
   final String? subtitle;
@@ -42,7 +44,9 @@ class CustomAppBar extends StatelessWidget {
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: !centerTitle
+                  ? CrossAxisAlignment.start
+                  : CrossAxisAlignment.center,
               children: [
                 Text(
                   title,

@@ -41,5 +41,7 @@
   "home": "Maison",
   "profile": "Profil",
   "offlineAlert": "Vous êtes hors ligne. Vérifiez votre connexion Internet.",
-  "saveSuccess": "Enregistré avec succès"
+  "saveSuccess": "Enregistré avec succès",
+  "settings": "Paramètres",
+  "saveButton": "Enregistrer"
 }

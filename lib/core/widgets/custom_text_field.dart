@@ -53,59 +53,62 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: widget.controller,
-      focusNode: widget.focusNode,
-      onFieldSubmitted: widget.onFieldSubmitted,
-      textAlign: TextAlign.start,
-      textAlignVertical: TextAlignVertical.center,
-      keyboardType: widget.textInputType,
-      obscureText: widget.isPassword ? _isObscured : false,
-      obscuringCharacter: '•',
-      style: context.textTheme.titleMedium!.copyWith(
-        color: context.colorScheme.onSecondary,
-        fontSize: 18,
-      ),
-      readOnly: widget.readOnly,
-      enableSuggestions: false,
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: context.colorScheme.secondary,
-        labelText: widget.labelText,
-        labelStyle: context.textTheme.titleMedium!.copyWith(
-          color: context.colorScheme.onSecondaryContainer,
+    return SizedBox(
+      height: AppHeight.h48,
+      child: TextFormField(
+        controller: widget.controller,
+        focusNode: widget.focusNode,
+        onFieldSubmitted: widget.onFieldSubmitted,
+        textAlign: TextAlign.start,
+        textAlignVertical: TextAlignVertical.center,
+        keyboardType: widget.textInputType,
+        obscureText: widget.isPassword ? _isObscured : false,
+        obscuringCharacter: '•',
+        style: context.textTheme.titleMedium!.copyWith(
+          color: context.colorScheme.onSecondary,
           fontSize: 18,
         ),
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: AppSpacing.sp8,
-          vertical: AppSpacing.sp4,
-        ),
-        suffixIcon: widget.isPassword
-            ? widget.controller.text.isNotEmpty
-                ? IconButton(
-                    icon: Icon(
-                      _isObscured ? Icons.visibility : Icons.visibility_off,
-                    ),
-                    onPressed: _togglePasswordVisibility,
-                  )
-                : null
-            : null,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppBorderRadius.br12),
-          borderSide: BorderSide(
-            color: context.colorScheme.error,
+        readOnly: widget.readOnly,
+        enableSuggestions: false,
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: context.colorScheme.secondary,
+          labelText: widget.labelText,
+          labelStyle: context.textTheme.titleMedium!.copyWith(
+            color: context.colorScheme.onSecondaryContainer,
+            fontSize: 18,
           ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppBorderRadius.br12),
-          borderSide: BorderSide(
-            color: context.colorScheme.primary,
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.sp8,
+            vertical: AppSpacing.sp4,
           ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppBorderRadius.br12),
-          borderSide: BorderSide(
-            color: context.colorScheme.outline,
+          suffixIcon: widget.isPassword
+              ? widget.controller.text.isNotEmpty
+                  ? IconButton(
+                      icon: Icon(
+                        _isObscured ? Icons.visibility : Icons.visibility_off,
+                      ),
+                      onPressed: _togglePasswordVisibility,
+                    )
+                  : null
+              : null,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppBorderRadius.br12),
+            borderSide: BorderSide(
+              color: context.colorScheme.error,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppBorderRadius.br12),
+            borderSide: BorderSide(
+              color: context.colorScheme.primary,
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppBorderRadius.br12),
+            borderSide: BorderSide(
+              color: context.colorScheme.outline,
+            ),
           ),
         ),
       ),

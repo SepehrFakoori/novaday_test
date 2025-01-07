@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:novaday_test/core/constants/constants.dart';
+import 'package:novaday_test/core/enums/NavigateProfileFromEnum.dart';
 import 'package:novaday_test/core/enums/enums.dart';
 import 'package:novaday_test/core/extensions/extensions.dart';
 import 'package:novaday_test/core/widgets/widgets.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit/theme_cubit.dart';
 
 class SetThemeScreen extends StatelessWidget {
-  const SetThemeScreen({super.key});
+  const SetThemeScreen({super.key, required this.navigateFrom});
+
+  final NavigateProfileFromEnum navigateFrom;
 
   @override
   Widget build(BuildContext context) {
@@ -54,10 +57,12 @@ class SetThemeScreen extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: CustomFilledButton(
-        buttonText: context.localization.continueButtonTitle,
+        buttonText: navigateFrom == NavigateProfileFromEnum.onboarding
+            ? context.localization.continueButtonTitle
+            : context.localization.saveButton,
         buttonState: ButtonStateEnum.active,
         onPressed: () {
-          onNextButtonClick(context);
+          onButtonClick(context);
         },
       ),
     );
@@ -67,7 +72,9 @@ class SetThemeScreen extends StatelessWidget {
     context.read<ThemeCubit>().changeTheme(themeEnum: themeEnum);
   }
 
-  void onNextButtonClick(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.loginScreen);
+  void onButtonClick(BuildContext context) {
+    navigateFrom == NavigateProfileFromEnum.onboarding
+        ? Navigator.pushNamed(context, AppRoutes.loginScreen)
+        : Navigator.pop(context);
   }
 }

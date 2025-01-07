@@ -58,8 +58,8 @@ class HomeScreen extends StatelessWidget {
                             IconButton(
                               onPressed: () => showSearch(
                                 context: context,
-                                delegate:
-                                    PostSearchDelegate(postList: postList),
+                                delegate: PostSearchDelegate(context,
+                                    postList: postList),
                               ),
                               icon: const Icon(Icons.search),
                             ),
@@ -88,16 +88,14 @@ class HomeScreen extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          homeRepository
-              .addPost()
-              .then(
-                (_) async {
-                  var box = Hive.box<bool>(HiveBoxConstants.settingBox);
-                  await box.put(HiveKeyConstants.dataKey, true);
-                  return customFlushBar(context,
-                    messageText: context.localization.postAddedSuccessfully,
-                    isError: false);
-                },
+          homeRepository.addPost().then(
+            (_) async {
+              // var box = Hive.box<bool>(HiveBoxConstants.settingBox);
+              // await box.put(HiveKeyConstants.dataKey, true);
+              return customFlushBar(context,
+                  messageText: context.localization.postAddedSuccessfully,
+                  isError: false);
+            },
           );
         },
         label: Directionality(
@@ -191,9 +189,15 @@ class PostCard extends StatelessWidget {
 
 class PostSearchDelegate extends SearchDelegate {
   final List<PostEntity> postList;
+  final BuildContext context;
   List<PostEntity> results = <PostEntity>[];
 
-  PostSearchDelegate({required this.postList});
+  PostSearchDelegate(this.context, {required this.postList});
+
+  @override
+  TextStyle? get searchFieldStyle => context.textTheme.titleLarge!.copyWith(
+        color: context.colorScheme.onSecondary,
+      );
 
   @override
   List<Widget>? buildActions(BuildContext context) => [

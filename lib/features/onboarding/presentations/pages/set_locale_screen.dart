@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:novaday_test/core/constants/constants.dart';
+import 'package:novaday_test/core/enums/NavigateProfileFromEnum.dart';
 import 'package:novaday_test/core/enums/enums.dart';
 import 'package:novaday_test/core/extensions/extensions.dart';
 import 'package:novaday_test/core/utils/language_manager.dart';
@@ -10,7 +11,9 @@ import 'package:novaday_test/features/onboarding/domain/entities/country_entity.
 import 'package:novaday_test/features/onboarding/presentations/cubits/locale_cubit/locale_cubit.dart';
 
 class SetLocaleScreen extends StatelessWidget {
-  const SetLocaleScreen({super.key});
+  const SetLocaleScreen({super.key, required this.navigateFrom});
+
+  final NavigateProfileFromEnum navigateFrom;
 
   @override
   Widget build(BuildContext context) {
@@ -50,17 +53,25 @@ class SetLocaleScreen extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: CustomFilledButton(
-        buttonText: context.localization.continueButtonTitle,
+        buttonText: navigateFrom == NavigateProfileFromEnum.onboarding
+            ? context.localization.continueButtonTitle
+            : context.localization.saveButton,
         buttonState: ButtonStateEnum.active,
         onPressed: () {
-          onNextButtonClick(context);
+          onButtonClick(context);
         },
       ),
     );
   }
 
-  void onNextButtonClick(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.setThemeScreen);
+  void onButtonClick(BuildContext context) {
+    navigateFrom == NavigateProfileFromEnum.onboarding
+        ? Navigator.pushNamed(
+            context,
+            AppRoutes.setThemeScreen,
+            arguments: navigateFrom,
+          )
+        : Navigator.pop(context);
   }
 }
 

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:novaday_test/core/constants/constants.dart';
+import 'package:novaday_test/core/enums/NavigateProfileFromEnum.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
@@ -31,7 +32,10 @@ class _SplashScreenState extends State<SplashScreen> {
             userRegistered: () =>
                 context.read<SplashCubit>().checkBiometricStatus(),
             userNotRegistered: () => Navigator.pushReplacementNamed(
-                context, AppRoutes.setLocaleScreen),
+              context,
+              AppRoutes.setLocaleScreen,
+              arguments: NavigateProfileFromEnum.onboarding,
+            ),
             biometricAuthIsOn: () async {
               try {
                 final isAuthenticate = await LocalAuthentication()

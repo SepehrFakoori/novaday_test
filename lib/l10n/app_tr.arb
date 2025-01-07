@@ -41,5 +41,7 @@
   "home": "Ev",
   "profile": "Profil",
   "offlineAlert": "Çevrimdışısınız. İnternet bağlantınızı kontrol edin.",
-  "saveSuccess": "Başarıyla kaydedildi"
+  "saveSuccess": "Başarıyla kaydedildi",
+  "settings": "Ayarlar",
+  "saveButton": "Kaydet"
 }

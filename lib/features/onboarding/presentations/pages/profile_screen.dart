@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:novaday_test/core/constants/constants.dart';
@@ -10,6 +11,7 @@ import 'package:novaday_test/core/enums/enums.dart';
 import 'package:novaday_test/core/extensions/extensions.dart';
 import 'package:novaday_test/core/widgets/widgets.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/user_entity/user_entity.dart';
+import 'package:novaday_test/main.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key, required this.navigateFrom});
@@ -145,7 +147,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: [
                   CustomAppBar(
                     title: context.localization.completeProfile,
-                    haveBackButton: false,
+                    haveBackButton: widget.navigateFrom ==
+                        NavigateProfileFromEnum.dashboard,
                   ),
                   const SizedBox(height: AppSpacing.sp16),
                   widget.navigateFrom == NavigateProfileFromEnum.onboarding
@@ -525,7 +528,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: CustomFilledButton(
-          buttonText: context.localization.continueButtonTitle,
+          buttonText: navigatorKey == NavigateProfileFromEnum.onboarding
+              ? context.localization.continueButtonTitle
+              : context.localization.saveButton,
           buttonState: buttonState,
           onPressed: () {
             var box = Hive.box<UserEntity>(HiveBoxConstants.userProfileBox);
