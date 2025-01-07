@@ -49,7 +49,7 @@ class ConnectivityInterceptor extends Interceptor {
             ),
           );
         }
-      } on Exception catch (ex) {
+      } on Exception {
         customFlushBar(
           context,
           messageText: context.localization.offlineAlert,

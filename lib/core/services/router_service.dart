@@ -38,12 +38,16 @@ class RouterService {
 
       case AppRoutes.setLocaleScreen:
         return MaterialPageRoute(
-          builder: (_) => const SetLocaleScreen(),
+          builder: (_) => SetLocaleScreen(
+            navigateFrom: args as NavigateProfileFromEnum,
+          ),
         );
 
       case AppRoutes.setThemeScreen:
         return MaterialPageRoute(
-          builder: (_) => const SetThemeScreen(),
+          builder: (_) => SetThemeScreen(
+            navigateFrom: args as NavigateProfileFromEnum,
+          ),
         );
 
       case AppRoutes.loginScreen:
@@ -74,8 +78,8 @@ class RouterService {
 
       case AppRoutes.profileScreen:
         return MaterialPageRoute(
-          builder: (_) => ProfileScreen(
-              navigateFrom: args as NavigateProfileFromEnum),
+          builder: (_) =>
+              ProfileScreen(navigateFrom: args as NavigateProfileFromEnum),
         );
 
       case AppRoutes.homeScreen:
@@ -94,7 +98,11 @@ class RouterService {
         );
 
       default:
-        return MaterialPageRoute(builder: (_) => const SetLocaleScreen());
+        return MaterialPageRoute(
+          builder: (_) => const SetLocaleScreen(
+            navigateFrom: NavigateProfileFromEnum.onboarding,
+          ),
+        );
     }
   }
 }

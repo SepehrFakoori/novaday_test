@@ -17,7 +17,7 @@ class SplashCubit extends Cubit<SplashState> {
   Future<void> checkUserRegistration() async {
     try {
       final box = Hive.box<UserEntity>(HiveBoxConstants.userProfileBox);
-      final UserEntity? user = await box.get(HiveKeyConstants.userProfileKey);
+      final UserEntity? user = box.get(HiveKeyConstants.userProfileKey);
       final String fullName = user!.fullName ?? "";
       if (fullName.isEmpty) {
         emit(const SplashState.userNotRegistered());

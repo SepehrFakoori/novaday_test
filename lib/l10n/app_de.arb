@@ -41,5 +41,7 @@
   "home": "Heim",
   "profile": "Profil",
   "offlineAlert": "Sie sind offline. Überprüfen Sie Ihre Internetverbindung.",
-  "saveSuccess": "Erfolgreich gespeichert"
+  "saveSuccess": "Erfolgreich gespeichert",
+  "settings": "Einstellungen",
+    "saveButton": "Speichern"
 }

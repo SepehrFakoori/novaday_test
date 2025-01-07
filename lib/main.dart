@@ -7,12 +7,12 @@ import 'package:kiwi/kiwi.dart';
 import 'package:novaday_test/core/constants/constants.dart';
 import 'package:novaday_test/core/constants/hive_constants/hive_constants.dart';
 import 'package:novaday_test/core/enums/enums.dart';
-import 'package:novaday_test/core/extensions/extensions.dart';
 import 'package:novaday_test/core/injector/injector.dart';
 import 'package:novaday_test/core/services/router_service.dart';
 import 'package:novaday_test/core/theme/app_dark_theme.dart';
 import 'package:novaday_test/core/theme/app_light_theme.dart';
 import 'package:novaday_test/core/theme/app_text_styles.dart';
+import 'package:novaday_test/features/dashboard/presentations/pages/main_screen.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/comment_entity/comment_entity.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/post_entity/post_entity.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/user_entity/user_entity.dart';
@@ -21,6 +21,7 @@ import 'package:novaday_test/features/onboarding/presentations/cubits/locale_cub
 import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/theme_cubit/theme_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/pages/splash_screen.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -55,37 +56,34 @@ class MyApp extends StatelessWidget {
             builder: (context, themeEnum) {
               return LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
-                  return Padding(
-                    padding: constraints.maxWidth > 840
-                        ? EdgeInsets.symmetric(horizontal: context.width * 0.3)
-                        : const EdgeInsets.symmetric(
-                            horizontal: AppSpacing.sp0),
-                    child: MaterialApp(
-                      debugShowCheckedModeBanner: false,
-                      navigatorKey: navigatorKey,
-                      title: 'Flutter Demo',
-                      theme: themeEnum == ThemeEnum.light
-                          ? LightThemeData.themeData
-                              .copyWith(textTheme: getTextTheme(locale))
-                          : DarkThemeData.themeData
-                              .copyWith(textTheme: getTextTheme(locale)),
-                      localizationsDelegates: const [
-                        AppLocalizations.delegate,
-                        GlobalMaterialLocalizations.delegate,
-                        GlobalWidgetsLocalizations.delegate,
-                        GlobalCupertinoLocalizations.delegate,
-                      ],
-                      supportedLocales: AppLocalizations.supportedLocales,
-                      locale: locale,
-                      onGenerateRoute: RouterService.generateRoute,
-                      initialRoute: AppRoutes.splashScreen,
-                      home: BlocProvider(
-                        create: (context) => SplashCubit(
-                          di.resolve<PostRepository>(),
-                        ),
-                        child: const SplashScreen(),
-                      ),
+                  return MaterialApp(
+                    builder: (context, child) => ResponsiveBreakpoints.builder(
+                      child: child!, breakpoints: [
+                      const Breakpoint(start: 0, end: 450, name: MOBILE),
+                      const Breakpoint(start: 451, end: 800, name: TABLET),
+                      const Breakpoint(start: 801, end: 1920, name: DESKTOP),
+                      const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
+                    ],
                     ),
+                    debugShowCheckedModeBanner: false,
+                    navigatorKey: navigatorKey,
+                    title: 'Flutter Demo',
+                    theme: themeEnum == ThemeEnum.light
+                        ? LightThemeData.themeData
+                        .copyWith(textTheme: getTextTheme(locale))
+                        : DarkThemeData.themeData
+                        .copyWith(textTheme: getTextTheme(locale)),
+                    localizationsDelegates: const [
+                      AppLocalizations.delegate,
+                      GlobalMaterialLocalizations.delegate,
+                      GlobalWidgetsLocalizations.delegate,
+                      GlobalCupertinoLocalizations.delegate,
+                    ],
+                    supportedLocales: AppLocalizations.supportedLocales,
+                    locale: locale,
+                    onGenerateRoute: RouterService.generateRoute,
+                    initialRoute: AppRoutes.mainScreen,
+                    home: const MainScreen(),
                   );
                 },
               );

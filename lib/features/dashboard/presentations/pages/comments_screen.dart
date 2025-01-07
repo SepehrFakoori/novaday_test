@@ -32,8 +32,8 @@ class CommentsScreen extends StatelessWidget {
           .addComment(postId)
           .then(
             (_) async {
-              var box = Hive.box<bool>(HiveBoxConstants.settingBox);
-              await box.put(HiveKeyConstants.dataKey, true);
+              // var box = Hive.box<bool>(HiveBoxConstants.settingBox);
+              // await box.put(HiveKeyConstants.dataKey, true);
               return customFlushBar(context,
                 messageText: context.localization.postAddedSuccessfully,
                 isError: false);
