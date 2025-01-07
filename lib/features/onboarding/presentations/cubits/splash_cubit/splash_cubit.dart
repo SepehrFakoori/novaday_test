@@ -3,6 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:novaday_test/core/constants/hive_constants/hive_constants.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/comment_entity/comment_entity.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/post_entity/post_entity.dart';
+import 'package:novaday_test/features/onboarding/domain/entities/user_entity/user_entity.dart';
 import 'package:novaday_test/features/onboarding/domain/repository/post_repository.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_state.dart';
 
@@ -15,16 +16,18 @@ class SplashCubit extends Cubit<SplashState> {
 
   Future<void> checkUserRegistration() async {
     try {
-      final box = Hive.box(HiveBoxConstants.settingBox);
-      final String theme = await box.get(HiveKeyConstants.themeKey);
-      if (theme.isNotEmpty) {
-        emit(const SplashState.userRegistered());
-      } else {
+      final box = Hive.box<UserEntity>(HiveBoxConstants.userProfileBox);
+      final UserEntity? user = await box.get(HiveKeyConstants.userProfileKey);
+      final String fullName = user!.fullName ?? "";
+      if (fullName.isEmpty) {
         emit(const SplashState.userNotRegistered());
+      } else {
+        emit(const SplashState.userRegistered());
       }
     } catch (ex) {
       emit(const SplashState.userNotRegistered());
     }
+    print("checkUserRegistration: $state");
   }
 
   Future<void> checkBiometricStatus() async {

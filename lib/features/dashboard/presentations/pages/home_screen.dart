@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:novaday_test/core/constants/constants.dart';
 import 'package:novaday_test/core/constants/hive_constants/hive_box_constants.dart';
+import 'package:novaday_test/core/constants/hive_constants/hive_constants.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
@@ -90,17 +91,14 @@ class HomeScreen extends StatelessWidget {
           homeRepository
               .addPost()
               .then(
-                (_) => customFlushBar(context,
+                (_) async {
+                  var box = Hive.box<bool>(HiveBoxConstants.settingBox);
+                  await box.put(HiveKeyConstants.dataKey, true);
+                  return customFlushBar(context,
                     messageText: context.localization.postAddedSuccessfully,
-                    isError: false),
-              )
-              .onError(
-                (error, stackTrace) => customFlushBar(
-                  context,
-                  messageText: context.localization.offlineAlert,
-                  isError: true,
-                ),
-              );
+                    isError: false);
+                },
+          );
         },
         label: Directionality(
           textDirection: TextDirection.rtl,
