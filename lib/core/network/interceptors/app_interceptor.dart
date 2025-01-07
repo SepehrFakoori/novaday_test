@@ -21,7 +21,7 @@ class ConnectivityInterceptor extends Interceptor {
       }
     } else {
       try {
-        final result = await InternetAddress.lookup('example.com');
+        final result = await InternetAddress.lookup('google.com');
         if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
           handler.next(options);
         } else {
