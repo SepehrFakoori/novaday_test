@@ -41,8 +41,8 @@ class _MainScreenState extends State<MainScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            width: 48,
-                            height: 32,
+                            width: AppHeight.h48,
+                            height: AppHeight.h32,
                             padding: const EdgeInsets.symmetric(
                               horizontal: AppSpacing.sp12,
                               vertical: AppSpacing.sp4 + 2,
@@ -69,8 +69,8 @@ class _MainScreenState extends State<MainScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            width: 48,
-                            height: 32,
+                            width: AppHeight.h48,
+                            height: AppHeight.h32,
                             padding: const EdgeInsets.symmetric(
                               horizontal: AppSpacing.sp12,
                               vertical: AppSpacing.sp4 + 2,
@@ -100,8 +100,8 @@ class _MainScreenState extends State<MainScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            width: 48,
-                            height: 32,
+                            width: AppHeight.h48,
+                            height: AppHeight.h32,
                             padding: const EdgeInsets.symmetric(
                               horizontal: AppSpacing.sp12,
                               vertical: AppSpacing.sp4 + 2,
@@ -131,8 +131,8 @@ class _MainScreenState extends State<MainScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            width: 48,
-                            height: 32,
+                            width: AppHeight.h48,
+                            height: AppHeight.h32,
                             padding: const EdgeInsets.symmetric(
                               horizontal: AppSpacing.sp12,
                               vertical: AppSpacing.sp4 + 2,
