@@ -27,7 +27,7 @@ class SettingsScreen extends StatelessWidget {
                 Text(
                   context.localization.profile,
                   style: context.textTheme.titleMedium!.copyWith(
-                    color: context.colorScheme.onSurface,
+                    color: context.colorScheme.onSecondaryContainer,
                   ),
                 ),
                 const SizedBox(height: AppSpacing.sp4),
@@ -40,60 +40,46 @@ class SettingsScreen extends StatelessWidget {
                     );
                   },
                   child: Container(
-                    width: context.width,
+                    height: AppHeight.h48,
                     decoration: BoxDecoration(
                       color: context.colorScheme.secondary,
+                      borderRadius: BorderRadius.circular(AppBorderRadius.br8),
                       border: Border.all(
                         color: context.colorScheme.outline,
                       ),
-                      borderRadius: BorderRadius.circular(AppBorderRadius.br16),
                     ),
-                    child: Container(
-                      height: AppHeight.h48,
-                      decoration: BoxDecoration(
-                        color: context.colorScheme.secondary,
-                        borderRadius:
-                            BorderRadius.circular(AppBorderRadius.br16),
-                        border: Border(
-                          bottom: BorderSide(
-                            color: context.colorScheme.outline,
-                            width: AppBorderWeight.sm,
-                          ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppLayoutGrid.margin,
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.person_outline,
+                          color: context.colorScheme.primary,
                         ),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: AppLayoutGrid.margin,
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.person_outline,
-                            color: context.colorScheme.primary,
-                          ),
-                          const SizedBox(width: AppSpacing.sp16),
-                          Expanded(
-                            child: Text(
-                              context.localization.profile,
-                              style: context.textTheme.titleMedium!.copyWith(
-                                color: context.colorScheme.onSurface,
-                              ),
+                        const SizedBox(width: AppSpacing.sp16),
+                        Expanded(
+                          child: Text(
+                            context.localization.editProfile,
+                            style: context.textTheme.titleMedium!.copyWith(
+                              color: context.colorScheme.onSurface,
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
                 const SizedBox(height: AppSpacing.sp24),
                 Text(
-                  context.localization.settings,
+                  context.localization.system,
                   style: context.textTheme.titleMedium!.copyWith(
-                    color: context.colorScheme.onSurface,
+                    color: context.colorScheme.onSecondaryContainer,
                   ),
                 ),
                 const SizedBox(height: AppSpacing.sp4),
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(AppBorderRadius.br16),
+                  borderRadius: BorderRadius.circular(AppBorderRadius.br8),
                   child: Container(
                     width: context.width,
                     decoration: BoxDecoration(
@@ -101,7 +87,7 @@ class SettingsScreen extends StatelessWidget {
                       border: Border.all(
                         color: context.colorScheme.outline,
                       ),
-                      borderRadius: BorderRadius.circular(AppBorderRadius.br16),
+                      borderRadius: BorderRadius.circular(AppBorderRadius.br8),
                     ),
                     child: Column(
                       children: [
@@ -118,8 +104,8 @@ class SettingsScreen extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: context.colorScheme.secondary,
                               borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(AppBorderRadius.br16),
-                                topRight: Radius.circular(AppBorderRadius.br16),
+                                topLeft: Radius.circular(AppBorderRadius.br8),
+                                topRight: Radius.circular(AppBorderRadius.br8),
                               ),
                               border: Border(
                                 bottom: BorderSide(
@@ -163,12 +149,6 @@ class SettingsScreen extends StatelessWidget {
                             height: AppHeight.h48,
                             decoration: BoxDecoration(
                               color: context.colorScheme.secondary,
-                              borderRadius: const BorderRadius.only(
-                                bottomLeft:
-                                    Radius.circular(AppBorderRadius.br16),
-                                bottomRight:
-                                    Radius.circular(AppBorderRadius.br16),
-                              ),
                               border: Border(
                                 bottom: BorderSide(
                                   color: context.colorScheme.outline,
@@ -197,6 +177,56 @@ class SettingsScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
+                          ),
+                        ),
+                        Container(
+                          height: AppHeight.h48,
+                          decoration: BoxDecoration(
+                            color: context.colorScheme.secondary,
+                            borderRadius: const BorderRadius.only(
+                              bottomLeft: Radius.circular(AppBorderRadius.br8),
+                              bottomRight: Radius.circular(AppBorderRadius.br8),
+                            ),
+                            border: Border(
+                              bottom: BorderSide(
+                                color: context.colorScheme.outline,
+                                width: AppBorderWeight.sm,
+                              ),
+                            ),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppLayoutGrid.margin,
+                          ),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.info_outline_rounded,
+                                color: context.colorScheme.primary,
+                              ),
+                              const SizedBox(width: AppSpacing.sp16),
+                              Expanded(
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        context.localization.version,
+                                        style: context.textTheme.titleMedium!
+                                            .copyWith(
+                                          color: context.colorScheme.onSurface,
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      "1.0.0",
+                                      style: context.textTheme.titleMedium!
+                                          .copyWith(
+                                        color: context.colorScheme.onSurface,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],

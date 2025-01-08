@@ -38,10 +38,13 @@
   "postAddedSuccessfully": "پست با موفقیت اضافه شد",
   "addPost": "افزودن پست",
   "noResult": "نتیجه یافت نشد",
-  "home": "خانه",
+  "dashboard": "داشبورد",
   "profile": "پروفایل",
   "offlineAlert": "شما آفلاین هستید. اینترنت خود را بررسی کنید.",
   "saveSuccess": "ذخیره با موفقیت انجام شد.",
   "settings": "تنظیمات",
-  "saveButton": "ذخیره"
+  "saveButton": "ذخیره",
+  "editProfile": "ویرایش پروفایل",
+  "system": "سیستم",
+  "version": "نسخه"
 }

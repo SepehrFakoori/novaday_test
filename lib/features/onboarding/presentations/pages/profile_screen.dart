@@ -57,6 +57,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final imagePicker = ImagePicker();
   String pickedImage = '';
   String userProfile = '';
+  String userFullName = '';
 
   @override
   void initState() {
@@ -64,6 +65,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     UserEntity user = getUser();
 
     userProfile = user.profileImage ?? '';
+    userFullName = user.fullName ?? '';
+
     phoneController = TextEditingController(text: user.phoneNumber);
 
     /// Initialize TextEditingControllers
@@ -145,7 +148,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Column(
                 children: [
                   CustomAppBar(
-                    title: context.localization.completeProfile,
+                    title: widget.navigateFrom ==
+                            NavigateProfileFromEnum.onboarding
+                        ? context.localization.completeProfile
+                        : context.localization.editProfile,
                     haveBackButton: widget.navigateFrom ==
                         NavigateProfileFromEnum.dashboard,
                   ),
@@ -379,8 +385,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                         child: Center(
                                           child: Text(
-                                            fullNameController.text[0]
-                                                .toUpperCase(),
+                                            userFullName.isNotEmpty
+                                                ? userFullName[0].toUpperCase()
+                                                : '',
                                             style: context
                                                 .textTheme.headlineSmall!
                                                 .copyWith(
@@ -555,9 +562,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 }
               },
             );
-            widget.navigateFrom == NavigateProfileFromEnum.onboarding
-                ? Navigator.pushNamed(context, AppRoutes.mainScreen)
-                : null;
+            Navigator.pushNamed(context, AppRoutes.mainScreen);
+            setState(() {
+              userFullName = fullNameController.text;
+            });
           },
         ),
       ),

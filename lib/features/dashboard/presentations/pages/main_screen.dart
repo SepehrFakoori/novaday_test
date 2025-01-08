@@ -5,8 +5,8 @@ import 'package:novaday_test/core/constants/constants.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
-import 'package:novaday_test/features/dashboard/domain/repository/home_repository.dart';
-import 'package:novaday_test/features/dashboard/presentations/pages/home_screen.dart';
+import 'package:novaday_test/features/dashboard/domain/repository/dashboard_repository.dart';
+import 'package:novaday_test/features/dashboard/presentations/pages/dashboard_screen.dart';
 import 'package:novaday_test/features/dashboard/presentations/pages/settings_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -25,9 +25,21 @@ class _MainScreenState extends State<MainScreen> {
     KiwiContainer di = KiwiContainer();
 
     return Scaffold(
-      bottomNavigationBar: SizedBox(
+      bottomNavigationBar: Container(
         width: context.width,
         height: AppHeight.h68,
+        decoration: BoxDecoration(
+          color: context.colorScheme.secondary,
+          boxShadow: [
+            BoxShadow(
+              color: context.colorScheme.onSecondary.withValues(
+                alpha: 0.2,
+              ),
+              offset: const Offset(0, -2),
+              blurRadius: AppBorderRadius.br4,
+            ),
+          ],
+        ),
         child: Row(
           children: [
             Expanded(
@@ -45,18 +57,21 @@ class _MainScreenState extends State<MainScreen> {
                             height: AppHeight.h32,
                             padding: const EdgeInsets.symmetric(
                               horizontal: AppSpacing.sp12,
-                              vertical: AppSpacing.sp4 + 2,
+                              vertical: AppSpacing.sp4,
                             ),
                             decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.circular(AppBorderRadius.br12),
                               color: context.colorScheme.secondaryContainer,
                             ),
-                            child: SvgPicture.asset(AppIcons.homeActive),
+                            child: Icon(
+                              Icons.dashboard_outlined,
+                              color: context.colorScheme.primary,
+                            ),
                           ),
                           const SizedBox(height: AppSpacing.sp4),
                           Text(
-                            context.localization.home,
+                            context.localization.dashboard,
                             style: context.textTheme.labelMedium!.copyWith(
                               color: context.colorScheme.primary,
                               fontWeight: FontWeight.w700,
@@ -75,11 +90,14 @@ class _MainScreenState extends State<MainScreen> {
                               horizontal: AppSpacing.sp12,
                               vertical: AppSpacing.sp4 + 2,
                             ),
-                            child: SvgPicture.asset(AppIcons.homeDeActive),
+                            child: Icon(
+                              Icons.dashboard_outlined,
+                              color: context.colorScheme.onSecondaryContainer,
+                            ),
                           ),
                           const SizedBox(height: AppSpacing.sp4),
                           Text(
-                            context.localization.home,
+                            context.localization.dashboard,
                             style: context.textTheme.labelMedium!.copyWith(
                               color: context.colorScheme.onSecondaryContainer,
                               fontWeight: FontWeight.w700,
@@ -104,7 +122,7 @@ class _MainScreenState extends State<MainScreen> {
                             height: AppHeight.h32,
                             padding: const EdgeInsets.symmetric(
                               horizontal: AppSpacing.sp12,
-                              vertical: AppSpacing.sp4 + 2,
+                              vertical: AppSpacing.sp4,
                             ),
                             decoration: BoxDecoration(
                               borderRadius:
@@ -161,8 +179,8 @@ class _MainScreenState extends State<MainScreen> {
         physics: const NeverScrollableScrollPhysics(),
         controller: _pageController,
         children: [
-          HomeScreen(
-            homeRepository: di.resolve<HomeRepository>(),
+          DashboardScreen(
+            dashboardRepository: di.resolve<DashboardRepository>(),
           ),
           const SettingsScreen(),
         ],

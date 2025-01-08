@@ -1,16 +1,16 @@
 
 import 'package:dio/dio.dart';
 
-abstract class IHomeDataSource {
+abstract class IDashboardDataSource {
   Future<void> addPost();
 
   Future<void> addComment(int postId);
 }
 
-class HomeDataSource extends IHomeDataSource {
+class DashboardDataSource extends IDashboardDataSource {
   final Dio _dio;
 
-  HomeDataSource(this._dio);
+  DashboardDataSource(this._dio);
 
   @override
   Future<void> addPost() async {

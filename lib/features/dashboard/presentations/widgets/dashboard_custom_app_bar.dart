@@ -1,64 +1,86 @@
-import 'package:flutter/material.dart';
-import 'package:novaday_test/core/constants/constants.dart';
-import 'package:novaday_test/core/extensions/extensions.dart';
+import 'dart:io';
 
-class DashboardCustomAppBar extends StatelessWidget {
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:novaday_test/core/constants/constants.dart';
+import 'package:novaday_test/core/constants/hive_constants/hive_box_constants.dart';
+import 'package:novaday_test/core/constants/hive_constants/hive_constants.dart';
+import 'package:novaday_test/core/extensions/extensions.dart';
+import 'package:novaday_test/features/onboarding/domain/entities/user_entity/user_entity.dart';
+
+class DashboardCustomAppBar extends StatefulWidget {
   const DashboardCustomAppBar({
     super.key,
   });
 
   @override
+  State<DashboardCustomAppBar> createState() => _DashboardCustomAppBarState();
+}
+
+class _DashboardCustomAppBarState extends State<DashboardCustomAppBar> {
+  UserEntity userEntity = UserEntity();
+
+  @override
+  initState() {
+    super.initState();
+    userEntity = getUserInfo();
+  }
+
+  UserEntity getUserInfo() {
+    var box = Hive.box<UserEntity>(HiveBoxConstants.userProfileBox);
+    UserEntity? user = box.get(HiveKeyConstants.userProfileKey);
+    return user ?? UserEntity();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SizedBox(
-          width: 60,
-          child: Stack(
-            alignment: AlignmentDirectional.centerEnd,
-            children: [
-              SizedBox.square(
-                dimension: AppHeight.h40,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: context.colorScheme.primary,
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: context.colorScheme.outline,
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "m".toUpperCase(),
-                      style: context.textTheme.titleMedium!.copyWith(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: context.colorScheme.onPrimary,
+        SizedBox.square(
+          dimension: AppHeight.h40,
+          child: Container(
+            width: AppHeight.h40,
+            height: AppHeight.h40,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: context.colorScheme.outline,
+              ),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(AppBorderRadius.br24),
+              child: userEntity.profileImage == ""
+                  ? Container(
+                      decoration: BoxDecoration(
+                        color: context.colorScheme.primary,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: context.colorScheme.outline,
+                        ),
                       ),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                right: 0,
-                child: Container(
-                  width: AppHeight.h40,
-                  height: AppHeight.h40,
-                  decoration: BoxDecoration(
-                    // todo: change color
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: context.colorScheme.outline,
-                    ),
-                  ),
-                  child: ClipRRect(
-                    borderRadius:
-                    BorderRadius.circular(AppBorderRadius.br24),
-                    child: Image.asset("assets/mark.png"),
-                  ),
-                ),
-              ),
-            ],
+                      child: Center(
+                        child: Text(
+                          userEntity.fullName![0].toUpperCase(),
+                          style: context.textTheme.titleMedium!.copyWith(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            color: context.colorScheme.onPrimary,
+                          ),
+                        ),
+                      ),
+                    )
+                  : kIsWeb
+                      ? Image.network(
+                          userEntity.profileImage!,
+                          fit: BoxFit.cover,
+                        )
+                      : Image.file(
+                          File(userEntity.profileImage!),
+                          fit: BoxFit.cover,
+                        ),
+            ),
           ),
         ),
         const SizedBox(width: AppSpacing.sp12),
@@ -67,35 +89,21 @@ class DashboardCustomAppBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "مصطفی گریزمان",
-              style: context.textTheme.titleMedium!.copyWith(
+              userEntity.fullName!,
+              style: context.textTheme.titleLarge!.copyWith(
                 fontWeight: FontWeight.w600,
                 color: context.colorScheme.onSurface,
               ),
             ),
             Text(
-              "شرکت نوادی",
+              userEntity.jobTitle!,
               style: context.textTheme.labelMedium!.copyWith(
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w700,
                 color: context.colorScheme.onSecondaryContainer,
+                fontSize: 14,
               ),
             ),
           ],
-        ),
-        const Spacer(),
-        Container(
-          width: AppHeight.h40,
-          height: AppHeight.h40,
-          decoration: BoxDecoration(
-            color: context.colorScheme.secondary,
-            shape: BoxShape.circle,
-          ),
-          child: Center(
-            child: Icon(
-              Icons.notifications_none_rounded,
-              color: context.colorScheme.onSecondary,
-            ),
-          ),
         ),
       ],
     );

@@ -38,10 +38,13 @@
   "postAddedSuccessfully": "Message ajouté avec succès",
   "addPost": "Ajouter un message",
   "noResult": "Rien trouvé",
-  "home": "Maison",
+  "dashboard": "Tableau de bord",
   "profile": "Profil",
   "offlineAlert": "Vous êtes hors ligne. Vérifiez votre connexion Internet.",
   "saveSuccess": "Enregistré avec succès",
   "settings": "Paramètres",
-  "saveButton": "Enregistrer"
+  "saveButton": "Enregistrer",
+  "editProfile": "Modifier le profil",
+  "system": "Système",
+  "version": "Version"
 }

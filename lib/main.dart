@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -7,6 +8,7 @@ import 'package:kiwi/kiwi.dart';
 import 'package:novaday_test/core/constants/constants.dart';
 import 'package:novaday_test/core/constants/hive_constants/hive_constants.dart';
 import 'package:novaday_test/core/enums/enums.dart';
+import 'package:novaday_test/core/extensions/extensions.dart';
 import 'package:novaday_test/core/injector/injector.dart';
 import 'package:novaday_test/core/services/router_service.dart';
 import 'package:novaday_test/core/theme/app_dark_theme.dart';
@@ -55,40 +57,47 @@ class MyApp extends StatelessWidget {
             builder: (context, themeEnum) {
               return LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
-                  return MaterialApp(
-                    builder: (context, child) => ResponsiveBreakpoints.builder(
-                      child: child!,
-                      breakpoints: [
-                        const Breakpoint(start: 0, end: 450, name: MOBILE),
-                        const Breakpoint(start: 451, end: 800, name: TABLET),
-                        const Breakpoint(start: 801, end: 1920, name: DESKTOP),
-                        const Breakpoint(
-                            start: 1921, end: double.infinity, name: '4K'),
-                      ],
+                  return Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: kIsWeb ? context.width * 0.3 : 0,
                     ),
-                    debugShowCheckedModeBanner: false,
-                    navigatorKey: navigatorKey,
-                    title: 'Flutter Demo',
-                    theme: themeEnum == ThemeEnum.light
-                        ? LightThemeData.themeData
-                            .copyWith(textTheme: getTextTheme(locale))
-                        : DarkThemeData.themeData
-                            .copyWith(textTheme: getTextTheme(locale)),
-                    localizationsDelegates: const [
-                      AppLocalizations.delegate,
-                      GlobalMaterialLocalizations.delegate,
-                      GlobalWidgetsLocalizations.delegate,
-                      GlobalCupertinoLocalizations.delegate,
-                    ],
-                    supportedLocales: AppLocalizations.supportedLocales,
-                    locale: locale,
-                    onGenerateRoute: RouterService.generateRoute,
-                    initialRoute: AppRoutes.splashScreen,
-                    home: BlocProvider(
-                      create: (context) => SplashCubit(
-                        di.resolve<PostRepository>(),
+                    child: MaterialApp(
+                      builder: (context, child) =>
+                          ResponsiveBreakpoints.builder(
+                        child: child!,
+                        breakpoints: [
+                          const Breakpoint(start: 0, end: 450, name: MOBILE),
+                          const Breakpoint(start: 451, end: 800, name: TABLET),
+                          const Breakpoint(
+                              start: 801, end: 1920, name: DESKTOP),
+                          const Breakpoint(
+                              start: 1921, end: double.infinity, name: '4K'),
+                        ],
                       ),
-                      child: const SplashScreen(),
+                      debugShowCheckedModeBanner: false,
+                      navigatorKey: navigatorKey,
+                      title: 'Flutter Demo',
+                      theme: themeEnum == ThemeEnum.light
+                          ? LightThemeData.themeData
+                              .copyWith(textTheme: getTextTheme(locale))
+                          : DarkThemeData.themeData
+                              .copyWith(textTheme: getTextTheme(locale)),
+                      localizationsDelegates: const [
+                        AppLocalizations.delegate,
+                        GlobalMaterialLocalizations.delegate,
+                        GlobalWidgetsLocalizations.delegate,
+                        GlobalCupertinoLocalizations.delegate,
+                      ],
+                      supportedLocales: AppLocalizations.supportedLocales,
+                      locale: locale,
+                      onGenerateRoute: RouterService.generateRoute,
+                      initialRoute: AppRoutes.splashScreen,
+                      home: BlocProvider(
+                        create: (context) => SplashCubit(
+                          di.resolve<PostRepository>(),
+                        ),
+                        child: const SplashScreen(),
+                      ),
                     ),
                   );
                 },

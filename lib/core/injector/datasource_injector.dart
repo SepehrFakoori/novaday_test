@@ -16,8 +16,8 @@ class DataSourceInjector {
       (c) => CommentDataSource(c.resolve<Dio>()),
     );
 
-    container.registerFactory<IHomeDataSource>(
-      (c) => HomeDataSource(c.resolve<Dio>()),
+    container.registerFactory<IDashboardDataSource>(
+      (c) => DashboardDataSource(c.resolve<Dio>()),
     );
   }
 }

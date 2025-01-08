@@ -28,7 +28,10 @@ class SetLocaleScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 CustomAppBar(
-                  haveBackButton: false,
+                  haveBackButton:
+                      navigateFrom == NavigateProfileFromEnum.onboarding
+                          ? false
+                          : true,
                   title: context.localization.setLangTitle,
                 ),
                 const SizedBox(height: AppSpacing.sp24),
@@ -92,7 +95,6 @@ class _LanguageContainer extends StatelessWidget {
             onSelectLanguage(context);
           },
           child: Container(
-            height: AppHeight.h48,
             decoration: BoxDecoration(
               color: !(locale.languageCode ==
                       languageEntity.countryLanguageCode!.name)
@@ -107,6 +109,7 @@ class _LanguageContainer extends StatelessWidget {
             ),
             padding: const EdgeInsets.symmetric(
               horizontal: AppLayoutGrid.margin,
+              vertical: AppSpacing.sp4,
             ),
             child: Row(
               children: [

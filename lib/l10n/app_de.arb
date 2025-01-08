@@ -38,10 +38,13 @@
   "postAddedSuccessfully": "Beitrag erfolgreich hinzugefügt",
   "addPost": "Beitrag hinzufügen",
   "noResult": "Nichts gefunden!",
-  "home": "Heim",
+  "dashboard": "Dashboard",
   "profile": "Profil",
   "offlineAlert": "Sie sind offline. Überprüfen Sie Ihre Internetverbindung.",
   "saveSuccess": "Erfolgreich gespeichert",
   "settings": "Einstellungen",
-    "saveButton": "Speichern"
+  "saveButton": "Speichern",
+  "editProfile": "Profil bearbeiten",
+  "system": "System",
+  "version": "Version"
 }

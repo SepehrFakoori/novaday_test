@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:novaday_test/core/constants/constants.dart';
+import 'package:novaday_test/core/constants/theme_constants/app_light_colors.dart';
 import 'package:novaday_test/core/enums/NavigateProfileFromEnum.dart';
 import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
@@ -24,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.colorScheme.surface,
+      backgroundColor: context.colorScheme.primary,
       body: BlocListener<SplashCubit, SplashState>(
         listener: (context, state) {
           print("SplashScreen -----> SplashState : $state");
@@ -34,10 +35,10 @@ class _SplashScreenState extends State<SplashScreen> {
             userNotRegistered: () {
               context.read<SplashCubit>().getData();
               return Navigator.pushReplacementNamed(
-              context,
-              AppRoutes.setLocaleScreen,
-              arguments: NavigateProfileFromEnum.onboarding,
-            );
+                context,
+                AppRoutes.setLocaleScreen,
+                arguments: NavigateProfileFromEnum.onboarding,
+              );
             },
             biometricAuthIsOn: () async {
               try {
@@ -62,8 +63,6 @@ class _SplashScreenState extends State<SplashScreen> {
                 Navigator.pushReplacementNamed(context, AppRoutes.mainScreen),
             dataIsNotInDatabase: () {
               context.read<SplashCubit>().getData();
-              // return Navigator.pushReplacementNamed(
-              //   context, AppRoutes.homeScreen);
             },
             noInternetConnection: () {
               setState(() {
@@ -88,7 +87,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Center _appLogoSection() {
     return Center(
-      child: SvgPicture.asset(AppIcons.lightAppLogo),
+      child: SvgPicture.asset(AppIcons.appLogo),
     );
   }
 
@@ -103,7 +102,9 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             SizedBox.square(
               dimension: AppHeight.h36,
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                backgroundColor: AppLightColors.whiteTextColor,
+              ),
             ),
           ],
         ),
@@ -124,7 +125,7 @@ class _SplashScreenState extends State<SplashScreen> {
               context.localization.failedToConnect,
               textAlign: TextAlign.center,
               style: context.textTheme.bodyMedium!.copyWith(
-                color: context.colorScheme.onSecondaryContainer,
+                color: context.colorScheme.onPrimary,
               ),
             ),
             // _reloadSection(context),
@@ -136,20 +137,20 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Positioned _appVersionNumberSection(BuildContext context) {
     return Positioned(
-      bottom: AppSpacing.sp8,
+      bottom: AppSpacing.sp16,
       child: Row(
         children: [
           Text(
             context.localization.appVersion,
-            style: context.textTheme.titleLarge!.copyWith(
-              color: context.colorScheme.onSecondaryContainer,
+            style: context.textTheme.titleMedium!.copyWith(
+              color: context.colorScheme.onPrimary,
             ),
           ),
           const SizedBox(width: AppSpacing.sp4),
           Text(
             '1.19',
-            style: context.textTheme.titleLarge!.copyWith(
-              color: context.colorScheme.onSecondaryContainer,
+            style: context.textTheme.titleMedium!.copyWith(
+              color: context.colorScheme.onPrimary,
             ),
           ),
         ],

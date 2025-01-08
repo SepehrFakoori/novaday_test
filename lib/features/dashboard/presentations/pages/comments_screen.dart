@@ -5,13 +5,13 @@ import 'package:novaday_test/core/constants/hive_constants/hive_box_constants.da
 import 'package:novaday_test/core/constants/hive_constants/hive_constants.dart';
 import 'package:novaday_test/core/extensions/extensions.dart';
 import 'package:novaday_test/core/widgets/widgets.dart';
-import 'package:novaday_test/features/dashboard/domain/repository/home_repository.dart';
+import 'package:novaday_test/features/dashboard/domain/repository/dashboard_repository.dart';
 import 'package:novaday_test/features/dashboard/presentations/widgets/comment_input_custom_text_field.dart';
 import 'package:novaday_test/features/dashboard/presentations/widgets/dashboard_custom_app_bar.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/comment_entity/comment_entity.dart';
 
 class CommentsScreen extends StatelessWidget {
-  final HomeRepository homeRepository;
+  final DashboardRepository homeRepository;
 
   const CommentsScreen(
       {super.key, required this.postId, required this.homeRepository});
