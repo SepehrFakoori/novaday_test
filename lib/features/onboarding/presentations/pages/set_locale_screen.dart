@@ -28,7 +28,10 @@ class SetLocaleScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 CustomAppBar(
-                  haveBackButton: false,
+                  haveBackButton:
+                      navigateFrom == NavigateProfileFromEnum.onboarding
+                          ? false
+                          : true,
                   title: context.localization.setLangTitle,
                 ),
                 const SizedBox(height: AppSpacing.sp24),

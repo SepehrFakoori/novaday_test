@@ -25,9 +25,21 @@ class _MainScreenState extends State<MainScreen> {
     KiwiContainer di = KiwiContainer();
 
     return Scaffold(
-      bottomNavigationBar: SizedBox(
+      bottomNavigationBar: Container(
         width: context.width,
         height: AppHeight.h68,
+        decoration: BoxDecoration(
+          color: context.colorScheme.secondary,
+          boxShadow: [
+            BoxShadow(
+              color: context.colorScheme.onSecondary.withValues(
+                alpha: 0.2,
+              ),
+              offset: const Offset(0, -2),
+              blurRadius: AppBorderRadius.br4,
+            ),
+          ],
+        ),
         child: Row(
           children: [
             Expanded(
@@ -190,4 +202,3 @@ class _MainScreenState extends State<MainScreen> {
     _pageController.jumpToPage(value);
   }
 }
-

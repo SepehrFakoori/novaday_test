@@ -27,7 +27,7 @@ class SettingsScreen extends StatelessWidget {
                 Text(
                   context.localization.profile,
                   style: context.textTheme.titleMedium!.copyWith(
-                    color: context.colorScheme.onSurface,
+                    color: context.colorScheme.onSecondaryContainer,
                   ),
                 ),
                 const SizedBox(height: AppSpacing.sp4),
@@ -74,7 +74,7 @@ class SettingsScreen extends StatelessWidget {
                 Text(
                   context.localization.system,
                   style: context.textTheme.titleMedium!.copyWith(
-                    color: context.colorScheme.onSurface,
+                    color: context.colorScheme.onSecondaryContainer,
                   ),
                 ),
                 const SizedBox(height: AppSpacing.sp4),
@@ -149,12 +149,6 @@ class SettingsScreen extends StatelessWidget {
                             height: AppHeight.h48,
                             decoration: BoxDecoration(
                               color: context.colorScheme.secondary,
-                              borderRadius: const BorderRadius.only(
-                                bottomLeft:
-                                    Radius.circular(AppBorderRadius.br8),
-                                bottomRight:
-                                    Radius.circular(AppBorderRadius.br8),
-                              ),
                               border: Border(
                                 bottom: BorderSide(
                                   color: context.colorScheme.outline,
@@ -185,51 +179,58 @@ class SettingsScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: AppSpacing.sp24),
-                Container(
-                  height: AppHeight.h48,
-                  decoration: BoxDecoration(
-                    color: context.colorScheme.secondary,
-                    borderRadius: BorderRadius.circular(AppBorderRadius.br8),
-                    border: Border.all(
-                      color: context.colorScheme.outline,
-                    ),
-                  ),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppLayoutGrid.margin,
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.info_outline_rounded,
-                        color: context.colorScheme.primary,
-                      ),
-                      const SizedBox(width: AppSpacing.sp16),
-                      Expanded(
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                context.localization.version,
-                                style: context.textTheme.titleMedium!.copyWith(
-                                  color: context.colorScheme.onSurface,
+                        Container(
+                          height: AppHeight.h48,
+                          decoration: BoxDecoration(
+                            color: context.colorScheme.secondary,
+                            borderRadius: const BorderRadius.only(
+                              bottomLeft: Radius.circular(AppBorderRadius.br8),
+                              bottomRight: Radius.circular(AppBorderRadius.br8),
+                            ),
+                            border: Border(
+                              bottom: BorderSide(
+                                color: context.colorScheme.outline,
+                                width: AppBorderWeight.sm,
+                              ),
+                            ),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppLayoutGrid.margin,
+                          ),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.info_outline_rounded,
+                                color: context.colorScheme.primary,
+                              ),
+                              const SizedBox(width: AppSpacing.sp16),
+                              Expanded(
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        context.localization.version,
+                                        style: context.textTheme.titleMedium!
+                                            .copyWith(
+                                          color: context.colorScheme.onSurface,
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      "1.0.0",
+                                      style: context.textTheme.titleMedium!
+                                          .copyWith(
+                                        color: context.colorScheme.onSurface,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ),
-                            Text(
-                              "1.0.0",
-                              style: context.textTheme.titleMedium!.copyWith(
-                                color: context.colorScheme.onSurface,
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ],
