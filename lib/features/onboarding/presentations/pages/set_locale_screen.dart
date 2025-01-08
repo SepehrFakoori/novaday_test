@@ -92,7 +92,6 @@ class _LanguageContainer extends StatelessWidget {
             onSelectLanguage(context);
           },
           child: Container(
-            height: AppHeight.h48,
             decoration: BoxDecoration(
               color: !(locale.languageCode ==
                       languageEntity.countryLanguageCode!.name)
@@ -107,6 +106,7 @@ class _LanguageContainer extends StatelessWidget {
             ),
             padding: const EdgeInsets.symmetric(
               horizontal: AppLayoutGrid.margin,
+              vertical: AppSpacing.sp4,
             ),
             child: Row(
               children: [
