@@ -38,10 +38,13 @@
   "postAddedSuccessfully": "Post added successfully",
   "addPost": "Add post",
   "noResult": "Nothing found!",
-  "home": "Home",
+  "dashboard": "Dashboard",
   "profile": "Profile",
   "offlineAlert": "You're offline. Check your internet.",
   "saveSuccess": "Saved successfully.",
   "settings": "Settings",
-  "saveButton": "Save"
+  "saveButton": "Save",
+  "editProfile": "Edit Profile",
+  "system": "System",
+  "version": "Version"
 }

@@ -148,7 +148,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Column(
                 children: [
                   CustomAppBar(
-                    title: context.localization.completeProfile,
+                    title: widget.navigateFrom ==
+                            NavigateProfileFromEnum.onboarding
+                        ? context.localization.completeProfile
+                        : context.localization.editProfile,
                     haveBackButton: widget.navigateFrom ==
                         NavigateProfileFromEnum.dashboard,
                   ),
@@ -559,9 +562,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 }
               },
             );
-            widget.navigateFrom == NavigateProfileFromEnum.onboarding
-                ? Navigator.pushNamed(context, AppRoutes.mainScreen)
-                : null;
+            Navigator.pushNamed(context, AppRoutes.mainScreen);
             setState(() {
               userFullName = fullNameController.text;
             });

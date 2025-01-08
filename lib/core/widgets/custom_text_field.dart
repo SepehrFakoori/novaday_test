@@ -86,7 +86,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
               ? widget.controller.text.isNotEmpty
                   ? IconButton(
                       icon: Icon(
-                        _isObscured ? Icons.visibility : Icons.visibility_off,
+                        _isObscured
+                            ? Icons.visibility_outlined
+                            : Icons.visibility_off_outlined,
+                        color: context.colorScheme.primary,
                       ),
                       onPressed: _togglePasswordVisibility,
                     )

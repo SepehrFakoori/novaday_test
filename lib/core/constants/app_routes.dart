@@ -8,5 +8,6 @@ class AppRoutes {
   static const profileScreen = '/profile';
   static const mainScreen = "/main";
   static const homeScreen = '/home';
+  static const settingsScreen = '/settings';
   static const commentScreen = '/comment';
 }

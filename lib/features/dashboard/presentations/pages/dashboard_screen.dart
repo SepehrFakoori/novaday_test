@@ -7,15 +7,15 @@ import 'package:novaday_test/core/extensions/localization_extension.dart';
 import 'package:novaday_test/core/extensions/size_extension.dart';
 import 'package:novaday_test/core/extensions/theme_extension.dart';
 import 'package:novaday_test/core/widgets/custom_snack_bar.dart';
-import 'package:novaday_test/features/dashboard/domain/repository/home_repository.dart';
+import 'package:novaday_test/features/dashboard/domain/repository/dashboard_repository.dart';
 import 'package:novaday_test/features/dashboard/presentations/widgets/dashboard_custom_app_bar.dart';
 import 'package:novaday_test/features/onboarding/domain/entities/post_entity/post_entity.dart';
 import 'package:share_plus/share_plus.dart';
 
-class HomeScreen extends StatelessWidget {
-  final HomeRepository homeRepository;
+class DashboardScreen extends StatelessWidget {
+  final DashboardRepository dashboardRepository;
 
-  const HomeScreen({super.key, required this.homeRepository});
+  const DashboardScreen({super.key, required this.dashboardRepository});
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +89,7 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: context.colorScheme.primary,
         onPressed: () {
-          homeRepository.addPost().then(
+          dashboardRepository.addPost().then(
             (_) async {
               // var box = Hive.box<bool>(HiveBoxConstants.settingBox);
               // await box.put(HiveKeyConstants.dataKey, true);
@@ -101,25 +101,22 @@ class HomeScreen extends StatelessWidget {
             },
           );
         },
-        label: Directionality(
-          textDirection: TextDirection.rtl,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.add,
+        label: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.add,
+              color: context.colorScheme.onPrimary,
+            ),
+            const SizedBox(width: AppSpacing.sp4),
+            Text(
+              context.localization.addPost,
+              style: context.textTheme.titleMedium!.copyWith(
+                fontWeight: FontWeight.w600,
                 color: context.colorScheme.onPrimary,
               ),
-              const SizedBox(width: AppSpacing.sp4),
-              Text(
-                context.localization.addPost,
-                style: context.textTheme.titleMedium!.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: context.colorScheme.onPrimary,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -164,17 +161,18 @@ class PostCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "${post.title}",
-                  style: context.textTheme.titleMedium!.copyWith(
-                    color: context.colorScheme.onSurface,
-                  ),
-                  maxLines: null,
-                ),
+                Text("${post.title}",
+                    style: context.textTheme.titleMedium!.copyWith(
+                      color: context.colorScheme.onSurface,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis),
                 const Divider(),
                 const SizedBox(height: AppSpacing.sp12),
                 Text(
-                  "${post.body}",
+                  "${post.body}".replaceAll("\n", " "),
                   style: context.textTheme.bodyMedium!.copyWith(
                     color: context.colorScheme.onSurface,
                   ),

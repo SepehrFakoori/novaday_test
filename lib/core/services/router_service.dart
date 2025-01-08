@@ -9,11 +9,12 @@ import 'package:novaday_test/features/auth/presentations/pages/login_screen.dart
 import 'package:novaday_test/features/auth/presentations/pages/otp_screen.dart';
 import 'package:novaday_test/features/auth/presentations/pages/biometric_auth_screen.dart';
 import 'package:novaday_test/features/auth/presentations/utils/login_arguments.dart';
-import 'package:novaday_test/features/dashboard/domain/repository/home_repository.dart';
+import 'package:novaday_test/features/dashboard/domain/repository/dashboard_repository.dart';
 import 'package:novaday_test/features/dashboard/presentations/pages/main_screen.dart';
+import 'package:novaday_test/features/dashboard/presentations/pages/settings_screen.dart';
 import 'package:novaday_test/features/onboarding/domain/repository/post_repository.dart';
 import 'package:novaday_test/features/dashboard/presentations/pages/comments_screen.dart';
-import 'package:novaday_test/features/dashboard/presentations/pages/home_screen.dart';
+import 'package:novaday_test/features/dashboard/presentations/pages/dashboard_screen.dart';
 import 'package:novaday_test/features/onboarding/presentations/cubits/splash_cubit/splash_cubit.dart';
 import 'package:novaday_test/features/onboarding/presentations/pages/splash_screen.dart';
 import 'package:novaday_test/features/onboarding/presentations/pages/set_locale_screen.dart';
@@ -76,24 +77,29 @@ class RouterService {
           builder: (_) => const MainScreen(),
         );
 
+      case AppRoutes.settingsScreen:
+        return MaterialPageRoute(
+          builder: (_) => const SettingsScreen(),
+        );
+
+      case AppRoutes.homeScreen:
+        return MaterialPageRoute(
+          builder: (_) => DashboardScreen(
+            dashboardRepository: di.resolve<DashboardRepository>(),
+          ),
+        );
+
       case AppRoutes.profileScreen:
         return MaterialPageRoute(
           builder: (_) =>
               ProfileScreen(navigateFrom: args as NavigateProfileFromEnum),
         );
 
-      case AppRoutes.homeScreen:
-        return MaterialPageRoute(
-          builder: (_) => HomeScreen(
-            homeRepository: di.resolve<HomeRepository>(),
-          ),
-        );
-
       case AppRoutes.commentScreen:
         return MaterialPageRoute(
           builder: (_) => CommentsScreen(
             postId: args as int,
-            homeRepository: di.resolve<HomeRepository>(),
+            homeRepository: di.resolve<DashboardRepository>(),
           ),
         );
 

@@ -47,7 +47,6 @@ dependencies:
   freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
   flutter_svg: ^2.0.16
-  google_fonts: ^6.2.1
   another_flushbar: ^1.12.30
   connectivity_plus: ^6.1.1
   local_auth: ^2.1.7

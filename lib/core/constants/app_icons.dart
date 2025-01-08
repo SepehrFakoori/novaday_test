@@ -2,6 +2,9 @@ class AppIcons {
   // Base path of icons
   static const _basePath = 'assets/icons';
 
+  // App Logo
+  static const appLogo = '$_basePath/logo.svg';
+
   // Light theme icons
   static const lightAppLogo = '$_basePath/light_logo.svg';
 

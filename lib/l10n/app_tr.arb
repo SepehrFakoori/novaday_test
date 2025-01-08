@@ -38,10 +38,13 @@
   "postAddedSuccessfully": "Gönderi başarıyla eklendi",
   "addPost": "Gönderi Ekle",
   "noResult": "Hiçbir şey bulunamadı",
-  "home": "Ev",
+  "dashboard": "Panel",
   "profile": "Profil",
   "offlineAlert": "Çevrimdışısınız. İnternet bağlantınızı kontrol edin.",
   "saveSuccess": "Başarıyla kaydedildi",
   "settings": "Ayarlar",
-  "saveButton": "Kaydet"
+  "saveButton": "Kaydet",
+  "editProfile": "Profili Düzenle",
+  "system": "Sistem",
+  "version": "Sürüm"
 }

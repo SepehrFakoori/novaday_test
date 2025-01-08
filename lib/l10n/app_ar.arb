@@ -38,10 +38,13 @@
   "postAddedSuccessfully": "تمت إضافة المشاركة بنجاح",
   "addPost": "إضافة مشاركة",
   "noResult": "لم يتم العثور على شيء!",
-  "home": "بيت",
+  "dashboard": "لوحة القيادة",
   "profile": "حساب تعريفي",
   "offlineAlert": "أنت غير متصل بالإنترنت. تحقق من اتصالك.",
   "saveSuccess": "تم الحفظ بنجاح",
   "settings": "الإعدادات",
-  "saveButton": "حفظ"
+  "saveButton": "حفظ",
+  "editProfile": "تعديل الملف الشخصي",
+  "system": "النظام",
+  "version": "الإصدار"
 }
